@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ismoil Market | Digital Store</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- PREMIUM DIZAYN (GLASS & NEON) --- */
+        /* --- DIZAYN (GLASS & NEON) --- */
         :root {
             --bg-dark: #050510;
             --glass: rgba(255, 255, 255, 0.05);
@@ -18,52 +19,41 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
         body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
         
-        /* FON EFFEKTLARI */
         .glow { position: fixed; width: 400px; height: 400px; filter: blur(90px); opacity: 0.15; z-index: -1; border-radius: 50%; animation: move 10s infinite alternate; }
         .g1 { background: var(--neon-blue); top: -100px; left: -100px; }
         .g2 { background: var(--neon-purple); bottom: -100px; right: -100px; }
         @keyframes move { to { transform: translate(50px, 50px); } }
 
-        /* SIDEBAR */
         .sidebar { width: 280px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; z-index: 10; }
         .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-blue); }
         .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
         .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 3px solid var(--neon-blue); }
         
-        /* ASOSIY QISM */
         .main { flex: 1; padding: 30px; overflow-y: auto; position: relative; }
         
-        /* TICKER (Yuguruvchi qator) */
         .ticker-wrap { background: rgba(0,0,0,0.3); padding: 8px 0; white-space: nowrap; overflow: hidden; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
         .ticker { display: inline-block; animation: marquee 25s linear infinite; }
         .t-item { display: inline-block; padding: 0 20px; color: var(--text-gray); font-size: 13px; border-right: 1px solid var(--border); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* HEADER */
         .header { display: flex; justify-content: space-between; align-items: center; background: var(--glass); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 30px; }
         
-        /* PANELLAR (CARDS) */
         .section { display: none; animation: fadeUp 0.5s; }
         .section.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .card { background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border); padding: 25px; border-radius: 20px; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--neon-blue); transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0, 242, 255, 0.1); }
-        
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
 
-        /* GIFT DOKON STYLES */
         .gift-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border); }
         .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; }
         .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
         .bg-green { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
         .bg-red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
 
-        /* INPUTS & BUTTONS */
         input, select { background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 12px; border-radius: 10px; width: 100%; outline: none; }
         .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 10px 25px; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
-        /* MOBIL */
         .bottom-nav { display: none; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
@@ -80,4 +70,151 @@
 
     <nav class="sidebar">
         <div class="logo">ISMOIL<span>.MARKET</span></div>
-        <button class="nav-btn active" onclick="tab('home')"><i class
+        <button class="nav-btn active" onclick="tab('home')"><i class="fas fa-home"></i> Asosiy</button>
+        <button class="nav-btn" onclick="tab('store')"><i class="fas fa-store"></i> Market (Server)</button>
+        <button class="nav-btn" onclick="tab('calc')"><i class="fas fa-calculator"></i> Kalkulyator</button>
+        <button class="nav-btn" onclick="tab('about')"><i class="fas fa-user"></i> Men haqimda</button>
+    </nav>
+
+    <div class="main">
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <span class="t-item">🔥 Market yuklanmoqda...</span>
+            </div>
+        </div>
+
+        <div class="header">
+            <div><i class="fas fa-clock"></i> <span id="clock">00:00</span></div>
+            <div style="font-size: 14px; color: var(--neon-blue);">ONLINE ●</div>
+        </div>
+
+        <div id="home" class="section active">
+            <div class="card" style="text-align: center; border-color: var(--neon-purple);">
+                <img src="https://github.com/ismoilvoy.png" style="width: 100px; border-radius: 50%; border: 3px solid var(--neon-blue); margin-bottom: 15px;">
+                <h1>Ismoil Xolmirzayev</h1>
+                <p style="color: var(--text-gray);">Digital Market Mutaxassisi</p>
+                <br>
+                <button class="btn" onclick="tab('store')">🛍 Do'konni ko'rish</button>
+            </div>
+            <div class="grid">
+                <div class="card"><h3>📦 iPrint Tarixi</h3><p style="font-size:13px; color:#888">Sotuv va ofis xizmatlaridagi tajriba</p></div>
+                <div class="card"><h3>🤖 AI Xizmatlar</h3><p style="font-size:13px; color:#888">Video va Ovoz generatsiyasi</p></div>
+            </div>
+        </div>
+
+        <div id="store" class="section">
+            <h2 style="color: var(--neon-blue); margin-bottom: 20px;">🛍 JONLI DO'KON</h2>
+            <div id="loader" style="text-align:center; color:white;">⏳ Serverga ulanilmoqda...</div>
+            <div id="gift-container" class="grid"></div>
+        </div>
+
+        <div id="calc" class="section">
+            <h2>🧮 Kalkulyator</h2>
+            <br>
+            <div class="card">
+                <select id="calcType" onchange="calc()" style="margin: 10px 0;">
+                    <option value="stars">Telegram Stars</option>
+                    <option value="gift">NFT Gift (Star narxida)</option>
+                </select>
+                <input type="number" id="calcInput" placeholder="Soni..." oninput="calc()">
+                <div id="calcRes" style="font-size: 24px; color: var(--neon-blue); margin-top: 15px; font-weight: bold;">0 so'm</div>
+            </div>
+        </div>
+
+        <div id="about" class="section">
+            <h2>👤 Men haqimda</h2>
+            <br>
+            <div class="card">
+                <p style="line-height: 1.6; color: #ccc;">Men Ismoil, Telegram Market (Stars, Gifts, Usernames) bo'yicha mutaxassisman.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom-nav">
+        <button onclick="tab('home')"><i class="fas fa-home"></i></button>
+        <button onclick="tab('store')"><i class="fas fa-store"></i></button>
+        <button onclick="tab('calc')"><i class="fas fa-calculator"></i></button>
+        <button onclick="tab('about')"><i class="fas fa-user"></i></button>
+    </div>
+
+    <script>
+        function tab(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // --- ENG MUHIM QISM: SERVER FUNKSIYASI ---
+        async function loadStore() {
+            const loader = document.getElementById('loader');
+            const container = document.getElementById('gift-container');
+            
+            // ZAXIRA (Server ishlamasa shu chiqadi)
+            const backupItems = [
+                { name: "Premium (1 oy)", price: "60,000 so'm", status: "active", image: "https://cdn-icons-png.flaticon.com/512/6124/6124997.png" },
+                { name: "100 Stars", price: "25,000 so'm", status: "active", image: "https://cdn-icons-png.flaticon.com/512/148/148841.png" },
+                { name: "Bot Xizmati", price: "Kelishilgan", status: "active", image: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" }
+            ];
+
+            try {
+                // Serverga ulanish
+                const response = await fetch('/api/market'); 
+                if (!response.ok) throw new Error("Server xatosi");
+                
+                const data = await response.json();
+                document.querySelector('.ticker-wrap').innerHTML = `<div class="ticker"><span class="t-item">🔥 JONLI: 1 TON = $${data.live_ton_price}</span> <span class="t-item">Market: ONLINE</span></div>`;
+                renderItems(data.items);
+
+            } catch (error) {
+                console.log("Zaxira reja ishga tushdi.");
+                document.querySelector('.ticker-wrap').innerHTML = `<div class="ticker"><span class="t-item" style="color:orange">⚠️ Oflayn Rejim</span></div>`;
+                renderItems(backupItems);
+            }
+            if(loader) loader.style.display = 'none';
+        }
+
+        function renderItems(items) {
+            const container = document.getElementById('gift-container');
+            container.innerHTML = '';
+            items.forEach(item => {
+                let badge = item.status === 'sold' ? '<span class="badge bg-red">SOTILDI</span>' : '<span class="badge bg-green">SOTUVDA</span>';
+                let opacity = item.status === 'sold' ? 0.6 : 1;
+                let html = `
+                    <div class="card gift-card" style="opacity:${opacity}">
+                        ${badge}
+                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150'">
+                        <h3>${item.name}</h3>
+                        <div class="gift-price">${item.price}</div>
+                        <button class="btn" style="width:100%; font-size:12px;" onclick="buy('${item.name}')">Sotib olish</button>
+                    </div>`;
+                container.innerHTML += html;
+            });
+        }
+
+        function calc() {
+            let type = document.getElementById('calcType').value;
+            let val = document.getElementById('calcInput').value;
+            let res = 0;
+            if(type === 'stars') res = val * 250;
+            if(type === 'gift') res = (val * 250) + 10000;
+            document.getElementById('calcRes').innerText = res.toLocaleString() + " so'm";
+        }
+        
+        function buy(item) {
+            window.open(`https://t.me/minora?text=Salom, men ${item} ni sotib olmoqchiman`, '_blank');
+        }
+
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString('uz-UZ', {hour:'2-digit', minute:'2-digit'});
+        }, 1000);
+
+        window.onload = function() {
+            if (window.Telegram && window.Telegram.WebApp) {
+                window.Telegram.WebApp.ready();
+                window.Telegram.WebApp.expand();
+            }
+            loadStore();
+        };
+    </script>
+</body>
+</html>
