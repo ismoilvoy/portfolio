@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismoil Market | Digital Store</title>
+    <title>Ismoil Market | Real TON Assets</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- DIZAYN (GLASS & NEON) --- */
+        /* --- 1. DIZAYN (GLASS & NEON) --- */
         :root {
             --bg-dark: #050510;
             --glass: rgba(255, 255, 255, 0.05);
@@ -19,48 +19,61 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
         body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
         
+        /* Orqa fon effektlari */
         .glow { position: fixed; width: 400px; height: 400px; filter: blur(90px); opacity: 0.15; z-index: -1; border-radius: 50%; animation: move 10s infinite alternate; }
         .g1 { background: var(--neon-blue); top: -100px; left: -100px; }
         .g2 { background: var(--neon-purple); bottom: -100px; right: -100px; }
         @keyframes move { to { transform: translate(50px, 50px); } }
 
+        /* Sidebar (Chap panel) */
         .sidebar { width: 280px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; z-index: 10; }
         .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-blue); }
         .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
         .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 3px solid var(--neon-blue); }
         
+        /* Asosiy ekran */
         .main { flex: 1; padding: 30px; overflow-y: auto; position: relative; }
         
+        /* Ticker (Yuguruvchi qator) */
         .ticker-wrap { background: rgba(0,0,0,0.3); padding: 8px 0; white-space: nowrap; overflow: hidden; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
         .ticker { display: inline-block; animation: marquee 25s linear infinite; }
         .t-item { display: inline-block; padding: 0 20px; color: var(--text-gray); font-size: 13px; border-right: 1px solid var(--border); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* Header va Panellar */
         .header { display: flex; justify-content: space-between; align-items: center; background: var(--glass); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 30px; }
         
         .section { display: none; animation: fadeUp 0.5s; }
         .section.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Kartochkalar (Cards) */
         .card { background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border); padding: 25px; border-radius: 20px; position: relative; overflow: hidden; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
 
-        .gift-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border); }
-        .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; }
-        .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
+        /* Gift Card Dizayni */
+        .gift-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; border: 1px solid var(--border); transition: 0.3s; }
+        .gift-card:hover img { transform: scale(1.05); }
+        .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; margin-bottom: 5px; }
+        
+        .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; backdrop-filter: blur(5px); }
         .bg-green { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
         .bg-red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
+        .bg-blue { background: rgba(0, 242, 255, 0.2); color: #00f2ff; border: 1px solid #00f2ff; }
 
+        /* Inputs & Buttons */
         input, select { background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 12px; border-radius: 10px; width: 100%; outline: none; }
-        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 10px 25px; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
+        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 10px 25px; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
+        /* Mobil Menu */
         .bottom-nav { display: none; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .bottom-nav { display: flex; position: fixed; bottom: 0; width: 100%; background: #0b0b15; padding: 10px; justify-content: space-around; border-top: 1px solid var(--border); z-index: 99; }
             .bottom-nav button { background: none; border: none; color: gray; font-size: 20px; }
             .bottom-nav button.active { color: var(--neon-blue); }
-            .main { padding: 15px; padding-bottom: 80px; }
+            .main { padding: 15px; padding-bottom: 90px; }
         }
     </style>
 </head>
@@ -71,7 +84,7 @@
     <nav class="sidebar">
         <div class="logo">ISMOIL<span>.MARKET</span></div>
         <button class="nav-btn active" onclick="tab('home')"><i class="fas fa-home"></i> Asosiy</button>
-        <button class="nav-btn" onclick="tab('store')"><i class="fas fa-store"></i> Market (Server)</button>
+        <button class="nav-btn" onclick="tab('store')"><i class="fas fa-gem"></i> NFT Market</button>
         <button class="nav-btn" onclick="tab('calc')"><i class="fas fa-calculator"></i> Kalkulyator</button>
         <button class="nav-btn" onclick="tab('about')"><i class="fas fa-user"></i> Men haqimda</button>
     </nav>
@@ -79,45 +92,48 @@
     <div class="main">
         <div class="ticker-wrap">
             <div class="ticker">
-                <span class="t-item">🔥 Market yuklanmoqda...</span>
+                <span class="t-item">🔥 Yuklanmoqda...</span>
             </div>
         </div>
 
         <div class="header">
             <div><i class="fas fa-clock"></i> <span id="clock">00:00</span></div>
-            <div style="font-size: 14px; color: var(--neon-blue);">ONLINE ●</div>
+            <div style="font-size: 14px; color: var(--neon-blue);">BLOKCHEYN ONLINE ●</div>
         </div>
 
         <div id="home" class="section active">
             <div class="card" style="text-align: center; border-color: var(--neon-purple);">
                 <img src="https://github.com/ismoilvoy.png" style="width: 100px; border-radius: 50%; border: 3px solid var(--neon-blue); margin-bottom: 15px;">
                 <h1>Ismoil Xolmirzayev</h1>
-                <p style="color: var(--text-gray);">Digital Market Mutaxassisi</p>
+                <p style="color: var(--text-gray);">Digital Market & Blockchain Enthusiast</p>
                 <br>
-                <button class="btn" onclick="tab('store')">🛍 Do'konni ko'rish</button>
+                <button class="btn" onclick="tab('store')" style="max-width: 200px;">💎 NFTlarni Ko'rish</button>
             </div>
             <div class="grid">
-                <div class="card"><h3>📦 iPrint Tarixi</h3><p style="font-size:13px; color:#888">Sotuv va ofis xizmatlaridagi tajriba</p></div>
-                <div class="card"><h3>🤖 AI Xizmatlar</h3><p style="font-size:13px; color:#888">Video va Ovoz generatsiyasi</p></div>
+                <div class="card"><h3>📦 TON Blockchain</h3><p style="font-size:13px; color:#888">Haqiqiy NFT ma'lumotlari</p></div>
+                <div class="card"><h3>🤖 AI Xizmatlar</h3><p style="font-size:13px; color:#888">Botlar va Avtomatlashtirish</p></div>
             </div>
         </div>
 
         <div id="store" class="section">
-            <h2 style="color: var(--neon-blue); margin-bottom: 20px;">🛍 JONLI DO'KON</h2>
-            <div id="loader" style="text-align:center; color:white;">⏳ Serverga ulanilmoqda...</div>
+            <h2 style="color: var(--neon-blue); margin-bottom: 20px;">💎 TON NFT MARKET</h2>
+            <div id="loader" style="text-align:center; color:white; margin-top:50px;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 30px; margin-bottom: 10px;"></i>
+                <p>Blokcheyndagi ma'lumotlar olinmoqda...</p>
+            </div>
             <div id="gift-container" class="grid"></div>
         </div>
 
         <div id="calc" class="section">
-            <h2>🧮 Kalkulyator</h2>
+            <h2>🧮 Valyuta Kalkulyatori</h2>
             <br>
             <div class="card">
                 <select id="calcType" onchange="calc()" style="margin: 10px 0;">
-                    <option value="stars">Telegram Stars</option>
-                    <option value="gift">NFT Gift (Star narxida)</option>
+                    <option value="ton_usd">TON -> USD ($)</option>
+                    <option value="stars_som">Stars -> So'm</option>
                 </select>
-                <input type="number" id="calcInput" placeholder="Soni..." oninput="calc()">
-                <div id="calcRes" style="font-size: 24px; color: var(--neon-blue); margin-top: 15px; font-weight: bold;">0 so'm</div>
+                <input type="number" id="calcInput" placeholder="Miqdorni yozing..." oninput="calc()">
+                <div id="calcRes" style="font-size: 24px; color: var(--neon-blue); margin-top: 15px; font-weight: bold;">0</div>
             </div>
         </div>
 
@@ -125,7 +141,9 @@
             <h2>👤 Men haqimda</h2>
             <br>
             <div class="card">
-                <p style="line-height: 1.6; color: #ccc;">Men Ismoil, Telegram Market (Stars, Gifts, Usernames) bo'yicha mutaxassisman.</p>
+                <p style="line-height: 1.6; color: #ccc;">
+                    Men Ismoil, ushbu loyihada <b>TON API</b> orqali real vaqtdagi blokcheyn ma'lumotlarini (NFT, Usernames) ko'rsatuvchi tizim yaratdim.
+                </p>
             </div>
         </div>
 
@@ -133,85 +151,140 @@
 
     <div class="bottom-nav">
         <button onclick="tab('home')"><i class="fas fa-home"></i></button>
-        <button onclick="tab('store')"><i class="fas fa-store"></i></button>
+        <button onclick="tab('store')"><i class="fas fa-gem"></i></button>
         <button onclick="tab('calc')"><i class="fas fa-calculator"></i></button>
         <button onclick="tab('about')"><i class="fas fa-user"></i></button>
     </div>
 
     <script>
+        // Tablarni almashtirish
         function tab(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
         }
 
-        // --- ENG MUHIM QISM: SERVER FUNKSIYASI ---
+        // --- ASOSIY SERVERGA ULANISH FUNKSIYASI ---
         async function loadStore() {
             const loader = document.getElementById('loader');
             const container = document.getElementById('gift-container');
             
-            // ZAXIRA (Server ishlamasa shu chiqadi)
+            // Zaxira tovarlar (Agar API ishlamasa)
             const backupItems = [
-                { name: "Premium (1 oy)", price: "60,000 so'm", status: "active", image: "https://cdn-icons-png.flaticon.com/512/6124/6124997.png" },
-                { name: "100 Stars", price: "25,000 so'm", status: "active", image: "https://cdn-icons-png.flaticon.com/512/148/148841.png" },
-                { name: "Bot Xizmati", price: "Kelishilgan", status: "active", image: "https://cdn-icons-png.flaticon.com/512/4712/4712035.png" }
+                { name: "Demo NFT #1", price: "10 TON", status: "active", image: "https://ton.org/download/ton_symbol.png", link: "#" },
+                { name: "Demo NFT #2", price: "50 TON", status: "sold", image: "https://ton.org/download/ton_symbol.png", link: "#" }
             ];
 
             try {
-                // Serverga ulanish
+                // Serverga so'rov
                 const response = await fetch('/api/market'); 
+                
                 if (!response.ok) throw new Error("Server xatosi");
                 
                 const data = await response.json();
-                document.querySelector('.ticker-wrap').innerHTML = `<div class="ticker"><span class="t-item">🔥 JONLI: 1 TON = $${data.live_ton_price}</span> <span class="t-item">Market: ONLINE</span></div>`;
+
+                // TON narxini yangilash
+                document.querySelector('.ticker-wrap').innerHTML = 
+                    `<div class="ticker">
+                        <span class="t-item">🔥 TON KURSI: $${data.live_ton_price}</span> 
+                        <span class="t-item">💎 REAL MARKET ONLINE</span>
+                     </div>`;
+                
+                // Tovarlarni chizish
                 renderItems(data.items);
 
             } catch (error) {
-                console.log("Zaxira reja ishga tushdi.");
-                document.querySelector('.ticker-wrap').innerHTML = `<div class="ticker"><span class="t-item" style="color:orange">⚠️ Oflayn Rejim</span></div>`;
+                console.log("Zaxira rejimga o'tildi");
+                document.querySelector('.ticker-wrap').innerHTML = 
+                    `<div class="ticker"><span class="t-item" style="color:orange">⚠️ OFLAYN REJIM (Zaxira)</span></div>`;
                 renderItems(backupItems);
             }
+            
             if(loader) loader.style.display = 'none';
         }
 
+        // --- YANGILANGAN RENDER ITEMS (Blokcheyn uchun) ---
         function renderItems(items) {
             const container = document.getElementById('gift-container');
             container.innerHTML = '';
+            
+            if(items.length === 0) {
+                container.innerHTML = '<p style="text-align:center; width:100%;">Hozircha tovarlar yo\'q.</p>';
+                return;
+            }
+
             items.forEach(item => {
-                let badge = item.status === 'sold' ? '<span class="badge bg-red">SOTILDI</span>' : '<span class="badge bg-green">SOTUVDA</span>';
+                // Statusga qarab Badge rangi
+                let badge = '';
+                if (item.status === 'sold') {
+                    badge = '<span class="badge bg-red">SOTILDI</span>';
+                } else {
+                    badge = '<span class="badge bg-blue">NFT AKTIV</span>';
+                }
+                
                 let opacity = item.status === 'sold' ? 0.6 : 1;
+                
+                // Manzilni qisqartirib ko'rsatish (EQC...A8)
+                let shortAddr = item.address ? (item.address.slice(0, 4) + '...' + item.address.slice(-4)) : '...';
+
                 let html = `
                     <div class="card gift-card" style="opacity:${opacity}">
                         ${badge}
-                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150'">
-                        <h3>${item.name}</h3>
-                        <div class="gift-price">${item.price}</div>
-                        <button class="btn" style="width:100%; font-size:12px;" onclick="buy('${item.name}')">Sotib olish</button>
-                    </div>`;
+                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150/000000/FFFFFF/?text=No+Image'">
+                        
+                        <div style="padding:0 5px;">
+                            <h3 style="font-size:16px; margin-bottom:5px;">${item.name}</h3>
+                            <div class="gift-price">${item.price}</div>
+                            
+                            <div style="font-size:11px; color:#666; margin-top:5px; display:flex; justify-content:space-between;">
+                                <span>Addr: ${shortAddr}</span>
+                            </div>
+
+                            <button class="btn" onclick="openLink('${item.link}', '${item.name}')">
+                                <i class="fas fa-external-link-alt"></i> Ko'rish
+                            </button>
+                        </div>
+                    </div>
+                `;
                 container.innerHTML += html;
             });
         }
 
+        // --- LINK OCHISH FUNKSIYASI ---
+        function openLink(url, name) {
+            if (url && url !== '#' && url !== 'undefined') {
+                // Getgems yoki Explorerga o'tish
+                window.open(url, '_blank');
+            } else {
+                // Agar link bo'lmasa, Telegramga yozish
+                window.open(`https://t.me/minora?text=Men ${name} haqida so'ramoqchiman`, '_blank');
+            }
+        }
+
+        // --- KALKULYATOR ---
         function calc() {
             let type = document.getElementById('calcType').value;
             let val = document.getElementById('calcInput').value;
             let res = 0;
-            if(type === 'stars') res = val * 250;
-            if(type === 'gift') res = (val * 250) + 10000;
-            document.getElementById('calcRes').innerText = res.toLocaleString() + " so'm";
-        }
-        
-        function buy(item) {
-            window.open(`https://t.me/minora?text=Salom, men ${item} ni sotib olmoqchiman`, '_blank');
+            
+            // Taxminiy kurslar (Statik, real loyihada API dan olinishi kerak)
+            if(type === 'ton_usd') res = (val * 5.5).toFixed(2) + " $";
+            if(type === 'stars_som') res = (val * 250).toLocaleString() + " so'm";
+            
+            document.getElementById('calcRes').innerText = res;
         }
 
+        // Soat
         setInterval(() => {
             document.getElementById('clock').innerText = new Date().toLocaleTimeString('uz-UZ', {hour:'2-digit', minute:'2-digit'});
         }, 1000);
 
+        // Telegram WebApp sozlamalari
         window.onload = function() {
             if (window.Telegram && window.Telegram.WebApp) {
                 window.Telegram.WebApp.ready();
                 window.Telegram.WebApp.expand();
+                // Telegram mavzusiga moslashish (ixtiyoriy)
+                document.body.style.backgroundColor = window.Telegram.WebApp.backgroundColor;
             }
             loadStore();
         };
