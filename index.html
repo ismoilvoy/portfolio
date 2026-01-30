@@ -15,63 +15,51 @@
             --neon-blue: #00f2ff;
             --neon-purple: #bd00ff;
             --text-gray: #a0a0b0;
-            --error-red: #ff4444;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
         body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
         
-        /* Orqa fon effektlari */
         .glow { position: fixed; width: 400px; height: 400px; filter: blur(90px); opacity: 0.15; z-index: -1; border-radius: 50%; animation: move 10s infinite alternate; }
         .g1 { background: var(--neon-blue); top: -100px; left: -100px; }
         .g2 { background: var(--neon-purple); bottom: -100px; right: -100px; }
         @keyframes move { to { transform: translate(50px, 50px); } }
 
-        /* Sidebar (Chap panel) */
         .sidebar { width: 280px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; z-index: 10; }
         .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-blue); }
         .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
         .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 3px solid var(--neon-blue); }
         
-        /* Asosiy ekran */
         .main { flex: 1; padding: 30px; overflow-y: auto; position: relative; }
         
-        /* Ticker (Yuguruvchi qator) */
         .ticker-wrap { background: rgba(0,0,0,0.3); padding: 8px 0; white-space: nowrap; overflow: hidden; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
         .ticker { display: inline-block; animation: marquee 25s linear infinite; }
         .t-item { display: inline-block; padding: 0 20px; color: var(--text-gray); font-size: 13px; border-right: 1px solid var(--border); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Header */
         .header { display: flex; justify-content: space-between; align-items: center; background: var(--glass); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 30px; }
         
         .section { display: none; animation: fadeUp 0.5s; }
         .section.active { display: block; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Kartochkalar */
-        .card { background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border); padding: 25px; border-radius: 20px; position: relative; overflow: hidden; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border); padding: 25px; border-radius: 20px; position: relative; overflow: hidden; }
 
-        /* Gift Card Dizayni */
-        .gift-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; border: 1px solid var(--border); transition: 0.3s; }
-        .gift-card:hover img { transform: scale(1.05); }
-        .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; margin-bottom: 5px; }
+        .gift-card { opacity: 0; transition: opacity 0.5s ease-in-out; } 
+        .gift-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; border: 1px solid var(--border); }
+        .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; }
         
-        .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; backdrop-filter: blur(5px); }
+        .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; backdrop-filter: blur(5px); z-index: 2; }
         .bg-blue { background: rgba(0, 242, 255, 0.2); color: #00f2ff; border: 1px solid #00f2ff; }
 
-        /* Inputs & Buttons */
         input, select { background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 12px; border-radius: 10px; width: 100%; outline: none; }
         .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 10px 25px; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; width: 100%; }
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
-        /* Mobil Menu */
         .bottom-nav { display: none; }
         @media (max-width: 768px) {
             .sidebar { display: none; }
             .bottom-nav { display: flex; position: fixed; bottom: 0; width: 100%; background: #0b0b15; padding: 10px; justify-content: space-around; border-top: 1px solid var(--border); z-index: 99; }
             .bottom-nav button { background: none; border: none; color: gray; font-size: 20px; }
-            .bottom-nav button.active { color: var(--neon-blue); }
             .main { padding: 15px; padding-bottom: 90px; }
         }
     </style>
@@ -90,7 +78,7 @@
 
     <div class="main">
         <div class="ticker-wrap">
-            <div class="ticker">
+            <div id="ticker-content" class="ticker">
                 <span class="t-item">🔥 Yuklanmoqda...</span>
             </div>
         </div>
@@ -112,12 +100,10 @@
 
         <div id="store" class="section">
             <h2 style="color: var(--neon-blue); margin-bottom: 20px;">💎 REAL TON MARKET</h2>
-            
             <div id="loader" style="text-align:center; color:white; margin-top:50px;">
                 <i class="fas fa-spinner fa-spin" style="font-size: 30px; margin-bottom: 10px;"></i>
-                <p>Serverga ulanilmoqda...</p>
+                <p>Ulanilmoqda...</p>
             </div>
-
             <div id="gift-container" class="grid"></div>
         </div>
 
@@ -143,7 +129,6 @@
                 </p>
             </div>
         </div>
-
     </div>
 
     <div class="bottom-nav">
@@ -157,118 +142,55 @@
         function tab(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-        }
-
-        // --- ASOSIY FUNKSIYA: MA'LUMOT OLISH ---
-       async function loadStore() {
-    const container = document.getElementById('gift-container');
-    const loader = document.getElementById('loader');
-    
-    try {
-        const response = await fetch('/api/market');
-        const data = await response.json();
-        
-        if (data.error) throw new Error(data.message);
-
-        container.innerHTML = ''; // Eski tovarlarni tozalash
-
-        data.items.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'card gift-card';
-            card.style.opacity = '0'; // Yuklanishdan oldin yashirish
-            card.style.transition = 'opacity 0.5s ease-in-out';
-            
-            card.innerHTML = `
-                <div class="badge bg-blue">REAL NFT</div>
-                <img src="${item.image}" 
-                     onload="this.parentElement.style.opacity='1'" 
-                     onerror="this.src='https://ton.org/download/ton_symbol.png'"
-                     style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
-                <div style="padding:15px;">
-                    <h3 style="font-size:16px; margin-bottom:10px;">${item.name}</h3>
-                    <div class="gift-price" style="color:#00f2ff; font-weight:bold;">${item.price}</div>
-                    <button class="btn" onclick="window.open('${item.link}', '_blank')" style="margin-top:10px; width:100%;">
-                        <i class="fas fa-external-link-alt"></i> Ko'rish
-                    </button>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    } catch (error) {
-        container.innerHTML = `<p style="color:red; text-align:center;">Xato yuz berdi: ${error.message}</p>`;
-    } finally {
-        if(loader) loader.style.display = 'none';
-    }
-}
-                // ✅ AGAR HAMMASI OK BO'LSA
-                document.querySelector('.ticker-wrap').innerHTML = 
-                    `<div class="ticker">
-                        <span class="t-item">🔥 TON: $${data.live_ton_price}</span> 
-                        <span class="t-item">💎 REAL MARKET ONLINE</span>
-                     </div>`;
-                
-                renderItems(data.items);
-
-            } catch (error) {
-                // 🌐 INTERNET YOKI TARMOQ XATOSI
-                console.error(error);
-                container.innerHTML = `
-                    <div class="card" style="border: 1px solid orange; text-align: center; width: 100%; grid-column: 1 / -1;">
-                        <h3 style="color: orange;">⚠️ ULANISH XATOSI</h3>
-                        <p>Server bilan bog'lanib bo'lmadi.</p>
-                        <p style="font-size: 12px; color: gray;">${error.message}</p>
-                    </div>`;
-            }
-            
-            if(loader) loader.style.display = 'none';
-        }
-
-        // --- TOVARLARNI CHIZISH ---
-        function renderItems(items) {
-            const container = document.getElementById('gift-container');
-            
-            if (!items || items.length === 0) {
-                container.innerHTML = '<p style="text-align:center; width:100%;">Hozircha tovarlar topilmadi.</p>';
-                return;
-            }
-
-            items.forEach(item => {
-                let badge = '<span class="badge bg-blue">REAL NFT</span>';
-                
-                // Manzilni qisqartirish
-                let shortAddr = item.address ? (item.address.slice(0, 4) + '...' + item.address.slice(-4)) : '...';
-
-                let html = `
-                    <div class="card gift-card">
-                        ${badge}
-                        <img src="${item.image}" onerror="this.src='https://via.placeholder.com/150/000000/FFFFFF/?text=No+Image'">
-                        
-                        <div style="padding:0 5px;">
-                            <h3 style="font-size:16px; margin-bottom:5px;">${item.name}</h3>
-                            <div class="gift-price">${item.price}</div>
-                            
-                            <div style="font-size:11px; color:#666; margin-top:5px; display:flex; justify-content:space-between;">
-                                <span>Addr: ${shortAddr}</span>
-                            </div>
-
-                            <button class="btn" onclick="openLink('${item.link}')">
-                                <i class="fas fa-external-link-alt"></i> Ko'rish
-                            </button>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += html;
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('active');
+                if(b.getAttribute('onclick').includes(id)) b.classList.add('active');
             });
         }
 
-        // --- LINK OCHISH ---
-        function openLink(url) {
-            if (url && url !== '#') {
-                window.open(url, '_blank');
+        async function loadStore() {
+            const container = document.getElementById('gift-container');
+            const loader = document.getElementById('loader');
+            const ticker = document.getElementById('ticker-content');
+            
+            try {
+                const response = await fetch('/api/market');
+                const data = await response.json();
+                
+                if (data.error) throw new Error(data.message);
+
+                container.innerHTML = '';
+
+                ticker.innerHTML = `
+                    <span class="t-item">🔥 TON: $${data.live_ton_price || '5.6'}</span> 
+                    <span class="t-item">💎 REAL MARKET ONLINE</span>
+                `;
+
+                data.items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'card gift-card';
+                    
+                    card.innerHTML = `
+                        <div class="badge bg-blue">REAL NFT</div>
+                        <img src="${item.image}" 
+                             onload="this.parentElement.style.opacity='1'" 
+                             onerror="this.src='https://ton.org/download/ton_symbol.png'">
+                        <div style="padding:5px;">
+                            <h3 style="font-size:16px; margin-bottom:5px;">${item.name}</h3>
+                            <div class="gift-price">${item.price}</div>
+                            <button class="btn" onclick="window.open('${item.link}', '_blank')">Ko'rish</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                container.innerHTML = `<p style="text-align:center; width:100%;">Xato: ${error.message}</p>`;
+            } finally {
+                if(loader) loader.style.display = 'none';
             }
         }
 
-        // --- KALKULYATOR VA SOAT ---
         function calc() {
             let type = document.getElementById('calcType').value;
             let val = document.getElementById('calcInput').value;
@@ -279,7 +201,8 @@
         }
 
         setInterval(() => {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString('uz-UZ', {hour:'2-digit', minute:'2-digit'});
+            const clockEl = document.getElementById('clock');
+            if(clockEl) clockEl.innerText = new Date().toLocaleTimeString('uz-UZ', {hour:'2-digit', minute:'2-digit'});
         }, 1000);
 
         window.onload = function() {
