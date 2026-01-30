@@ -1,17 +1,16 @@
-// api/market.js - DEBUG REJIMI
+// api/market.js - TUZATILGAN VERSIYA
 export default async function handler(request, response) {
     
-    // Siz bergan kalit:
+    // Sizning kalitingiz:
     const API_KEY = 'AFNWCHPOYBUCWXYAAAAPXV57JKI2J37AWVGFOVBKE6SJOCO6ZUWA5SJHCX6D4JMHVGAWV3Q'; 
     
-    // Telegram Usernames kolleksiyasi
-    const collectionAddress = "EQCA14eepp1l180adKpPPBR65I1ge3sc8Y8hA4k_878C0000"; 
+    // --- TUZATILGAN MANZIL (Telegram Usernames) ---
+    // Oxiridagi ortiqcha 0000 larni olib tashladik:
+    const collectionAddress = "EQCA14eepp1l180adKpPPBR65I1ge3sc8Y8hA4k_878C"; 
 
     try {
-        console.log("TonAPI ga so'rov yuborilmoqda...");
-
         // 1. NFTlarni so'rash
-        const nftReq = await fetch(`https://tonapi.io/v2/nfts/collections/${collectionAddress}/items?limit=6&offset=0`, {
+        const nftReq = await fetch(`https://tonapi.io/v2/nfts/collections/${collectionAddress}/items?limit=12&offset=0`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${API_KEY}`,
@@ -19,12 +18,10 @@ export default async function handler(request, response) {
             }
         });
 
-        // 2. Agar TonAPI xato qaytarsa, o'sha xatoni ushlaymiz
         if (!nftReq.ok) {
-            const errorText = await nftReq.text(); // Xato matnini o'qish
+            const errorText = await nftReq.text();
             console.error("TonAPI Xatosi:", errorText);
             
-            // Saytga xatoni yuborish
             return response.status(nftReq.status).json({
                 error: true,
                 message: `TonAPI Xatosi: ${nftReq.status}`,
@@ -34,21 +31,14 @@ export default async function handler(request, response) {
 
         const nftData = await nftReq.json();
 
-        // 3. Agar ma'lumot bo'sh bo'lsa
-        if (!nftData.nft_items || nftData.nft_items.length === 0) {
-            return response.status(200).json({
-                error: true,
-                message: "TonAPI ishladi, lekin tovar topilmadi."
-            });
-        }
-
-        // 4. Ma'lumotlarni tayyorlash
+        // 2. Ma'lumotlarni tayyorlash
         const realItems = nftData.nft_items.map(nft => {
             let imageUrl = "https://ton.org/download/ton_symbol.png";
             if(nft.previews?.length >= 2) imageUrl = nft.previews[1].url;
+            else if(nft.previews?.length === 1) imageUrl = nft.previews[0].url;
 
             let priceLabel = "Sotuvda yo'q"; 
-            let status = "active"; // "sold" deb yozmaymiz, chunki bular mavjud NFTlar
+            let status = "active";
             
             if (nft.sale) {
                 const price = (parseInt(nft.sale.price.value) / 1000000000).toFixed(2);
@@ -60,21 +50,22 @@ export default async function handler(request, response) {
                 image: imageUrl,
                 price: priceLabel,
                 status: status,
+                address: nft.address,
                 link: `https://getgems.io/collection/${collectionAddress}/${nft.address}`
             };
         });
 
         // Muvaffaqiyatli javob
         return response.status(200).json({
-            live_ton_price: 5.6, // Vaqtincha statik
+            live_ton_price: 5.6,
             items: realItems
         });
 
     } catch (error) {
-        console.error("Server ichki xatosi:", error);
+        console.error("Server xatosi:", error);
         return response.status(500).json({
             error: true,
-            message: "Server Xatosi (Internal Error)",
+            message: "Server ichki xatosi",
             details: error.toString()
         });
     }
