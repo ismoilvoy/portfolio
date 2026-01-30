@@ -160,35 +160,46 @@
         }
 
         // --- ASOSIY FUNKSIYA: MA'LUMOT OLISH ---
-        async function loadStore() {
-            const loader = document.getElementById('loader');
-            const container = document.getElementById('gift-container');
+       async function loadStore() {
+    const container = document.getElementById('gift-container');
+    const loader = document.getElementById('loader');
+    
+    try {
+        const response = await fetch('/api/market');
+        const data = await response.json();
+        
+        if (data.error) throw new Error(data.message);
+
+        container.innerHTML = ''; // Eski tovarlarni tozalash
+
+        data.items.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'card gift-card';
+            card.style.opacity = '0'; // Yuklanishdan oldin yashirish
+            card.style.transition = 'opacity 0.5s ease-in-out';
             
-            // Konteynerni tozalaymiz
-            container.innerHTML = ''; 
-
-            try {
-                // Serverga so'rov yuborish
-                const response = await fetch('/api/market'); 
-                const data = await response.json();
-
-                // ⚠️ XATOLIKNI TEKSHIRISH (DEBUG)
-                // Agar server "error: true" desa yoki 200 OK qaytarmasa
-                if (data.error || !response.ok) {
-                    container.innerHTML = `
-                        <div class="card" style="border: 1px solid var(--error-red); text-align: center; width: 100%; grid-column: 1 / -1;">
-                            <h3 style="color: var(--error-red); margin-bottom: 10px;">⚠️ SERVER XATOSI</h3>
-                            <p style="font-size: 14px;">${data.message || "Noma'lum xato"}</p>
-                            <br>
-                            <p style="font-size: 11px; color: gray; background: #111; padding: 10px; border-radius: 5px; word-break: break-all;">
-                                ${data.details || JSON.stringify(data)}
-                            </p>
-                        </div>
-                    `;
-                    loader.style.display = 'none';
-                    return; // Kodni shu yerda to'xtatamiz
-                }
-
+            card.innerHTML = `
+                <div class="badge bg-blue">REAL NFT</div>
+                <img src="${item.image}" 
+                     onload="this.parentElement.style.opacity='1'" 
+                     onerror="this.src='https://ton.org/download/ton_symbol.png'"
+                     style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;">
+                <div style="padding:15px;">
+                    <h3 style="font-size:16px; margin-bottom:10px;">${item.name}</h3>
+                    <div class="gift-price" style="color:#00f2ff; font-weight:bold;">${item.price}</div>
+                    <button class="btn" onclick="window.open('${item.link}', '_blank')" style="margin-top:10px; width:100%;">
+                        <i class="fas fa-external-link-alt"></i> Ko'rish
+                    </button>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    } catch (error) {
+        container.innerHTML = `<p style="color:red; text-align:center;">Xato yuz berdi: ${error.message}</p>`;
+    } finally {
+        if(loader) loader.style.display = 'none';
+    }
+}
                 // ✅ AGAR HAMMASI OK BO'LSA
                 document.querySelector('.ticker-wrap').innerHTML = 
                     `<div class="ticker">
