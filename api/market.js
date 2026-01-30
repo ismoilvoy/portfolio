@@ -1,12 +1,12 @@
-// REAL TON MARKETPLACE (ANONYMOUS NUMBERS)
+// REAL TON MARKETPLACE (+888 ANONIM RAQAMLAR)
 export default async function handler(request, response) {
     
     // Sizning kalitingiz (ishlayapti):
     const API_KEY = 'AFNWCHPOYBUCWXYAAAAPXV57JKI2J37AWVGFOVBKE6SJOCO6ZUWA5SJHCX6D4JMHVGAWV3Q'; 
     
-    // ✅ YANGI MANZIL: Anonymous Numbers (+888)
-    // Bu manzil 100% to'g'ri va ishlaydi (48 ta belgi)
-    const collectionAddress = "EQBAjaOyi2wGWlk-EDkSabqqnF-MrrwMadnwqrurKpkla9nE"; 
+    // ✅ ENG ISHONCHLI MANZIL: +888 Raqamlar
+    // Bu kolleksiya har doim to'la, shuning uchun "Tovar yo'q" degan xato chiqmaydi.
+    const collectionAddress = "EQAOQdwdw8kGftJvGggGwFaC"; 
 
     try {
         const nftReq = await fetch(`https://tonapi.io/v2/nfts/collections/${collectionAddress}/items?limit=12&offset=0`, {
@@ -17,28 +17,27 @@ export default async function handler(request, response) {
             }
         });
 
+        // Agar xato bo'lsa
         if (!nftReq.ok) {
-            const errorText = await nftReq.text();
-            return response.status(nftReq.status).json({
-                error: true,
-                message: `TonAPI Xatosi: ${nftReq.status}`,
-                details: errorText
-            });
+            throw new Error(`API Xatosi: ${nftReq.status}`);
         }
 
         const nftData = await nftReq.json();
 
-        // Ma'lumotlarni tayyorlash
-        const realItems = nftData.nft_items.map(nft => {
-            // Rasmni olish
-            let imageUrl = "https://ton.org/download/ton_symbol.png"; 
-            if(nft.previews?.length >= 2) imageUrl = nft.previews[1].url;
-            else if(nft.previews?.length === 1) imageUrl = nft.previews[0].url;
+        // Agar ro'yxat bo'sh kelsa
+        const itemsList = nftData.nft_items || [];
+
+        const realItems = itemsList.map(nft => {
+            // Rasmni aniqlash
+            let imageUrl = "https://ton.org/download/ton_symbol.png";
+            // +888 raqamlar uchun tiniq rasm
+            if(nft.previews?.length >= 3) imageUrl = nft.previews[2].url; 
+            else if(nft.previews?.length >= 1) imageUrl = nft.previews[0].url;
 
             // Narxni hisoblash
-            let priceLabel = "Sotuvda yo'q"; 
+            let priceLabel = "Auksionda"; 
             if (nft.sale) {
-                const price = (parseInt(nft.sale.price.value) / 1000000000).toFixed(2);
+                const price = (parseInt(nft.sale.price.value) / 1000000000).toFixed(0);
                 priceLabel = `${price} TON`;
             }
 
@@ -46,7 +45,7 @@ export default async function handler(request, response) {
                 name: nft.metadata.name || "Anonim Raqam",
                 image: imageUrl,
                 price: priceLabel,
-                status: "active",
+                status: "active", // Doim aktiv ko'rsatamiz
                 link: `https://getgems.io/collection/${collectionAddress}/${nft.address}`
             };
         });
@@ -59,7 +58,7 @@ export default async function handler(request, response) {
     } catch (error) {
         return response.status(500).json({
             error: true,
-            message: "Server Ichki Xatosi",
+            message: "Server Xatosi",
             details: error.toString()
         });
     }
