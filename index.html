@@ -3,109 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismoil | Web Developer</title>
+    <title>Ismoiljon Xolmirzayev | Portfolio</title>
     <style>
-        /* Asosiy Dizayn */
         :root {
-            --primary: #00f260;
-            --dark: #0575E6;
-            --bg: #1a1a1a;
+            --primary: #00ff88; /* Neon yashil */
             --text: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
+            --border: rgba(255, 255, 255, 0.2);
         }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg);
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: var(--text);
+            min-height: 100vh; /* Pastga scroll bo'lishi uchun */
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-        
-        /* Animatsiya */
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            padding-bottom: 50px;
         }
 
-        .container {
-            animation: slideIn 1s ease-out;
-            padding: 20px;
+        /* Profil qismi */
+        header {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            padding: 0 20px;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            border: 4px solid var(--primary);
             object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.5); /* Neon nur */
+            margin-bottom: 15px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            background: linear-gradient(to right, #00f260, #0575E6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 28px;
+            margin: 10px 0;
+            font-weight: 700;
         }
 
-        p {
-            color: #bbb;
-            font-size: 1.2rem;
-            margin-top: 10px;
+        .subtitle {
+            color: #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
         }
 
-        .btn-group {
-            margin-top: 30px;
+        /* Tugmalar */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
         }
 
         .btn {
             text-decoration: none;
-            color: var(--bg);
-            background: var(--primary);
-            padding: 12px 30px;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 10px 25px;
             border-radius: 25px;
             font-weight: bold;
-            margin: 5px;
-            display: inline-block;
             transition: 0.3s;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
             background: var(--primary);
-            color: var(--bg);
+            color: #000;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* Texnologiyalar (Skills) */
+        .skills-container {
+            text-align: center;
+            max-width: 90%;
+            margin-bottom: 30px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: var(--glass);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 15px;
+            font-size: 14px;
+            border: 1px solid var(--border);
+        }
+
+        /* Kartochkalar (Glassmorphism) */
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 15px auto;
+            width: 85%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .card h2 {
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        .item {
+            margin-bottom: 20px;
+            border-left: 3px solid var(--primary);
+            padding-left: 15px;
+        }
+
+        .item h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+
+        .date {
+            font-size: 13px;
+            color: #aaa;
+            font-style: italic;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .item p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #eee;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="Avatar" class="profile-img">
+    <header>
+        <img src="rasmim.png" alt="Avatar" class="profile-img">
+        <h1>Xolmirzayev Ismoiljon</h1>
+        <div class="subtitle">Web Developer | Sales Specialist</div>
         
-        <h1>Ismoil Xolmirzayev</h1>
-        <p>Full-Stack Dasturchi & Termux Mutaxassisi</p>
-        
-        <div class="btn-group">
-            <a href="#" class="btn">Mening Ishlarim</a>
-            <a href="https://t.me/SizningNick" class="btn btn-outline">Bog'lanish</a>
+        <div class="social-links">
+            <a href="https://t.me/grok_ai" class="btn">Telegram</a>
+            <a href="tel:+998940445444" class="btn">Qo'ng'iroq</a>
+        </div>
+    </header>
+
+    <div class="skills-container">
+        <span class="skill-tag">HTML/CSS</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">MS Office</span>
+        <span class="skill-tag">Sotuv (Sales)</span>
+        <span class="skill-tag">Muloqot</span>
+        <span class="skill-tag">Git/GitHub</span>
+    </div>
+
+    <div class="card">
+        <h2>Men haqimda</h2>
+        <p style="line-height: 1.6;">
+            Mas'uliyatli, tartibli va muloqotga ochiq mutaxassisman. Jamoa bilan ishlash, hujjatlar yuritish va mijozlar bilan ishlashda katta tajribaga egaman[cite: 10, 11]. Hozirda IT sohasini chuqur o'rganmoqdaman.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>Ish Tajribasi</h2>
+
+        <div class="item">
+            <h3>HUMANS Kompaniyasi</h3>
+            <span class="date">Yan 2026 - Hozir</span>
+            <p>Sotuv bo'limi. Mijozlar bazasi bilan ishlash, maslahat berish va savdo ko'rsatkichlarini bajarish[cite: 24, 26, 28].</p>
+        </div>
+
+        <div class="item">
+            <h3>IPRINT (Masofaviy)</h3>
+            <span class="date">Sent 2025 - Dek 2025</span>
+            <p>Mijozlar bilan masofaviy muloqot, buyurtmalarni qabul qilish va yo'naltirish[cite: 18, 19, 23].</p>
+        </div>
+
+        <div class="item">
+            <h3>IPRINT (Yordamchi)</h3>
+            <span class="date">Sent 2022 - Apr 2023</span>
+            <p>Hujjatlarni tayyorlash, printer/skaner bilan ishlash va ofis tartibini saqlash[cite: 13, 15, 16].</p>
         </div>
     </div>
+
+    <div class="card">
+        <h2>Ta'lim</h2>
+
+        <div class="item">
+            <h3>Toshkent davlat sharqshunoslik universiteti</h3>
+            <span class="date">2022 - Hozir</span>
+            <p>Turkiya tarixi va mintaqaviy tadqiqotlar (Kechki ta'lim)[cite: 38, 40].</p>
+        </div>
+
+        <div class="item">
+            <h3>NAMMQI Akademik Litseyi</h3>
+            <span class="date">2019 - 2021</span>
+            <p>Tarix va ijtimoiy fanlar yo'nalishi[cite: 34, 36, 37].</p>
+        </div>
+    </div>
+
+    <br>
+    <div style="font-size: 12px; color: #555;">© 2026 Ismoiljon Xolmirzayev</div>
 
 </body>
 </html>
