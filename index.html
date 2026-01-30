@@ -3,209 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismoiljon Xolmirzayev | Web Developer</title>
+    <title>Ismoil Market | Digital Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- PREMIUM DIZAYN (GLASS & NEON) --- */
         :root {
-            --primary: #00ff88;
-            --text: #ffffff;
-            --glass: rgba(255, 255, 255, 0.08);
-            --border: rgba(255, 255, 255, 0.2);
-            --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            --bg-dark: #050510;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --neon-blue: #00f2ff;
+            --neon-purple: #bd00ff;
+            --text-gray: #a0a0b0;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
+        body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
+        
+        /* FON EFFEKTLARI */
+        .glow { position: fixed; width: 400px; height: 400px; filter: blur(90px); opacity: 0.15; z-index: -1; border-radius: 50%; animation: move 10s infinite alternate; }
+        .g1 { background: var(--neon-blue); top: -100px; left: -100px; }
+        .g2 { background: var(--neon-purple); bottom: -100px; right: -100px; }
+        @keyframes move { to { transform: translate(50px, 50px); } }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 60px;
-        }
+        /* SIDEBAR */
+        .sidebar { width: 280px; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; z-index: 10; }
+        .logo { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 40px; text-shadow: 0 0 10px var(--neon-blue); }
+        .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 10px; display: flex; align-items: center; gap: 10px; }
+        .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 3px solid var(--neon-blue); }
+        
+        /* ASOSIY QISM */
+        .main { flex: 1; padding: 30px; overflow-y: auto; position: relative; }
+        
+        /* TICKER (Yuguruvchi qator) */
+        .ticker-wrap { background: rgba(0,0,0,0.3); padding: 8px 0; white-space: nowrap; overflow: hidden; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
+        .ticker { display: inline-block; animation: marquee 25s linear infinite; }
+        .t-item { display: inline-block; padding: 0 20px; color: var(--text-gray); font-size: 13px; border-right: 1px solid var(--border); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        header {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
+        /* HEADER */
+        .header { display: flex; justify-content: space-between; align-items: center; background: var(--glass); padding: 15px 25px; border-radius: 15px; border: 1px solid var(--border); margin-bottom: 30px; }
+        
+        /* PANELLAR (CARDS) */
+        .section { display: none; animation: fadeUp 0.5s; }
+        .section.active { display: block; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-            margin-bottom: 15px;
-            background-color: #1a1a1a;
-        }
+        .card { background: linear-gradient(145deg, rgba(255,255,255,0.03), transparent); border: 1px solid var(--border); padding: 25px; border-radius: 20px; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--neon-blue); transform: translateY(-5px); box-shadow: 0 5px 20px rgba(0, 242, 255, 0.1); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
 
-        h1 { font-size: 26px; margin: 10px 0; }
-        .subtitle { color: #ccc; font-size: 15px; margin-bottom: 20px; }
+        /* GIFT DOKON STYLES */
+        .gift-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; border: 1px solid var(--border); }
+        .gift-price { color: var(--neon-blue); font-weight: bold; font-size: 18px; }
+        .badge { position: absolute; top: 15px; right: 15px; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: bold; }
+        .bg-green { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+        .bg-red { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid #ef4444; }
 
-        .btn {
-            text-decoration: none;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            margin: 0 5px;
-            transition: 0.3s;
-            background: rgba(0,0,0,0.2);
-        }
-        .btn:hover { background: var(--primary); color: #000; }
+        /* INPUTS & BUTTONS */
+        input, select { background: rgba(0,0,0,0.3); border: 1px solid var(--border); color: white; padding: 12px; border-radius: 10px; width: 100%; outline: none; }
+        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 10px 25px; color: white; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; }
 
-        /* Timeline Dizayni */
-        .section-title {
-            color: var(--primary);
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 18px;
-            border-bottom: 1px solid var(--border);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 500px;
-            width: 90%;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: var(--primary);
-            top: 0;
-            bottom: 0;
-            left: 20px;
-            margin-left: -1px;
-        }
-
-        .container {
-            padding: 15px 20px;
-            position: relative;
-            width: auto;
-            margin-left: 40px;
-            margin-bottom: 20px;
-            background: var(--glass);
-            backdrop-filter: blur(5px);
-            border-radius: 10px;
-            border: 1px solid var(--border);
-        }
-
-        .container::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            left: -27px;
-            background-color: #1a1a1a;
-            border: 2px solid var(--primary);
-            top: 20px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .container:hover::after {
-            background-color: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .container h3 { margin: 0; font-size: 17px; color: #fff; }
-        .date { font-size: 12px; color: var(--primary); margin: 5px 0; display: block; font-weight: bold;}
-        .container p { margin: 5px 0 0; font-size: 14px; color: #ddd; line-height: 1.4; }
-
-        .skills-box {
-            text-align: center;
-            max-width: 90%;
-            margin: 20px auto;
-        }
-        .skill {
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 5px 12px;
-            margin: 4px;
-            border-radius: 8px;
-            font-size: 13px;
-            border: 1px solid rgba(255,255,255,0.1);
+        /* MOBIL */
+        .bottom-nav { display: none; }
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .bottom-nav { display: flex; position: fixed; bottom: 0; width: 100%; background: #0b0b15; padding: 10px; justify-content: space-around; border-top: 1px solid var(--border); z-index: 99; }
+            .bottom-nav button { background: none; border: none; color: gray; font-size: 20px; }
+            .bottom-nav button.active { color: var(--neon-blue); }
+            .main { padding: 15px; padding-bottom: 80px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="rasmim.png" alt="Avatar" class="profile-img">
-        <h1>Xolmirzayev Ismoiljon</h1>
-        <div class="subtitle">Web Developer | Sales Specialist</div>
-        <a href="https://t.me/grok_ai" class="btn">Telegram</a>
-        <a href="tel:+998940445444" class="btn">Call</a>
-    </header>
+    <div class="glow g1"></div><div class="glow g2"></div>
 
-    <div class="skills-box">
-        <span class="skill">HTML/CSS</span>
-        <span class="skill">Python</span>
-        <span class="skill">MS Office</span>
-        <span class="skill">Sotuv (Sales)</span>
-        <span class="skill">Muloqot</span>
-    </div>
-
-    <div class="timeline" style="margin-bottom: 20px;">
-        <div class="container" style="border-left: 3px solid var(--primary);">
-            <h3>Men haqimda</h3>
-            <p>Mas'uliyatli, tartibli va muloqotga ochiq mutaxassisman. Jamoa bilan ishlash va mijozlar bilan muloqot qilishda katta tajribaga egaman.</p>
-        </div>
-    </div>
-
-    <div class="section-title">Ta'lim Yo'li</div>
-    <div class="timeline">
-        
-        <div class="container">
-            <h3>NAMMQI Akademik Litseyi</h3>
-            <span class="date">2019 - 2021</span>
-            <p>Tarix va ijtimoiy fanlar yo'nalishi. Gumanitar fanlar bo'yicha boshlang'ich bilimlar.</p>
-        </div>
-
-        <div class="container">
-            <h3>Toshkent davlat sharqshunoslik universiteti</h3>
-            <span class="date">2022 - Hozir</span>
-            <p>Turkiya tarixi va mintaqaviy tadqiqotlar. Hozirda kechki ta'lim shaklida o'qishni davom ettirmoqdaman.</p>
-        </div>
-    </div>
-
-    <div class="section-title">Ish Tajribasi</div>
-    <div class="timeline">
-
-        <div class="container">
-            <h3>IPRINT (Yordamchi)</h3>
-            <span class="date">Sent 2022 - Apr 2023</span>
-            <p>Hujjatlarni tayyorlash, printer va skaner bilan ishlash. Ofis tartibini saqlash.</p>
-        </div>
-
-        <div class="container">
-            <h3>IPRINT (Masofaviy)</h3>
-            <span class="date">Sent 2025 - Dek 2025</span>
-            <p>Mijozlar bilan onlayn muloqot qilish, buyurtmalarni qabul qilish.</p>
-        </div>
-
-        <div class="container">
-            <h3>HUMANS Kompaniyasi</h3>
-            <span class="date">Yan 2026 - Hozir</span>
-            <p>Sotuv bo'limi mutaxassisi. Mijozlar bazasi bilan ishlash, xizmatlarni sotish.</p>
-        </div>
-    </div>
-
-    <br>
-    <div style="font-size: 12px; color: #555; margin-bottom: 20px;">© 2026 Ismoiljon Xolmirzayev</div>
-
-</body>
-</html>
+    <nav class="sidebar">
+        <div class="logo">ISMOIL<span>.MARKET</span></div>
+        <button class="nav-btn active" onclick="tab('home')"><i class
