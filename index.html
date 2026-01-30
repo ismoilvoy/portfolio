@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ismoil | Web Developer</title>
+    <style>
+        /* Asosiy Dizayn */
+        :root {
+            --primary: #00f260;
+            --dark: #0575E6;
+            --bg: #1a1a1a;
+            --text: #ffffff;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        
+        /* Animatsiya */
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .container {
+            animation: slideIn 1s ease-out;
+            padding: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 96, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #00f260, #0575E6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: #bbb;
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+        }
+
+        .btn {
+            text-decoration: none;
+            color: var(--bg);
+            background: var(--primary);
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 5px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://avatars.githubusercontent.com/u/9919?v=4" alt="Avatar" class="profile-img">
+        
+        <h1>Ismoil Xolmirzayev</h1>
+        <p>Full-Stack Dasturchi & Termux Mutaxassisi</p>
+        
+        <div class="btn-group">
+            <a href="#" class="btn">Mening Ishlarim</a>
+            <a href="https://t.me/SizningNick" class="btn btn-outline">Bog'lanish</a>
+        </div>
+    </div>
+
+</body>
+</html>
