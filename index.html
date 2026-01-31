@@ -9,7 +9,7 @@
         /* --- ASOSIY SOZLAMALAR --- */
         :root {
             --bg: #000000;
-            --surface: #0f0f0f; /* Biroz ochroq qora */
+            --surface: #0f0f0f;
             --accent: #229ED9;
             --text: #FFFFFF;
             --gray: #888888;
@@ -21,24 +21,23 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
-            display: flex; flex-direction: column; min-height: 100vh;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* --- NAVBAR --- */
         nav {
+            position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 25px 8%;
-            background: rgba(0,0,0,0.95);
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid #222;
+            background: rgba(0,0,0,0.8); /* Orqa fon xiraroq */
+            backdrop-filter: blur(15px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .logo { font-size: 28px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; cursor: pointer; }
         .logo span { color: var(--accent); }
 
-        /* NAV LINKS (Tugma olib tashlandi) */
         .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a { font-size: 16px; font-weight: 600; color: #bbb; position: relative; }
         .nav-links a:hover { color: var(--text); }
@@ -50,101 +49,107 @@
 
         .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: #fff; }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 100px 20px 60px 20px; /* Pastki padding kamaytirildi */
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 70%);
+        /* --- 1-SAHIFA (FULL SCREEN HERO) --- */
+        .landing-screen {
+            height: 100vh; /* Butun ekranni egallaydi */
+            min-height: 700px; /* Juda kichik noutbuklarda tiqilib qolmasligi uchun */
+            display: flex;
+            flex-direction: column;
+            padding-top: 80px; /* Navbar balandligi */
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%);
+            position: relative;
         }
-        
-        .hero h1 {
-            font-size: 72px; font-weight: 900; line-height: 1.1; margin-bottom: 25px;
+
+        .hero-content {
+            flex: 1; /* Bo'sh joyni egallaydi va o'rtaga turadi */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 76px; font-weight: 900; line-height: 1.1; margin-bottom: 30px;
             background: linear-gradient(to right, #fff, #999);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             max-width: 1000px;
         }
-        .hero span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+        .hero-content span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
         
-        .hero p { 
-            color: var(--gray); font-size: 20px; margin-bottom: 50px; 
+        .hero-content p { 
+            color: var(--gray); font-size: 22px; margin-bottom: 50px; 
             max-width: 700px; line-height: 1.6;
         }
 
         .cta-btn {
             background: var(--accent); color: #fff;
-            padding: 22px 50px; border-radius: 60px; font-size: 18px;
+            padding: 22px 60px; border-radius: 60px; font-size: 18px;
             font-weight: 800; display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: 0 10px 40px rgba(34, 158, 217, 0.4);
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px;
+            box-shadow: 0 0 40px rgba(34, 158, 217, 0.4);
+            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
         }
-        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 25px 60px rgba(34, 158, 217, 0.6); }
+        .cta-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 60px rgba(34, 158, 217, 0.7); }
 
-        /* --- STATS BAR (O'rtaga ko'chirildi) --- */
-        .stats-container {
-            display: flex; justify-content: center; gap: 80px;
-            padding: 50px 20px; 
+        /* STATISTIKA (1-Sahifaning eng pastida) */
+        .stats-bar {
+            width: 100%;
+            display: flex; justify-content: center; gap: 100px;
+            padding: 40px; 
             border-top: 1px solid #222; 
-            border-bottom: 1px solid #222;
-            background: #050505;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
         }
         .stat-box { text-align: center; }
-        .stat-num { font-size: 48px; font-weight: 900; color: #fff; display: block; margin-bottom: 5px; }
-        .stat-label { font-size: 14px; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .stat-num { font-size: 42px; font-weight: 900; color: #fff; display: block; margin-bottom: 5px; }
+        .stat-label { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* --- XIZMATLAR VITRINASI (EXTRA LARGE ICONS) --- */
-        .showcase {
-            padding: 80px 8%;
+        /* --- 2-SAHIFA (VITRINA) --- */
+        .showcase-section {
+            min-height: 100vh; /* Bu ham kamida bitta ekran bo'ladi */
+            padding: 100px 8%;
             background: #000;
         }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-title { font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 10px; }
-        .section-subtitle { color: var(--gray); font-size: 16px; }
+        
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-size: 42px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+        .section-subtitle { color: var(--gray); font-size: 18px; }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .service-card {
-            background: #0A0A0A; padding: 35px; border-radius: 28px;
+            background: #0A0A0A; padding: 40px; border-radius: 30px;
             border: 1px solid #1A1A1A; position: relative;
             transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 240px; text-decoration: none; overflow: hidden;
+            min-height: 260px; text-decoration: none; overflow: hidden;
         }
-        
-        /* Hover effekti */
         .service-card:hover {
-            border-color: var(--accent); transform: translateY(-8px);
-            background: #111;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-color: var(--accent); transform: translateY(-10px);
+            background: #111; box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        /* EXTRA LARGE ICON */
         .card-icon { 
-            font-size: 48px; /* Juda katta */
-            margin-bottom: 20px; 
-            display: inline-block;
-            background: linear-gradient(135deg, rgba(34, 158, 217, 0.2), transparent);
-            padding: 10px; border-radius: 16px;
-            width: fit-content;
+            font-size: 50px; margin-bottom: 25px; display: inline-block;
+            background: linear-gradient(135deg, rgba(34, 158, 217, 0.15), transparent);
+            padding: 12px; border-radius: 20px; width: fit-content;
         }
 
-        .service-card h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; color: #fff; }
-        .service-card p { font-size: 15px; color: #888; line-height: 1.5; margin-bottom: 20px;}
+        .service-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; color: #fff; }
+        .service-card p { font-size: 15px; color: #777; line-height: 1.5; margin-bottom: 10px;}
         
         .arrow-icon {
-            position: absolute; bottom: 30px; right: 30px;
-            background: #1A1A1A; width: 40px; height: 40px; border-radius: 50%;
+            position: absolute; bottom: 35px; right: 35px;
+            background: #1A1A1A; width: 45px; height: 45px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; color: #fff;
-            transition: 0.3s; font-size: 18px; border: 1px solid #333;
+            transition: 0.3s; font-size: 20px; border: 1px solid #333;
         }
-        .service-card:hover .arrow-icon { background: var(--accent); border-color: var(--accent); transform: rotate(45deg); }
+        .service-card:hover .arrow-icon { background: var(--accent); border-color: var(--accent); transform: rotate(45deg); color: #fff; }
 
         /* --- FOOTER --- */
         footer {
             text-align: center; padding: 40px; border-top: 1px solid #222;
-            color: #555; font-size: 14px;
+            color: #444; font-size: 14px; background: #050505;
         }
 
         /* --- MOBIL MENU --- */
@@ -159,25 +164,26 @@
         .mobile-link { font-size: 24px; font-weight: 700; color: #fff; }
         .close-menu { position: absolute; top: 25px; right: 25px; font-size: 30px; cursor: pointer; color: #fff; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE (TELEFONLARNI BUZMAYDI) --- */
         @media (max-width: 768px) {
-            nav { padding: 20px; }
-            .logo { font-size: 24px; }
+            nav { padding: 20px; background: rgba(0,0,0,0.95); }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
             
-            .hero { padding: 80px 20px 40px 20px; }
-            .hero h1 { font-size: 42px; }
-            .hero p { font-size: 16px; }
-            .cta-btn { width: 100%; justify-content: center; font-size: 16px; padding: 18px; }
+            /* Mobilda 100vh majburiy emas, contentga qarab cho'ziladi */
+            .landing-screen { height: auto; min-height: 100vh; padding-top: 100px; padding-bottom: 20px; }
             
-            .stats-container { flex-direction: column; gap: 40px; padding: 40px 20px; }
-            .stat-num { font-size: 42px; }
+            .hero-content h1 { font-size: 42px; margin-bottom: 20px; }
+            .hero-content p { font-size: 16px; margin-bottom: 30px; }
+            .cta-btn { width: 100%; justify-content: center; padding: 20px; font-size: 16px; }
             
-            .showcase { padding: 40px 5%; }
+            .stats-bar { flex-direction: column; gap: 30px; background: transparent; border: none; padding: 20px; margin-top: 40px; }
+            .stat-num { font-size: 38px; }
+
+            .showcase-section { padding: 60px 5%; }
+            .section-title { font-size: 32px; }
             .grid-container { grid-template-columns: 1fr; }
-            .service-card { min-height: auto; padding: 25px; }
-            .card-icon { font-size: 40px; }
+            .service-card { padding: 30px; min-height: auto; }
         }
     </style>
 </head>
@@ -185,13 +191,11 @@
 
     <nav>
         <div class="logo" onclick="window.location.href='index.html'">KH <span>SHOP</span></div>
-        
         <div class="nav-links">
             <a href="#showcase">Xizmatlar</a>
             <a href="#">Biz haqimizda</a>
             <a href="#">Aloqa</a>
         </div>
-
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     </nav>
 
@@ -203,31 +207,30 @@
         <a href="shop.html" class="mobile-link" style="color: var(--accent)">Do'konga o'tish</a>
     </div>
 
-    <section class="hero">
-        <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
-        <p>Virtual raqamlar, Stars va jonli obunachilar.<br>Eng ishonchli va tezkor xizmat ko'rsatish platformasi.</p>
-        
-        <a href="shop.html" class="cta-btn">
-            DO'KONGA O'TISH →
-        </a>
-    </section>
+    <header class="landing-screen">
+        <div class="hero-content">
+            <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
+            <p>Virtual raqamlar, Stars va jonli obunachilar.<br>Premium xizmatlar endi bitta platformada.</p>
+            <a href="shop.html" class="cta-btn">DO'KONGA O'TISH →</a>
+        </div>
 
-    <div class="stats-container">
-        <div class="stat-box">
-            <span class="stat-num">5,000+</span>
-            <span class="stat-label">MAMNUN MIJOZLAR</span>
+        <div class="stats-bar">
+            <div class="stat-box">
+                <span class="stat-num">5,000+</span>
+                <span class="stat-label">MAMNUN MIJOZLAR</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">24/7</span>
+                <span class="stat-label">TEXNIK YORDAM</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">ISHONCHLI</span>
+            </div>
         </div>
-        <div class="stat-box">
-            <span class="stat-num">24/7</span>
-            <span class="stat-label">TEXNIK YORDAM</span>
-        </div>
-        <div class="stat-box">
-            <span class="stat-num">100%</span>
-            <span class="stat-label">KAFOLATLI</span>
-        </div>
-    </div>
+    </header>
 
-    <section id="showcase" class="showcase">
+    <section id="showcase" class="showcase-section">
         <div class="section-header">
             <h2 class="section-title">Xizmatlar Vitrinasi</h2>
             <p class="section-subtitle">O'zingizga kerakli bo'limni tanlang</p>
@@ -236,8 +239,8 @@
         <div class="grid-container">
             
             <a href="shop.html" class="service-card">
+                <div class="card-icon">📱</div>
                 <div>
-                    <div class="card-icon">📱</div>
                     <h3>Virtual Raqamlar</h3>
                     <p>Telegram hisob ochish uchun xavfsiz raqamlar (+888, +44, +1).</p>
                 </div>
@@ -245,8 +248,8 @@
             </a>
 
             <a href="shop.html" class="service-card">
+                <div class="card-icon">👥</div>
                 <div>
-                    <div class="card-icon">👥</div>
                     <h3>Faol Obunachilar</h3>
                     <p>Kanalingiz uchun real o'zbek auditoriyasi.</p>
                 </div>
@@ -254,26 +257,35 @@
             </a>
 
             <a href="shop.html" class="service-card">
+                <div class="card-icon">⭐️</div>
                 <div>
-                    <div class="card-icon">⭐️</div>
                     <h3>Telegram Stars</h3>
-                    <p>Bot va ilovalar uchun yulduzchalarni hamyonbop narxda xarid qiling.</p>
+                    <p>Bot va ilovalar uchun yulduzchalarni hamyonbop narxda.</p>
                 </div>
                 <div class="arrow-icon">↗</div>
             </a>
 
             <a href="shop.html" class="service-card">
+                <div class="card-icon">🌟</div>
                 <div>
-                    <div class="card-icon">🎁</div>
-                    <h3>Premium & Gift</h3>
-                    <p>Telegram Premium obunasi va sovg'alar.</p>
+                    <h3>Telegram Premium</h3>
+                    <p>Rasmiy oylik va yillik obunalar.</p>
                 </div>
                 <div class="arrow-icon">↗</div>
             </a>
 
             <a href="shop.html" class="service-card">
+                <div class="card-icon">🎁</div>
                 <div>
-                    <div class="card-icon">abc</div>
+                    <h3>Sovg'alar (Gift)</h3>
+                    <p>Do'stlaringizga Premium sovg'a qiling.</p>
+                </div>
+                <div class="arrow-icon">↗</div>
+            </a>
+
+            <a href="shop.html" class="service-card">
+                <div class="card-icon">abc</div>
+                <div>
                     <h3>Noyob Username</h3>
                     <p>Brendingiz uchun eksklyuziv nomlar savdosi.</p>
                 </div>
@@ -281,8 +293,8 @@
             </a>
 
             <a href="shop.html" class="service-card">
+                <div class="card-icon">🔄</div>
                 <div>
-                    <div class="card-icon">🔄</div>
                     <h3>Auditoriya Ko'chirish</h3>
                     <p>Guruhdan guruhga maqsadli a'zolarni o'tkazish.</p>
                 </div>
@@ -293,7 +305,7 @@
     </section>
 
     <footer>
-        © 2024 KH SHOP. Barcha huquqlar himoyalangan.
+        © 2024 KH SHOP. Premium Services.
     </footer>
 
     <script>
