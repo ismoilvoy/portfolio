@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KH SHOP | Rasmiy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. Shriftlar va Umumiy uslublar */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap');
-
+        /* 1. Umumiy Dizayn (Sheet) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -20,7 +19,7 @@
             justify-content: center;
         }
 
-        /* 2. Asosiy Konteyner */
+        /* 2. Asosiy Hero Bo'limi */
         .hero {
             display: flex;
             width: 100%;
@@ -31,79 +30,97 @@
             position: relative;
         }
 
-        /* 3. Brending (Tepadagi Logo) */
+        /* 3. Barqaror Logotip (Tepada) */
         .header-logo {
             position: absolute;
-            top: -60px;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
+            z-index: 5;
         }
         .header-logo img {
-            width: 80px;
+            width: 75px;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            margin-bottom: 5px;
         }
         .header-logo h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 26px;
+            font-size: 24px;
             color: #000;
+            letter-spacing: 1px;
         }
 
-        /* 4. Matnlar qismi */
+        /* 4. Matnlar Bloki (Chapda) */
         .content {
-            flex: 1;
+            flex: 1.2;
             z-index: 2;
         }
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(35px, 6vw, 75px);
+            font-size: clamp(38px, 6vw, 75px);
             color: #000;
-            line-height: 1;
+            line-height: 0.95;
             text-transform: uppercase;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
         .btn {
             background: #fff;
             color: #0055ff;
-            padding: 16px 35px;
+            padding: 18px 40px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 18px;
             display: inline-block;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: 0.4s ease;
         }
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         }
 
-        /* 5. Suzib yuruvchi Savatcha */
+        /* 5. Suzib yuruvchi 3D Element (O'ngda) */
         .image-container {
             flex: 1;
             display: flex;
             justify-content: center;
+            position: relative;
         }
         .image-container img {
             width: 100%;
-            max-width: 500px;
-            /* Soya va Animatsiya */
-            filter: drop-shadow(25px 35px 50px rgba(0,0,0,0.35));
-            animation: floating 4s ease-in-out infinite;
+            max-width: 550px;
+            /* Soya va Chuqurlik */
+            filter: drop-shadow(30px 45px 65px rgba(0,0,0,0.4));
+            animation: floatingBasket 4s ease-in-out infinite;
+            z-index: 3;
         }
 
-        @keyframes floating {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-30px) rotate(2deg); }
+        /* Suzish Animatsiyasi */
+        @keyframes floatingBasket {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(3deg); }
         }
 
-        /* 6. Mobil Moslashuvchanlik */
+        /* 6. Mobil Moslashuvchanlik (Responsive) */
         @media (max-width: 900px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .content h1 { font-size: 40px; margin-top: 20px; }
-            .image-container img { max-width: 320px; margin-top: 30px; }
-            .header-logo { top: 20px; }
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                padding-top: 140px; 
+            }
+            .content h1 { 
+                font-size: 42px; 
+                margin-top: 30px; 
+            }
+            .image-container img { 
+                max-width: 350px; 
+                margin-top: 40px; 
+            }
+            .header-logo { 
+                top: 20px; 
+            }
         }
     </style>
 </head>
@@ -111,17 +128,17 @@
 
     <div class="hero">
         <div class="header-logo">
-            <img src="img/logo.png" alt="KH Logo">
+            <img src="./img/logo.png" alt="KH Logo" onerror="this.src='https://i.ibb.co/XfXkY8f/pepe-logo.png'">
             <h2>KH SHOP</h2>
         </div>
 
         <div class="content">
             <h1>Hammasi bitta – <br> ilovada</h1>
-            <a href="#market" class="btn">BATAFSIL MA'LUMOT</a>
+            <a href="#" class="btn">BATAFSIL MA'LUMOT</a>
         </div>
 
         <div class="image-container">
-            <img src="img/basket.png" alt="3D Basket">
+            <img src="./img/basket.png" alt="3D Basket" onerror="this.src='https://i.ibb.co/fndW8p4/3d-basket.png'">
         </div>
     </div>
 
