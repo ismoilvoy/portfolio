@@ -6,12 +6,8 @@
     <title>KH SHOP | Asosiy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* 1. Umumiy va Sheet (CSS) qoidalari */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
         
-        body { background: #fff; overflow-x: hidden; }
-
-        /* KH SHOP Gradient Fon */
         .home-container {
             min-height: 100vh;
             background: linear-gradient(135deg, #00f2ff 0%, #0055ff 100%);
@@ -20,124 +16,107 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
-            position: relative;
+            overflow: hidden;
         }
 
-        /* 2. Brending (Barqaror Logotip) */
+        /* Pepe Logotipi qismi */
         .brand-header {
             position: absolute;
-            top: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
+            top: 30px;
+            text-align: center;
         }
         .pepe-logo {
-            width: 60px;
+            width: 80px; /* Kattaroq qildik */
             height: auto;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+            display: block;
+            margin: 0 auto;
         }
         .brand-name {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 900;
             color: #000;
-            letter-spacing: 2px;
+            display: block;
+            margin-top: 5px;
         }
 
-        /* 3. Asosiy Kontent Joylashuvi */
         .home-content {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             max-width: 1200px;
             width: 100%;
-            margin-top: 100px;
+            margin-top: 50px;
         }
 
-        /* Matnlar bloki */
         .text-block {
             flex: 1;
-            text-align: left;
-            z-index: 2;
+            padding-left: 50px;
         }
         .main-heading {
-            font-size: 64px;
+            font-size: 70px; /* Rasmdagidek yirik */
             font-weight: 900;
             color: #000;
-            line-height: 1.1;
-            margin-bottom: 30px;
+            line-height: 1;
             text-transform: uppercase;
         }
         .cta-button {
             background: #fff;
             color: #0055ff;
             border: none;
-            padding: 18px 40px;
+            padding: 15px 35px;
             font-size: 18px;
             font-weight: 800;
             border-radius: 50px;
             cursor: pointer;
-            transition: 0.3s;
+            margin-top: 30px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
 
-        /* 4. Suzib yuruvchi 3D Savatcha */
+        /* Suzib yuruvchi 3D Savatcha */
         .image-block {
             flex: 1;
             display: flex;
             justify-content: center;
-            position: relative;
         }
         .basket-wrapper {
-            width: 350px;
-            animation: floating 3s ease-in-out infinite; /* Suzish buyrug'i */
+            width: 400px;
+            animation: floating 3.5s ease-in-out infinite;
         }
         .basket-img { width: 100%; height: auto; }
 
-        /* Suzish animatsiyasi keyframes */
         @keyframes floating {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-30px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* 5. Mobil versiya uchun moslashuvchanlik */
+        /* Mobil moslashuvchanlik */
         @media (max-width: 992px) {
-            .home-content {
-                flex-direction: column;
-                text-align: center;
-                margin-top: 150px;
-            }
-            .text-block { text-align: center; order: 2; }
-            .main-heading { font-size: 42px; margin-top: 30px; }
-            .image-block { order: 1; margin-bottom: 20px; }
-            .basket-wrapper { width: 250px; }
-            .brand-header { top: 20px; }
+            .home-content { flex-direction: column; text-align: center; }
+            .text-block { padding-left: 0; order: 2; }
+            .main-heading { font-size: 40px; margin-top: 20px; }
+            .basket-wrapper { width: 280px; }
         }
     </style>
 </head>
 <body>
 
-    <section id="home" class="home-container">
+    <section class="home-container">
         
         <div class="brand-header">
-            <img src="https://img.icons8.com/color/96/pepe.png" alt="Pepe Logo" class="pepe-logo">
+            <img src="https://i.ibb.co/XfXkY8f/pepe-logo.png" onerror="this.src='https://cdn-icons-png.flaticon.com/512/6122/6122619.png'" alt="Pepe Logo" class="pepe-logo">
             <span class="brand-name">KH SHOP</span>
         </div>
 
         <div class="home-content">
             <div class="text-block">
                 <h1 class="main-heading">HAMMASI BITTA – <br> ILOVADA</h1>
-                <button class="cta-button" onclick="alert('Do\'kon ochilmoqda...')">BATAFSIL MA'LUMOT</button>
+                <button class="cta-button">BATAFSIL MA'LUMOT</button>
             </div>
 
             <div class="image-block">
                 <div class="basket-wrapper">
-                    <img src="https://ouch-cdn2.icons8.com/vH_p8iE1g6v4G6gJ8n-o6N6K5G0GvL2z8z8z8z8z8z8/rs:fit:368:368/czM6Ly9pY29uczguL291Y2gtcHJvZC9hc3NldHMvMzQvYmY2YjRjMTgtOGQzNi00YmY0LThjZjYtMzYyM2FmZWY1YmU3LnBuZw.png" alt="3D Basket" class="basket-img">
+                    <img src="https://i.ibb.co/fndW8p4/3d-basket.png" onerror="this.src='https://ouch-cdn2.icons8.com/vH_p8iE1g6v4G6gJ8n-o6N6K5G0GvL2z8z8z8z8z8z8/rs:fit:368:368/czM6Ly9pY29uczguL291Y2gtcHJvZC9hc3NldHMvMzQvYmY2YjRjMTgtOGQzNi00YmY0LThjZjYtMzYyM2FmZWY1YmU3LnBuZw.png'" alt="3D Basket" class="basket-img">
                 </div>
             </div>
         </div>
