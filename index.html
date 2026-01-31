@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismoil.Pro | Digital Services</title>
+    <title>Ismoil.Pro | Digital Market</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -18,34 +18,28 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
 
-        /* Sidebar Dizayni */
-        .sidebar { width: 280px; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; z-index: 100; }
+        /* Sidebar Navigation */
+        .sidebar { width: 260px; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; }
         .logo { font-size: 24px; font-weight: 800; margin-bottom: 40px; color: white; text-shadow: 0 0 10px var(--neon-blue); }
         .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 12px; display: flex; align-items: center; gap: 12px; transition: 0.3s; margin-bottom: 5px; }
-        .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; box-shadow: inset 0 0 10px rgba(0,242,255,0.1); border-left: 4px solid var(--neon-blue); }
+        .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 4px solid var(--neon-blue); }
 
-        /* Asosiy qism */
-        .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, rgba(189,0,255,0.05), transparent); }
-        .section { display: none; animation: fadeIn 0.5s ease; }
+        /* Main Display Area */
+        .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, rgba(0,242,255,0.05), transparent); }
+        .section { display: none; animation: fadeIn 0.4s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Kartochka va Grid */
+        /* Market Cards */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 25px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.3s; position: relative; overflow: hidden; }
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 25px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.3s; position: relative; }
         .card:hover { border-color: var(--neon-blue); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,242,255,0.1); }
-
-        /* Tugmalar va Inputlar */
-        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 12px 20px; color: white; border-radius: 10px; cursor: pointer; font-weight: 600; width: 100%; margin-top: 15px; transition: 0.3s; }
-        .btn:hover { opacity: 0.9; transform: scale(1.02); }
-        input { width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; outline: none; margin-top: 10px; }
+        
+        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 12px; color: white; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; text-align: center; }
+        input { width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; margin-top: 10px; outline: none; }
         input:focus { border-color: var(--neon-blue); }
 
-        @media (max-width: 768px) {
-            .sidebar { display: none; }
-            body { flex-direction: column; }
-            .main { padding: 20px; }
-        }
+        @media (max-width: 768px) { .sidebar { display: none; } .main { padding: 20px; } }
     </style>
 </head>
 <body>
@@ -54,44 +48,98 @@
         <div class="logo">ISMOIL<span>.PRO</span></div>
         <button class="nav-btn active" onclick="tab('home')"><i class="fas fa-home"></i> Asosiy</button>
         <button class="nav-btn" onclick="openMarket()"><i class="fas fa-shopping-cart"></i> Do‘kon</button>
-        <button class="nav-btn" onclick="tab('about')"><i class="fas fa-user"></i> Men haqimda</button>
+        <button class="nav-btn" onclick="tab('about')"><i class="fas fa-user-tie"></i> Men haqimda</button>
     </nav>
 
     <div class="main">
         <div id="home" class="section active">
-            <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
-                <img src="https://github.com/ismoilvoy.png" style="width: 120px; border-radius: 50%; border: 3px solid var(--neon-blue); margin-bottom: 20px;">
+            <div class="card" style="text-align: center; max-width: 500px; margin: 50px auto;">
+                <img src="https://github.com/ismoilvoy.png" style="width: 110px; border-radius: 50%; border: 3px solid var(--neon-blue); margin-bottom: 15px;">
                 <h1>Ismoil Xolmirzayev</h1>
-                <p style="color: var(--neon-blue); margin: 10px 0;">Digital Services Architect</p>
-                <p style="color: var(--text-gray);">Telegram ekotizimi va zamonaviy raqamli yechimlar bo'yicha mutaxassis.</p>
-                <button class="btn" onclick="openMarket()" style="max-width: 200px;">Do'konni ko'rish</button>
+                <p style="color: var(--neon-blue); margin-bottom: 20px;">DIGITAL SERVICES ARCHITECT</p>
+                <button class="btn" onclick="openMarket()">Do'konni ko'rish</button>
             </div>
         </div>
 
         <div id="market" class="section">
-            <div id="market-header" style="margin-bottom: 30px;">
-                <h1 id="market-title">Kategoriyalar</h1>
-            </div>
+            <h1 id="market-title" style="margin-bottom: 25px;">Kategoriyalar</h1>
             <div id="market-content" class="grid"></div>
         </div>
 
         <div id="about" class="section">
             <div class="card">
                 <h2>Men haqimda</h2>
-                <p style="margin-top: 15px; color: var(--text-gray);">Men raqamli bozorlar va texnik administratsiya sohasida faoliyat yuritaman. Maqsadim - foydalanuvchilarga eng qulay va tezkor xizmatlarni taqdim etish.</p>
+                <p style="margin-top: 15px; color: var(--text-gray); line-height: 1.6;">
+                    Men Ismoil Xolmirzayev, masofaviy xizmatlar va raqamli bozorlar bo'yicha mutaxassisman. 
+                    Hozirda shaxsiy brendim ostida Telegram va veb-yechimlar yaratmoqdaman.
+                </p>
             </div>
         </div>
     </div>
 
-    <script src="api/market.js"></script>
     <script>
+        // Navigatsiya mantiqi
         function tab(id) {
             document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(b => {
-                b.classList.remove('active');
-                if(b.innerText.toLowerCase().includes(id === 'market' ? 'do' : id)) b.classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(id === 'market' ? 'do' : id)) btn.classList.add('active');
             });
+        }
+
+        // Market Ma'lumotlari
+        const starPrice = 250; 
+        const categories = [
+            { id: 'tg_market', name: 'Telegram Market', icon: 'fab fa-telegram', color: '#0088cc', desc: 'Premium, Stars, Members' },
+            { id: 'ai_market', name: 'AI Market', icon: 'fas fa-robot', color: '#bd00ff', desc: 'ChatGPT, Midjourney' },
+            { id: 'web_market', name: 'Website Xizmatlari', icon: 'fas fa-code', color: '#00f2ff', desc: 'Portfolio, Botlar' }
+        ];
+
+        function openMarket() {
+            tab('market');
+            renderCategories();
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('market-content');
+            document.getElementById('market-title').innerText = "Kategoriyalar";
+            container.innerHTML = categories.map(cat => `
+                <div class="card" onclick="openCategory('${cat.id}')" style="cursor:pointer; border-bottom: 3px solid ${cat.color}">
+                    <i class="${cat.icon}" style="font-size: 40px; color: ${cat.color}"></i>
+                    <h3 style="margin-top:15px">${cat.name}</h3>
+                    <p style="font-size:13px; color:gray; margin-top:10px">${cat.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function openCategory(id) {
+            const container = document.getElementById('market-content');
+            const title = document.getElementById('market-title');
+            
+            if(id === 'tg_market') {
+                title.innerHTML = `<button onclick="renderCategories()" style="background:none; border:1px solid var(--border); color:white; padding:5px 12px; border-radius:8px; cursor:pointer; margin-right:10px;"><i class="fas fa-arrow-left"></i></button> Telegram Market`;
+                container.innerHTML = `
+                    <div class="card" style="grid-column: 1 / -1; border: 1px solid #ffcc00; background: rgba(255,204,0,0.05);">
+                        <h3><i class="fas fa-star" style="color:#ffcc00"></i> Stars Kalkulyatori</h3>
+                        <p style="font-size:13px; color:gray; margin-top:5px;">Soni yozing:</p>
+                        <input type="number" id="starsQty" placeholder="Masalan: 100" oninput="calcStars()">
+                        <div id="starsRes" style="margin-top:15px; font-size:24px; color:#ffcc00; font-weight:bold;">0 so'm</div>
+                        <button class="btn">Sotib olish</button>
+                    </div>
+                    <div class="card"><h3>3 Oy Premium</h3><button class="btn">Tanlash</button></div>
+                    <div class="card"><h3>6 Oy Premium</h3><button class="btn">Tanlash</button></div>
+                    <div class="card"><h3>12 Oy Premium</h3><button class="btn">Tanlash</button></div>
+                `;
+            } else {
+                container.innerHTML = `<div class="card" style="grid-column: 1 / -1; text-align:center;"><h3>Tez kunda...</h3><button class="btn" onclick="renderCategories()" style="width:150px; margin:20px auto;">Orqaga</button></div>`;
+            }
+        }
+
+        function calcStars() {
+            const q = document.getElementById('starsQty').value;
+            const res = document.getElementById('starsRes');
+            res.innerText = q > 0 ? (q * starPrice).toLocaleString() + " so'm" : "0 so'm";
         }
     </script>
 </body>
