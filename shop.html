@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do'kon | KH SHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 1. UMUMIY SOZLAMALAR */
+        :root {
+            --bg-color: #000000;
+            --item-bg: #111111;
+            --accent: #229ED9;
+            --text-main: #FFFFFF;
+            --text-sub: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 80px; /* Pastki savat paneli uchun joy */
+        }
+
+        /* 2. HEADER (Sticky - Yopishqoq) */
+        .shop-header {
+            position: sticky;
+            top: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 20px 24px;
+            z-index: 100;
+            border-bottom: 1px solid #222;
+        }
+
+        .header-top {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            font-size: 16px; font-weight: 600; color: var(--text-sub);
+            display: flex; align-items: center; gap: 8px; text-decoration: none;
+        }
+        .back-btn:hover { color: #fff; }
+
+        .page-title { font-size: 20px; font-weight: 800; }
+
+        /* QIDIRUV (Humans Style) */
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            padding-left: 45px;
+            border-radius: 16px;
+            border: none;
+            background: #1A1A1A;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-icon {
+            position: absolute; left: 15px; top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        /* FILTRLAR (Yonga suriladigan) */
+        .filters {
+            display: flex; gap: 10px;
+            overflow-x: auto;
+            padding: 15px 0 5px 0;
+            scrollbar-width: none; /* Scrollbarni yashirish */
+        }
+        .filters::-webkit-scrollbar { display: none; }
+
+        .filter-btn {
+            background: #1A1A1A;
+            color: #888;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px; font-weight: 600;
+            border: 1px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+        .filter-btn.active {
+            background: rgba(34, 158, 217, 0.2);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* 3. MAHSULOTLAR RO'YXATI (List View) */
+        .product-list {
+            padding: 20px 24px;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+
+        .product-item {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--item-bg);
+            padding: 16px;
+            border-radius: 20px;
+            border: 1px solid #222;
+        }
+
+        .product-info { display: flex; align-items: center; gap: 15px; }
+        
+        .product-icon {
+            width: 50px; height: 50px;
+            background: #000;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+        }
+
+        .product-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .product-text p { font-size: 13px; color: var(--text-sub); }
+
+        .product-action { text-align: right; }
+        .price { display: block; font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        
+        .add-btn {
+            background: #222;
+            color: var(--accent);
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+            margin-left: auto;
+        }
+        .add-btn:hover { background: var(--accent); color: #fff; }
+
+        /* 4. PASTKI SAVAT PANELI (Sticky Bottom) */
+        .bottom-cart {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #111;
+            padding: 16px 24px;
+            border-top: 1px solid #222;
+            display: flex; justify-content: space-between; align-items: center;
+            transform: translateY(100%); /* Hozircha yashirin */
+            transition: 0.3s;
+        }
+        .bottom-cart.visible { transform: translateY(0); }
+
+        .cart-info { font-size: 14px; color: #888; }
+        .cart-info span { display: block; font-size: 18px; font-weight: 700; color: #fff; }
+
+        .checkout-btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shop-header">
+        <div class="header-top">
+            <a href="index.html" class="back-btn">
+                ← Orqaga
+            </a>
+            <span class="page-title">Xizmatlar Do'koni</span>
+            <div style="width: 60px;"></div> </div>
+
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" placeholder="Xizmat nomini yozing...">
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active">Barchasi</button>
+            <button class="filter-btn">Premium</button>
+            <button class="filter-btn">Stars</button>
+            <button class="filter-btn">Obunachi</button>
+            <button class="filter-btn">Username</button>
+        </div>
+    </div>
+
+    <div class="product-list">
+        
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-icon">🌟</div>
+                <div class="product-text">
+                    <h3>Telegram Premium (1 oy)</h3>
+                    <p>Rasmiy obuna, login shart emas</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <span class="price">45,000 so'm</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-icon">⭐️</div>
+                <div class="product-text">
+                    <h3>500 Telegram Stars</h3>
+                    <p>Bot va reaksiyalar uchun</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <span class="price">110,000 so'm</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-icon">👥</div>
+                <div class="product-text">
+                    <h3>1000 ta Obunachi</h3>
+                    <p>O'zbek auditoriyasi, kafolatli</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <span class="price">80,000 so'm</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-icon">💎</div>
+                <div class="product-text">
+                    <h3>@Business_Uz</h3>
+                    <p>Noyob username, NFT orqali</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <span class="price">500$</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+
+        <div class="product-item">
+            <div class="product-info">
+                <div class="product-icon">🎁</div>
+                <div class="product-text">
+                    <h3>3 oylik Premium Gift</h3>
+                    <p>Sovg'a sifatida yuboriladi</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <span class="price">120,000 so'm</span>
+                <button class="add-btn">+</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom-cart visible"> <div class="cart-info">
+            Jami hisob:
+            <span>0 so'm</span>
+        </div>
+        <a href="https://t.me/minora" class="checkout-btn">Rasmiylashtirish</a>
+    </div>
+
+</body>
+</html>
