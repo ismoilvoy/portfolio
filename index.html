@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Professional</title>
+    <title>KH SHOP | Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,63 +12,65 @@
             background: linear-gradient(105deg, #00f2ff 0%, #0055ff 100%);
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             position: relative;
         }
 
-        /* Oq diagonal fon - aniq 32% balandlikda */
+        /* Oq diagonal fon - Namunadagi kabi 32% */
         body::after {
             content: "";
             position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 32%;
+            bottom: 0; left: 0;
+            width: 100%; height: 32%;
             background: white;
             clip-path: polygon(0 100%, 100% 100%, 100% 0);
             z-index: 1;
         }
 
-        /* Header - Elementlar orasidagi masofa kengaytirildi */
-        header {
-            position: absolute;
-            top: 0;
+        /* Markazlashtiruvchi Konteyner */
+        .container {
             width: 100%;
-            padding: 45px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-        }
-        .header-logo { display: flex; align-items: center; gap: 12px; }
-        .header-logo img { width: 40px; }
-        .header-logo span { font-family: 'Montserrat'; font-weight: 900; font-size: 22px; line-height: 0.9; }
-
-        .nav { display: flex; gap: 40px; align-items: center; }
-        .nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; }
-        .nav a:hover { color: #000; }
-        .hobil-btn { background: #3b71ca; color: white !important; padding: 10px 30px; border-radius: 8px; font-weight: 600 !important; }
-
-        /* Hero Bo'limi - Simmetriya */
-        .hero {
-            display: flex;
-            width: 100%;
-            max-width: 1300px;
-            padding: 0 10%;
-            align-items: center;
-            justify-content: space-between;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
             z-index: 10;
         }
 
-        .content { flex: 1.2; }
+        /* Header - Tartibli */
+        header {
+            width: 100%;
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo { display: flex; align-items: center; gap: 12px; }
+        .header-logo img { width: 45px; }
+        .header-logo span { font-family: 'Montserrat'; font-weight: 900; font-size: 22px; line-height: 0.9; }
+
+        .nav { display: flex; gap: 40px; align-items: center; }
+        .nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; }
+        .hobil-btn { background: #3b71ca; color: white !important; padding: 10px 25px; border-radius: 8px; font-weight: 600 !important; }
+
+        /* Hero Bo'limi - Simmetriya */
+        .hero {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 0;
+        }
+
+        .content { flex: 1.1; }
         .content-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
 
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(30px, 5vw, 68px); 
+            font-size: 65px;
             color: #000;
             line-height: 1.05;
             text-transform: uppercase;
@@ -86,65 +88,210 @@
             font-size: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: inline-block;
-            transition: 0.3s;
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-        /* Rasm - Masshtab va masofa to'g'rilandi */
+        /* Rasm - Masshtab va Joylashuv */
         .image-box {
             flex: 1;
             display: flex;
             justify-content: flex-end;
         }
+
         .image-box img {
-            width: 95%; /* Pala-partishlikni yo'qotish uchun biroz kichraytirildi */
-            max-width: 600px;
+            width: 100%;
+            max-width: 580px;
             filter: drop-shadow(30px 40px 60px rgba(0,0,0,0.15));
             transform: translateY(20px);
         }
 
         @media (max-width: 1024px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 130px; }
+            .hero { flex-direction: column; text-align: center; }
             .image-box { justify-content: center; margin-top: 50px; }
-            .content h1 { font-size: 40px; }
+            .content h1 { font-size: 42px; }
             .nav { display: none; }
-            header { padding: 30px 5%; }
+            .content-logo { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="header-logo">
-            <img src="img/logo.png" alt="Logo">
-            <span>KH<br>SHOP 2</span>
-        </div>
-        <div class="nav">
-            <a href="#">Httml</a>
-            <a href="#">Stome</a>
-            <a href="#">Coloon</a>
-            <a href="#market">Market</a>
-            <a href="#" class="hobil-btn">Hobil</a>
-        </div>
-    </header>
-
-    <section class="hero">
-        <div class="content">
-            <div class="content-logo">
-                <img src="img/logo.png" width="48">
-                <div style="font-family:'Montserrat'; font-weight:900; line-height:0.9;">
-                    <p style="font-size:13px;">KH</p>
-                    <p style="font-size:20px;">SHOP</p>
-                </div>
+    <div class="container">
+        <header>
+            <div class="header-logo">
+                <img src="img/logo.png" alt="Logo">
+                <span>KH<br>SHOP 2</span>
             </div>
-            <h1>HAMMASI BITTA – <br> ILOVADA</h1>
-            <a href="#market" class="btn-main">BATAFSIL MA'LUMOT</a>
-        </div>
+            <div class="nav">
+                <a href="#">Httml</a>
+                <a href="#">Stome</a>
+                <a href="#">Coloon</a>
+                <a href="#market">Market</a>
+                <a href="#" class="hobil-btn">Hobil</a>
+            </div>
+        </header>
 
-        <div class="image-box">
-            <img src="img/basket.png" alt="3D Basket">
-        </div>
-    </section>
+        <section class="hero">
+            <div class="content">
+                <div class="content-logo">
+                    <img src="img/logo.png" width="48">
+                    <div style="font-family:'Montserrat'; font-weight:900; line-height:0.9;">
+                        <p style="font-size:13px;">KH</p>
+                        <p style="font-size:20px;">SHOP</p>
+                    </div>
+                </div>
+                <h1>HAMMASI BITTA – <br> ILOVADA</h1>
+                <a href="#market" class="btn-main">BATAFSIL MA'LUMOT</a>
+            </div>
+
+            <div class="image-box">
+                <img src="img/basket.png" alt="3D Basket">
+            </div>
+        </section>
+    </div><!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KH SHOP | Telegram xizmatlari</title>
+
+<meta name="description" content="KH SHOP — Telegram bo‘yicha 6 yillik tajribaga ega mutaxassis. Virtual raqamlar, Telegram username va giftlar, faol obunachilar va xavfsiz xizmatlar.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#0F172A;color:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+
+header{
+position:fixed;top:0;left:0;width:100%;
+background:#020617;padding:15px 40px;
+display:flex;justify-content:space-between;align-items:center;
+z-index:1000;
+}
+
+header nav a{margin-left:20px;color:#cbd5e1}
+.btn{
+background:#229ED9;padding:12px 22px;border-radius:10px;
+font-weight:600;display:inline-block
+}
+
+section{padding:100px 40px}
+.container{max-width:1200px;margin:auto}
+
+.hero{
+display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.hero h1{font-size:52px;line-height:1.2}
+.hero p{margin:20px 0;color:#cbd5e1}
+.hero .actions a{margin-right:15px}
+
+.card-grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px
+}
+.card{
+background:#020617;padding:25px;border-radius:18px;
+transition:0.3s
+}
+.card:hover{transform:translateY(-6px)}
+
+.light{background:#F8FAFC;color:#020617}
+.light p{color:#334155}
+
+.cta{
+background:linear-gradient(135deg,#229ED9,#22C55E);
+text-align:center;border-radius:25px
+}
+.cta h2{font-size:36px;margin-bottom:20px}
+
+footer{
+background:#020617;padding:30px;text-align:center;
+color:#94a3b8
+}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr}
+.hero h1{font-size:40px}
+header{padding:15px 20px}
+section{padding:80px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div><strong>KH SHOP</strong></div>
+<nav>
+<a href="#services">Xizmatlar</a>
+<a href="#about">Men haqimda</a>
+<a class="btn" href="https://t.me/minora">Telegram</a>
+</nav>
+</header>
+
+<section class="container hero">
+<div>
+<h1>Telegram bo‘yicha 6 yillik tajribaga ega mutaxassisdan ishonchli raqamli xizmatlar</h1>
+<p>Virtual raqamlar, Telegram username va giftlar, faol obunachilar, xavfsiz nakrutka va real auditoriya.</p>
+<div class="actions">
+<a class="btn" href="https://t.me/minora">Telegram orqali bog‘lanish</a>
+<a href="#services">Xizmatlarni ko‘rish</a>
+</div>
+</div>
+<div>
+<img src="https://i.imgur.com/6IUBR1N.png" width="100%" alt="KH SHOP Telegram xizmatlari">
+</div>
+</section>
+
+<section class="light">
+<div class="container">
+<h2>Bu sayt nima qiladi?</h2>
+<p>
+Ushbu sayt Telegram platformasida professional va ishonchli xizmatlarni izlayotgan foydalanuvchilar uchun yaratilgan.
+KH SHOP orqali Telegram bilan bog‘liq barcha asosiy raqamli xizmatlarni bir joyda, ochiq va qulay shaklda olishingiz mumkin.
+</p>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<h2>Men haqimda</h2>
+<p>
+Men Telegram platformasida 6 yildan ortiq tajribaga ega mutaxassisman.
+Virtual raqamlar, Telegram username va giftlar, faol obunachilar hamda auditoriya bilan ishlash yo‘nalishlarida
+real tajribaga egaman. Asosiy tamoyillarim — xavfsizlik, halollik va barqaror natija.
+</p>
+</div>
+</section>
+
+<section id="services" class="light">
+<div class="container">
+<h2>Xizmatlar</h2>
+<div class="card-grid">
+<div class="card">📱 Virtual Telegram raqamlar</div>
+<div class="card">👥 Faol obunachilar va xavfsiz nakrutka</div>
+<div class="card">🔁 Guruhdan guruhga auditoriya o‘tkazish</div>
+<div class="card">🎁 Telegram giftlar (sotish / sotib olish)</div>
+<div class="card">🔤 Telegram username’lar</div>
+</div>
+</div>
+</section>
+
+<section class="cta">
+<div class="container">
+<h2>Telegram orqali bog‘laning va tezkor javob oling</h2>
+<a class="btn" href="https://t.me/minora">👉 @minora ga yozish</a>
+</div>
+</section>
+
+<footer>
+© 2026 KH SHOP — Telegram xizmatlari. Barcha huquqlar himoyalangan.
+</footer>
+
+</body>
+</html>
+
 
 </body>
 </html>
