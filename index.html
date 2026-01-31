@@ -6,14 +6,14 @@
     <title>KH SHOP | Rasmiy</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. Umumiy Dizayn (Sheet) */
+        /* 1. Umumiy Sheet (Dizayn) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             background: linear-gradient(135deg, #00f2ff 0%, #0055ff 100%);
             min-height: 100vh;
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -33,20 +33,20 @@
         /* 3. Barqaror Logotip (Tepada) */
         .header-logo {
             position: absolute;
-            top: -50px;
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
-            z-index: 5;
+            z-index: 10;
         }
         .header-logo img {
-            width: 75px;
+            width: 85px;
             filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
             margin-bottom: 5px;
         }
         .header-logo h2 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 24px;
+            font-size: 26px;
             color: #000;
             letter-spacing: 1px;
         }
@@ -54,20 +54,20 @@
         /* 4. Matnlar Bloki (Chapda) */
         .content {
             flex: 1.2;
-            z-index: 2;
+            z-index: 5;
         }
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(38px, 6vw, 75px);
+            font-size: clamp(35px, 6vw, 75px);
             color: #000;
-            line-height: 0.95;
+            line-height: 1;
             text-transform: uppercase;
             margin-bottom: 35px;
         }
         .btn {
             background: #fff;
             color: #0055ff;
-            padding: 18px 40px;
+            padding: 18px 45px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 800;
@@ -90,37 +90,25 @@
         }
         .image-container img {
             width: 100%;
-            max-width: 550px;
+            max-width: 500px;
             /* Soya va Chuqurlik */
-            filter: drop-shadow(30px 45px 65px rgba(0,0,0,0.4));
-            animation: floatingBasket 4s ease-in-out infinite;
+            filter: drop-shadow(25px 40px 60px rgba(0,0,0,0.35));
+            animation: floatingEffect 4s ease-in-out infinite;
             z-index: 3;
         }
 
         /* Suzish Animatsiyasi */
-        @keyframes floatingBasket {
+        @keyframes floatingEffect {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-35px) rotate(3deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
         }
 
-        /* 6. Mobil Moslashuvchanlik (Responsive) */
+        /* 6. Mobil Moslashuvchanlik */
         @media (max-width: 900px) {
-            .hero { 
-                flex-direction: column; 
-                text-align: center; 
-                padding-top: 140px; 
-            }
-            .content h1 { 
-                font-size: 42px; 
-                margin-top: 30px; 
-            }
-            .image-container img { 
-                max-width: 350px; 
-                margin-top: 40px; 
-            }
-            .header-logo { 
-                top: 20px; 
-            }
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .content h1 { font-size: 40px; margin-top: 20px; }
+            .image-container img { max-width: 300px; margin-top: 40px; }
+            .header-logo { top: 20px; }
         }
     </style>
 </head>
@@ -128,7 +116,7 @@
 
     <div class="hero">
         <div class="header-logo">
-            <img src="./img/logo.png" alt="KH Logo" onerror="this.src='https://i.ibb.co/XfXkY8f/pepe-logo.png'">
+            <img src="./img/logo.png" alt="KH Logo" onerror="this.style.display='none'">
             <h2>KH SHOP</h2>
         </div>
 
@@ -138,7 +126,7 @@
         </div>
 
         <div class="image-container">
-            <img src="./img/basket.png" alt="3D Basket" onerror="this.src='https://i.ibb.co/fndW8p4/3d-basket.png'">
+            <img src="./img/basket.png" alt="3D Basket" onerror="this.style.display='none'">
         </div>
     </div>
 
