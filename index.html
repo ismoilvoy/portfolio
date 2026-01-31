@@ -14,7 +14,7 @@
             --card-bg: #111111;
             --accent: #229ED9;
             --text-main: #FFFFFF;
-            --text-sub: #E2E8F0; /* Yorqinroq kulrang */
+            --text-sub: #E2E8F0;
             --radius: 32px;
         }
 
@@ -34,15 +34,14 @@
         header {
             position: absolute;
             top: 0; left: 0; width: 100%;
-            padding: 40px 0; /* Header balandroq */
+            padding: 40px 0;
             z-index: 10;
         }
 
-        /* MUHIM O'ZGARISH: KONTEYNER KENGAYTIRILDI */
         .container { 
-            max-width: 1400px; /* 1200 dan 1400 ga oshdi */
+            max-width: 1400px; /* Kengaytirilgan konteyner */
             margin: 0 auto; 
-            padding: 0 40px; /* Chetlaridan joy */
+            padding: 0 40px; 
             width: 100%;
         }
 
@@ -56,7 +55,7 @@
         .nav-links a { font-size: 16px; font-weight: 500; color: #aaa; transition: 0.3s; }
         .nav-links a:hover { color: #fff; }
 
-        /* 3. HERO (TUZATILDI) */
+        /* 3. HERO (TUZATILDI - MATN MARKAZDA) */
         .hero {
             height: 100vh;
             display: flex;
@@ -69,7 +68,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(60px, 8vw, 110px); /* Shrift yanada kattalashtirildi */
+            font-size: clamp(60px, 8vw, 110px);
             font-weight: 900; 
             line-height: 1; 
             letter-spacing: -3px;
@@ -78,15 +77,17 @@
         }
         .hero h1 span { color: var(--accent); }
 
-        /* MUHIM O'ZGARISH: PASTKI JUMLA DIZAYNI */
+        /* MATNNI MARKAZLASH UCHUN MAXSUS FIX */
         .hero p {
-            font-size: 24px; /* Kattalashtirildi (20px edi) */
-            color: var(--text-sub); /* Oqroq rang berildi */
-            max-width: 800px; /* Kengroq joy */
-            margin-bottom: 60px; 
-            line-height: 1.4;
-            font-weight: 500; /* Qalinroq */
+            font-size: 24px;
+            color: var(--text-sub);
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto 50px auto; /* Tepa-Past: 0/50px, Yonlar: AUTO (Markaz) */
+            line-height: 1.5;
+            font-weight: 500;
             opacity: 0.9;
+            text-align: center;
         }
 
         .btn-large {
@@ -108,7 +109,7 @@
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Kartalar ham kengaydi */
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 24px;
         }
 
@@ -135,7 +136,7 @@
         }
         .card:hover .card-arrow { background: var(--accent); color: #fff; }
 
-        /* 5. YANGI: BIZ HAQIMIZDA (ABOUT) */
+        /* 5. BIZ HAQIMIZDA */
         .about-section {
             padding: 100px 0;
             background: #000;
