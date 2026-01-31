@@ -6,13 +6,14 @@
     <title>Do'kon | KH SHOP</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        /* 1. DIZAYN (O'zgarmadi, Humans Style) */
+        /* --- 1. ASOSIY STILLAR --- */
         :root {
             --bg-color: #000000;
             --item-bg: #111111;
             --accent: #229ED9;
             --text-main: #FFFFFF;
             --text-sub: #888888;
+            --danger: #FF3B30;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -20,94 +21,158 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 100px;
+            padding-bottom: 120px; /* Savat paneli uchun joy */
         }
 
-        /* HEADER */
+        /* --- 2. HEADER & TABS --- */
         .shop-header {
             position: sticky; top: 0;
             background: rgba(0, 0, 0, 0.95);
-            padding: 20px 24px; z-index: 100;
+            padding: 20px 24px; z-index: 90;
             border-bottom: 1px solid #222;
         }
 
-        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
-        .back-btn { font-size: 16px; font-weight: 600; color: var(--text-sub); text-decoration: none; }
-        .page-title { font-size: 20px; font-weight: 800; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; }
+        .back-btn { font-size: 16px; font-weight: 600; color: var(--text-sub); text-decoration: none; display: flex; align-items: center; gap: 5px;}
+        .page-title { font-size: 18px; font-weight: 800; }
 
-        /* QIDIRUV */
-        .search-box { position: relative; width: 100%; margin-bottom: 15px; }
-        .search-input {
-            width: 100%; padding: 14px 20px 14px 45px;
-            border-radius: 16px; border: none; background: #1A1A1A;
-            color: #fff; font-size: 16px; outline: none;
-        }
-        .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666; }
-
-        /* FILTRLAR (SIZ AYTGAN KATEGORIYALAR) */
-        .filters {
+        .tabs {
             display: flex; gap: 10px; overflow-x: auto;
             padding-bottom: 5px; scrollbar-width: none;
         }
-        .filters::-webkit-scrollbar { display: none; }
+        .tabs::-webkit-scrollbar { display: none; }
 
-        .filter-btn {
+        .tab-btn {
             background: #1A1A1A; color: #888;
-            padding: 8px 16px; border-radius: 20px;
+            padding: 10px 20px; border-radius: 20px;
             font-size: 14px; font-weight: 600;
             border: 1px solid transparent; cursor: pointer; white-space: nowrap;
             transition: 0.3s;
         }
-        .filter-btn.active {
+        .tab-btn.active {
             background: rgba(34, 158, 217, 0.2);
             color: var(--accent); border-color: var(--accent);
         }
 
-        /* MAHSULOTLAR */
-        .product-list { padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+        /* --- 3. SEKSIYALAR --- */
+        .section { display: none; padding: 20px 24px; animation: fadeIn 0.3s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .product-item {
-            display: flex; align-items: center; justify-content: space-between;
-            background: var(--item-bg); padding: 16px;
-            border-radius: 20px; border: 1px solid #222;
-            transition: 0.3s;
+        /* --- YULDUZCHA KALKULYATORI --- */
+        .stars-calc {
+            background: var(--item-bg); padding: 25px; border-radius: 24px;
+            text-align: center; border: 1px solid #222;
         }
-        /* Yashirish uchun klass (Filtr ishlaganda kerak) */
-        .product-item.hidden { display: none; }
-
-        .product-info { display: flex; align-items: center; gap: 15px; }
-        .product-icon {
-            width: 50px; height: 50px; background: #000;
-            border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px;
+        .stars-icon { font-size: 60px; margin-bottom: 15px; display: block; }
+        .stars-input {
+            width: 100%; background: #000; border: 1px solid #333;
+            color: #fff; font-size: 32px; font-weight: 700; text-align: center;
+            padding: 15px; border-radius: 16px; outline: none; margin-bottom: 10px;
         }
-        .product-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-        .product-text p { font-size: 13px; color: var(--text-sub); }
-
-        .product-action { text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
-        .price { display: block; font-size: 15px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .stars-input:focus { border-color: var(--accent); }
+        .stars-price { font-size: 18px; color: var(--text-sub); margin-bottom: 20px; }
+        .stars-price span { color: var(--accent); font-weight: 700; font-size: 22px; }
         
-        .add-btn {
-            background: #222; color: var(--accent);
-            width: 32px; height: 32px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 20px; font-weight: 600; cursor: pointer; border: none;
+        .quick-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .chip {
+            background: #222; color: #fff; padding: 8px 16px; border-radius: 50px;
+            font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #333;
         }
-        .add-btn:active { transform: scale(0.9); background: var(--accent); color: #fff; }
+        .chip:hover { background: #333; }
 
-        /* SAVAT PANELI */
-        .bottom-cart {
+        .add-cart-btn {
+            width: 100%; background: var(--accent); color: #fff;
+            padding: 16px; border-radius: 16px; font-weight: 700; font-size: 16px;
+            border: none; cursor: pointer; transition: 0.2s;
+        }
+        .add-cart-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
+        .add-cart-btn:active { transform: scale(0.98); }
+
+        /* --- RAQAMLAR & OBUNACHI LIST --- */
+        .item-card {
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--item-bg); padding: 16px; margin-bottom: 12px;
+            border-radius: 20px; border: 1px solid #222;
+        }
+        .item-info { display: flex; align-items: center; gap: 15px; }
+        .item-icon { font-size: 32px; width: 45px; text-align: center; }
+        .item-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .item-text p { font-size: 13px; color: var(--text-sub); }
+        
+        .item-price-btn { text-align: right; }
+        .price-tag { display: block; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .mini-add-btn {
+            background: #222; color: var(--accent); width: 32px; height: 32px;
+            border-radius: 50%; border: none; font-size: 20px; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+        }
+        .mini-add-btn:hover { background: var(--accent); color: #fff; }
+
+        /* --- PLACEHOLDER (TEZ KUNDA) --- */
+        .coming-soon {
+            text-align: center; padding: 50px 20px; color: var(--text-sub);
+        }
+        .coming-soon h2 { color: #fff; margin-bottom: 10px; }
+
+        /* --- SAVAT PANELI (BOTTOM) --- */
+        .bottom-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #111; padding: 16px 24px;
-            border-top: 1px solid #222;
+            background: #111; padding: 16px 24px; border-top: 1px solid #222;
             display: flex; justify-content: space-between; align-items: center;
-            transform: translateY(100%); transition: 0.3s;
+            z-index: 100;
         }
-        .bottom-cart.visible { transform: translateY(0); }
-        .cart-info span { display: block; font-size: 18px; font-weight: 700; color: #fff; }
+        .total-info { font-size: 14px; color: #888; }
+        .total-info b { display: block; font-size: 18px; color: #fff; }
+        
+        .open-cart-btn {
+            background: #fff; color: #000; padding: 12px 25px;
+            border-radius: 12px; font-weight: 700; cursor: pointer; border: none;
+            position: relative;
+        }
+        .cart-badge {
+            position: absolute; top: -5px; right: -5px;
+            background: var(--danger); color: #fff; font-size: 12px;
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; opacity: 0; transition: 0.2s;
+        }
+        .cart-badge.show { opacity: 1; }
+
+        /* --- SAVAT MODAL (DRAWER) --- */
+        .cart-drawer {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 200;
+            display: none; justify-content: flex-end; flex-direction: column;
+        }
+        .cart-drawer.open { display: flex; }
+        
+        .cart-content {
+            background: #111; width: 100%; max-height: 80vh;
+            border-radius: 24px 24px 0 0; padding: 24px;
+            overflow-y: auto; position: relative;
+            border-top: 1px solid #333;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close-cart { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+        
+        .cart-item {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #1A1A1A; padding: 15px; border-radius: 16px; margin-bottom: 10px;
+        }
+        .cart-item-title { font-size: 15px; font-weight: 600; }
+        .cart-item-price { font-size: 13px; color: #888; margin-top: 4px; }
+        .cart-remove { color: var(--danger); background: none; border: none; font-weight: 600; cursor: pointer; }
+
         .checkout-btn {
-            background: var(--accent); color: #fff; padding: 12px 30px;
-            border-radius: 12px; font-weight: 600; text-decoration: none; cursor: pointer;
+            width: 100%; background: var(--accent); color: #fff;
+            padding: 18px; border-radius: 16px; font-weight: 800; font-size: 18px;
+            border: none; margin-top: 20px; cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -115,197 +180,282 @@
     <div class="shop-header">
         <div class="header-top">
             <a href="index.html" class="back-btn">← Orqaga</a>
-            <span class="page-title">Do'kon</span>
-            <div style="width: 60px;"></div>
+            <span class="page-title">Xizmatlar Do'koni</span>
+            <div style="width: 50px;"></div>
         </div>
-
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="Qidirish...">
-        </div>
-
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">Barchasi</button>
-            <button class="filter-btn" data-filter="virtual">Virtual Raqam</button>
-            <button class="filter-btn" data-filter="obunachi">Obunachi</button>
-            <button class="filter-btn" data-filter="transfer">Guruh o'tkazish</button>
-            <button class="filter-btn" data-filter="gift">Giftlar</button>
-            <button class="filter-btn" data-filter="username">Usernamelar</button>
-        </div>
-    </div>
-
-    <div class="product-list" id="productList">
         
-        <div class="product-item" data-category="virtual" data-name="usa amerika" data-price="45000">
-            <div class="product-info">
-                <div class="product-icon">🇺🇸</div>
-                <div class="product-text">
-                    <h3>USA +1 Raqam</h3>
-                    <p>Telegram uchun, toza raqam</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">45,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('USA +1 Raqam', 45000)">+</button>
-            </div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('stars')">⭐️ Yulduzcha</button>
+            <button class="tab-btn" onclick="switchTab('virtual')">📱 Virtual Nomer</button>
+            <button class="tab-btn" onclick="switchTab('followers')">👥 Obunachi</button>
+            <button class="tab-btn" onclick="switchTab('gift')">🎁 Giftlar</button>
+            <button class="tab-btn" onclick="switchTab('username')">🔤 Username</button>
         </div>
-
-        <div class="product-item" data-category="virtual" data-name="uk angliya" data-price="55000">
-            <div class="product-info">
-                <div class="product-icon">🇬🇧</div>
-                <div class="product-text">
-                    <h3>UK +44 Raqam</h3>
-                    <p>Ishonchli, 1-qo'l</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">55,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('UK +44 Raqam', 55000)">+</button>
-            </div>
-        </div>
-
-        <div class="product-item" data-category="obunachi" data-name="obunachi nakrutka" data-price="80000">
-            <div class="product-info">
-                <div class="product-icon">👥</div>
-                <div class="product-text">
-                    <h3>1000 ta Obunachi</h3>
-                    <p>Sifatli, o'zbek auditoriya</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">80,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('1000 Obunachi', 80000)">+</button>
-            </div>
-        </div>
-
-        <div class="product-item" data-category="transfer" data-name="transfer guruh" data-price="150000">
-            <div class="product-info">
-                <div class="product-icon">🔁</div>
-                <div class="product-text">
-                    <h3>Auditoriya Ko'chirish</h3>
-                    <p>Guruhdan-guruhga (1k odam)</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">150,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('Auditoriya Transfer (1k)', 150000)">+</button>
-            </div>
-        </div>
-
-        <div class="product-item" data-category="gift" data-name="premium gift" data-price="45000">
-            <div class="product-info">
-                <div class="product-icon">🌟</div>
-                <div class="product-text">
-                    <h3>Premium (1 oy)</h3>
-                    <p>Gift ko'rinishida</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">45,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('Premium 1 oy', 45000)">+</button>
-            </div>
-        </div>
-
-        <div class="product-item" data-category="gift" data-name="stars yulduz" data-price="110000">
-            <div class="product-info">
-                <div class="product-icon">⭐️</div>
-                <div class="product-text">
-                    <h3>500 Stars</h3>
-                    <p>Bot va reaksiyalar uchun</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">110,000 so'm</span>
-                <button class="add-btn" onclick="addToCart('500 Stars', 110000)">+</button>
-            </div>
-        </div>
-
-        <div class="product-item" data-category="username" data-name="user nom" data-price="6000000">
-            <div class="product-info">
-                <div class="product-icon">💎</div>
-                <div class="product-text">
-                    <h3>@Business_Uz</h3>
-                    <p>Noyob username (NFT)</p>
-                </div>
-            </div>
-            <div class="product-action">
-                <span class="price">500$</span>
-                <button class="add-btn" onclick="addToCart('Username @Business_Uz', 6000000)">+</button>
-            </div>
-        </div>
-
     </div>
 
-    <div class="bottom-cart" id="cartBar">
-        <div class="cart-info">
-            Jami: <span id="totalPrice">0 so'm</span>
+    <div id="stars" class="section active">
+        <div class="stars-calc">
+            <span class="stars-icon">⭐️</span>
+            <input type="number" id="starInput" class="stars-input" placeholder="0" oninput="calcStars()">
+            
+            <div class="stars-price">
+                Narxi: <span id="starPriceDisplay">0 so'm</span>
+            </div>
+
+            <div class="quick-chips">
+                <div class="chip" onclick="setStars(50)">50</div>
+                <div class="chip" onclick="setStars(100)">100</div>
+                <div class="chip" onclick="setStars(300)">300</div>
+                <div class="chip" onclick="setStars(500)">500</div>
+                <div class="chip" onclick="setStars(1000)">1000</div>
+                <div class="chip" onclick="setStars(5000)">5000</div>
+            </div>
+
+            <button id="addStarBtn" class="add-cart-btn" onclick="addStarsToCart()" disabled>
+                Savatga qo'shish
+            </button>
+            <p id="starError" style="color: var(--danger); font-size: 12px; margin-top: 10px; display: none;">Min: 50, Max: 100,000</p>
         </div>
-        <div class="checkout-btn" onclick="checkout()">Rasmiylashtirish</div>
+    </div>
+
+    <div id="virtual" class="section">
+        </div>
+
+    <div id="followers" class="section">
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-icon">👥</div>
+                <div class="item-text">
+                    <h3>Jonli Obunachi (Aralash)</h3>
+                    <p>1000 ta, sifatli</p>
+                </div>
+            </div>
+            <div class="item-price-btn">
+                <span class="price-tag">70,000 so'm</span>
+                <button class="mini-add-btn" onclick="addItemToCart('Obunachi (Aralash 1k)', 70000)">+</button>
+            </div>
+        </div>
+
+        <div class="item-card">
+            <div class="item-info">
+                <div class="item-icon">💎</div>
+                <div class="item-text">
+                    <h3>Jonli Obunachi (Toza)</h3>
+                    <p>1000 ta, kafolatli</p>
+                </div>
+            </div>
+            <div class="item-price-btn">
+                <span class="price-tag">85,000 so'm</span>
+                <button class="mini-add-btn" onclick="addItemToCart('Obunachi (Toza 1k)', 85000)">+</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gift" class="section">
+        <div class="coming-soon">
+            <h2>🎁 Tez Kunda...</h2>
+            <p>Bu bo'lim ustida ishlayapmiz</p>
+        </div>
+    </div>
+    <div id="username" class="section">
+        <div class="coming-soon">
+            <h2>🔤 Tez Kunda...</h2>
+            <p>Eksklyuziv usernamelar bo'limi</p>
+        </div>
+    </div>
+
+    <div class="bottom-bar">
+        <div class="total-info">
+            Jami hisob:
+            <b id="mainTotal">0 so'm</b>
+        </div>
+        <button class="open-cart-btn" onclick="toggleCart()">
+            Savatni ko'rish
+            <div id="cartBadge" class="cart-badge">0</div>
+        </button>
+    </div>
+
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Savat</h2>
+                <button class="close-cart" onclick="toggleCart()">✕</button>
+            </div>
+            
+            <div id="cartItemsList">
+                <p style="color: #666; text-align: center;">Savatingiz bo'sh</p>
+            </div>
+
+            <button class="checkout-btn" onclick="checkout()">Sotib Olish</button>
+        </div>
     </div>
 
     <script>
-        // 1. FILTRLASH LOGIKASI
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const items = document.querySelectorAll('.product-item');
+        // --- 1. MA'LUMOTLAR BAZASI ---
+        // Virtual raqamlar (Arzondan qimmatga tartiblangan)
+        const countries = [
+            { name: "Marokash", price: 15000, flag: "🇲🇦" },
+            { name: "Vyetnam", price: 17000, flag: "🇻🇳" },
+            { name: "Eron", price: 17000, flag: "🇮🇷" },
+            { name: "Amerika", price: 17000, flag: "🇺🇸" },
+            { name: "O'zbekiston", price: 20000, flag: "🇺🇿" },
+            { name: "Misr", price: 20000, flag: "🇪🇬" },
+            { name: "Malayziya", price: 22000, flag: "🇲🇾" },
+            { name: "Qirg'iziston", price: 25000, flag: "🇰🇬" },
+            { name: "Rossiya", price: 30000, flag: "🇷🇺" },
+            { name: "Buyuk Britaniya", price: 30000, flag: "🇬🇧" },
+            { name: "Yaponiya", price: 35000, flag: "🇯🇵" },
+            { name: "Janubiy Koreya", price: 75000, flag: "🇰🇷" }
+        ];
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Aktiv klassni o'zgartirish
-                document.querySelector('.filter-btn.active').classList.remove('active');
-                btn.classList.add('active');
-
-                const category = btn.getAttribute('data-filter');
-
-                items.forEach(item => {
-                    if (category === 'all' || item.getAttribute('data-category') === category) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-            });
+        // Raqamlarni ekranga chiqarish
+        const virtualContainer = document.getElementById('virtual');
+        countries.forEach(c => {
+            const div = document.createElement('div');
+            div.className = 'item-card';
+            div.innerHTML = `
+                <div class="item-info">
+                    <div class="item-icon">${c.flag}</div>
+                    <div class="item-text">
+                        <h3>${c.name}</h3>
+                        <p>Telegram uchun</p>
+                    </div>
+                </div>
+                <div class="item-price-btn">
+                    <span class="price-tag">${c.price.toLocaleString()} so'm</span>
+                    <button class="mini-add-btn" onclick="addItemToCart('${c.name} Raqam', ${c.price})">+</button>
+                </div>
+            `;
+            virtualContainer.appendChild(div);
         });
 
-        // 2. QIDIRUV LOGIKASI
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const text = e.target.value.toLowerCase();
-            items.forEach(item => {
-                const name = item.getAttribute('data-name');
-                if (name.includes(text)) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
-        });
-
-        // 3. SAVAT LOGIKASI
-        let total = 0;
-        let cartItems = [];
-
-        function addToCart(name, price) {
-            total += price;
-            cartItems.push(name);
+        // --- 2. TAB SWITCHING ---
+        function switchTab(tabId) {
+            // Hammasini yashirish
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
-            // Narxni chiroyli formatlash (100 000 so'm)
-            document.getElementById('totalPrice').innerText = total.toLocaleString() + " so'm";
-            
-            // Panelni chiqarish
-            document.getElementById('cartBar').classList.add('visible');
+            // Keraklisini ochish
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
         }
 
-        // 4. TELEGRAMGA YUBORISH
-        function checkout() {
-            if (cartItems.length === 0) return;
-            
-            let message = "Salom! Men quyidagilarni sotib olmoqchiman:%0A";
-            cartItems.forEach(item => {
-                message += "- " + item + "%0A";
-            });
-            message += "%0AJami: " + total.toLocaleString() + " so'm";
+        // --- 3. STARS CALCULATOR ---
+        const starRate = 275;
+        const starInput = document.getElementById('starInput');
+        const starDisplay = document.getElementById('starPriceDisplay');
+        const addStarBtn = document.getElementById('addStarBtn');
+        const starError = document.getElementById('starError');
 
-            window.location.href = `https://t.me/minora?text=${message}`;
+        function setStars(amount) {
+            starInput.value = amount;
+            calcStars();
+        }
+
+        function calcStars() {
+            let amount = parseInt(starInput.value) || 0;
+            let price = amount * starRate;
+            
+            starDisplay.innerText = price.toLocaleString() + " so'm";
+
+            // Validatsiya (50 - 100,000)
+            if (amount >= 50 && amount <= 100000) {
+                addStarBtn.disabled = false;
+                starError.style.display = 'none';
+            } else {
+                addStarBtn.disabled = true;
+                if(amount > 0) starError.style.display = 'block';
+            }
+        }
+
+        function addStarsToCart() {
+            let amount = parseInt(starInput.value);
+            let price = amount * starRate;
+            addItemToCart(`${amount} Stars`, price);
+            starInput.value = '';
+            calcStars();
+            // Animatsiya yoki xabar uchun joy
+        }
+
+        // --- 4. SAVAT (CART) LOGIKASI ---
+        let cart = []; // Savatdagi narsalar
+
+        function addItemToCart(name, price) {
+            cart.push({ name, price });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // 1. Jami narxni hisoblash
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('mainTotal').innerText = total.toLocaleString() + " so'm";
+            
+            // 2. Badge (qizil dumaloq) yangilash
+            const badge = document.getElementById('cartBadge');
+            badge.innerText = cart.length;
+            if (cart.length > 0) badge.classList.add('show');
+            else badge.classList.remove('show');
+
+            // 3. Savat ro'yxatini yangilash (HTML)
+            const list = document.getElementById('cartItemsList');
+            if (cart.length === 0) {
+                list.innerHTML = `<p style="color: #666; text-align: center; margin-top: 50px;">Savatingiz bo'sh 🛒</p>`;
+            } else {
+                list.innerHTML = '';
+                cart.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `
+                        <div>
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">${item.price.toLocaleString()} so'm</div>
+                        </div>
+                        <button class="cart-remove" onclick="removeFromCart(${index})">O'chirish</button>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+        }
+
+        // Savatni ochish/yopish
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            if (drawer.style.display === 'flex') {
+                drawer.style.display = 'none';
+            } else {
+                drawer.style.display = 'flex';
+            }
+        }
+
+        // Modal tashqarisiga bosganda yopish
+        document.getElementById('cartDrawer').addEventListener('click', (e) => {
+            if (e.target.id === 'cartDrawer') toggleCart();
+        });
+
+        // --- 5. CHECKOUT (TELEGRAM) ---
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Savatingiz bo'sh!");
+                return;
+            }
+
+            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            // Xabarni shakllantirish
+            let msg = "👋 Salom! Men quyidagilarni buyurtma qilmoqchiman:\n\n";
+            cart.forEach((item, i) => {
+                msg += `${i + 1}. ${item.name} - ${item.price.toLocaleString()} so'm\n`;
+            });
+            msg += `\n💰 <b>Jami: ${total.toLocaleString()} so'm</b>`;
+
+            // Link yaratish
+            const encodedMsg = encodeURIComponent(msg);
+            window.location.href = `https://t.me/minora?text=${encodedMsg}`;
         }
     </script>
 
