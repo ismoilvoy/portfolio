@@ -3,134 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ismoil.Pro | Do'kon</title>
+    <title>KH SHOP | Asosiy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --bg-dark: #050510;
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
-            --neon-blue: #00f2ff;
-            --neon-purple: #bd00ff;
-            --text-gray: #a0a0b0;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--bg-dark); color: white; display: flex; height: 100vh; overflow: hidden; }
-
-        /* Sidebar */
-        .sidebar { width: 260px; background: rgba(0,0,0,0.85); backdrop-filter: blur(15px); border-right: 1px solid var(--border); padding: 30px; display: flex; flex-direction: column; }
-        .nav-btn { background: none; border: none; color: var(--text-gray); width: 100%; padding: 15px; text-align: left; font-size: 16px; cursor: pointer; border-radius: 12px; display: flex; align-items: center; gap: 12px; transition: 0.3s; margin-bottom: 5px; }
-        .nav-btn:hover, .nav-btn.active { background: var(--glass); color: white; border-left: 4px solid var(--neon-blue); }
-
-        /* Main Content */
-        .main { flex: 1; padding: 40px; overflow-y: auto; background: radial-gradient(circle at top right, rgba(0,242,255,0.05), transparent); }
-        .section { display: none; }
-        .section.active { display: block; }
-
-        /* Uzum Style List (Kategoriya darajasi) */
-        .category-list { display: flex; flex-direction: column; gap: 10px; max-width: 600px; }
-        .category-item { background: var(--glass); padding: 20px; border-radius: 15px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: 0.3s; border: 1px solid transparent; }
-        .category-item:hover { border-color: var(--neon-blue); background: rgba(255,255,255,0.1); }
-        .category-item div { display: flex; align-items: center; gap: 15px; }
-
-        /* Service Cards (Xizmat darajasi - 3-rasm uslubi) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
-        .card { background: var(--glass); border: 1px solid var(--border); padding: 25px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.3s; border-bottom: 3px solid transparent; }
-        .card:hover { border-color: var(--neon-blue); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,242,255,0.1); }
+        /* 1. Umumiy va Sheet (CSS) qoidalari */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        .btn { background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple)); border: none; padding: 12px; color: white; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; margin-top: 15px; }
-        input { width: 100%; padding: 12px; background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 8px; color: white; margin-top: 10px; outline: none; }
+        body { background: #fff; overflow-x: hidden; }
+
+        /* KH SHOP Gradient Fon */
+        .home-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #00f2ff 0%, #0055ff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* 2. Brending (Barqaror Logotip) */
+        .brand-header {
+            position: absolute;
+            top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .pepe-logo {
+            width: 60px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            color: #000;
+            letter-spacing: 2px;
+        }
+
+        /* 3. Asosiy Kontent Joylashuvi */
+        .home-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 100px;
+        }
+
+        /* Matnlar bloki */
+        .text-block {
+            flex: 1;
+            text-align: left;
+            z-index: 2;
+        }
+        .main-heading {
+            font-size: 64px;
+            font-weight: 900;
+            color: #000;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+        .cta-button {
+            background: #fff;
+            color: #0055ff;
+            border: none;
+            padding: 18px 40px;
+            font-size: 18px;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* 4. Suzib yuruvchi 3D Savatcha */
+        .image-block {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .basket-wrapper {
+            width: 350px;
+            animation: floating 3s ease-in-out infinite; /* Suzish buyrug'i */
+        }
+        .basket-img { width: 100%; height: auto; }
+
+        /* Suzish animatsiyasi keyframes */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 5. Mobil versiya uchun moslashuvchanlik */
+        @media (max-width: 992px) {
+            .home-content {
+                flex-direction: column;
+                text-align: center;
+                margin-top: 150px;
+            }
+            .text-block { text-align: center; order: 2; }
+            .main-heading { font-size: 42px; margin-top: 30px; }
+            .image-block { order: 1; margin-bottom: 20px; }
+            .basket-wrapper { width: 250px; }
+            .brand-header { top: 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="logo" style="font-size: 24px; font-weight: 800; margin-bottom: 40px;">ISMOIL<span style="color:var(--neon-blue)">.PRO</span></div>
-        <button class="nav-btn active" onclick="tab('home')"><i class="fas fa-home"></i> Asosiy</button>
-        <button class="nav-btn" onclick="openMarket()"><i class="fas fa-shopping-cart"></i> Do‘kon</button>
-        <button class="nav-btn" onclick="tab('about')"><i class="fas fa-user"></i> Men haqimda</button>
-    </nav>
-
-    <div class="main">
-        <div id="home" class="section active">
-            <h1>Xush kelibsiz!</h1>
-            <p style="margin-top:20px; color:var(--text-gray)">Xizmatlar bilan tanishish uchun Do'kon bo'limiga o'ting.</p>
+    <section id="home" class="home-container">
+        
+        <div class="brand-header">
+            <img src="https://img.icons8.com/color/96/pepe.png" alt="Pepe Logo" class="pepe-logo">
+            <span class="brand-name">KH SHOP</span>
         </div>
 
-        <div id="market" class="section">
-            <h1 id="market-header" style="margin-bottom: 25px;">Do'kon Kategoriyalari</h1>
-            <div id="market-content"></div>
-        </div>
+        <div class="home-content">
+            <div class="text-block">
+                <h1 class="main-heading">HAMMASI BITTA – <br> ILOVADA</h1>
+                <button class="cta-button" onclick="alert('Do\'kon ochilmoqda...')">BATAFSIL MA'LUMOT</button>
+            </div>
 
-        <div id="about" class="section">
-            <h1>Men haqimda</h1>
-            <p>Ismoil Xolmirzayev - Digital Services mutaxassisi.</p>
-        </div>
-    </div>
-
-    <script>
-        function tab(id) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-        }
-
-        const categories = [
-            { id: 'tg', name: 'Telegram Market', icon: 'fab fa-telegram', color: '#0088cc' },
-            { id: 'ai', name: 'AI Market', icon: 'fas fa-robot', color: '#bd00ff' },
-            { id: 'web', name: 'Website Xizmatlari', icon: 'fas fa-code', color: '#00f2ff' }
-        ];
-
-        function openMarket() {
-            tab('market');
-            renderCategories();
-        }
-
-        // 2-rasmdagi Uzum Market uslubidagi ro'yxat
-        function renderCategories() {
-            const container = document.getElementById('market-content');
-            document.getElementById('market-header').innerText = "Do'kon Kategoriyalari";
-            container.className = "category-list";
-            container.innerHTML = categories.map(cat => `
-                <div class="category-item" onclick="openServices('${cat.id}')">
-                    <div>
-                        <i class="${cat.icon}" style="color:${cat.color}; font-size:24px;"></i>
-                        <span>${cat.name}</span>
-                    </div>
-                    <i class="fas fa-chevron-right" style="color:gray"></i>
+            <div class="image-block">
+                <div class="basket-wrapper">
+                    <img src="https://ouch-cdn2.icons8.com/vH_p8iE1g6v4G6gJ8n-o6N6K5G0GvL2z8z8z8z8z8z8/rs:fit:368:368/czM6Ly9pY29uczguL291Y2gtcHJvZC9hc3NldHMvMzQvYmY2YjRjMTgtOGQzNi00YmY0LThjZjYtMzYyM2FmZWY1YmU3LnBuZw.png" alt="3D Basket" class="basket-img">
                 </div>
-            `).join('');
-        }
+            </div>
+        </div>
 
-        // 3-rasmdagi Xizmatlar Card uslubi
-        function openServices(id) {
-            const container = document.getElementById('market-content');
-            const header = document.getElementById('market-header');
-            container.className = "grid";
-            
-            if(id === 'tg') {
-                header.innerHTML = `<i class="fas fa-arrow-left" onclick="renderCategories()" style="cursor:pointer; margin-right:15px;"></i> Telegram Xizmatlari`;
-                container.innerHTML = `
-                    <div class="card" style="border-bottom-color:#ffcc00">
-                        <h3><i class="fas fa-star" style="color:#ffcc00"></i> Stars</h3>
-                        <input type="number" id="starsQty" placeholder="Soni..." oninput="calcStars()">
-                        <div id="starsRes" style="font-size:20px; color:#ffcc00; font-weight:bold; margin-top:10px;">0 so'm</div>
-                    </div>
-                    <div class="card" style="border-bottom-color:#0088cc">
-                        <h3><i class="fas fa-gem" style="color:#0088cc"></i> Premium</h3>
-                        <p style="margin-top:10px">3, 6, 12 oylik obunalar</p>
-                        <button class="btn">Ko'rish</button>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `<div class="card">Tez kunda...</div>`;
-            }
-        }
+    </section>
 
-        function calcStars() {
-            const q = document.getElementById('starsQty').value;
-            document.getElementById('starsRes').innerText = (q * 250).toLocaleString() + " so'm";
-        }
-    </script>
 </body>
 </html>
