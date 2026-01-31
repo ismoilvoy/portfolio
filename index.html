@@ -14,7 +14,7 @@
             --card-bg: #111111;
             --accent: #229ED9;
             --text-main: #FFFFFF;
-            --text-muted: #888888;
+            --text-sub: #E2E8F0; /* Yorqinroq kulrang */
             --radius: 32px;
         }
 
@@ -34,22 +34,29 @@
         header {
             position: absolute;
             top: 0; left: 0; width: 100%;
-            padding: 30px 0;
+            padding: 40px 0; /* Header balandroq */
             z-index: 10;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        /* MUHIM O'ZGARISH: KONTEYNER KENGAYTIRILDI */
+        .container { 
+            max-width: 1400px; /* 1200 dan 1400 ga oshdi */
+            margin: 0 auto; 
+            padding: 0 40px; /* Chetlaridan joy */
+            width: 100%;
+        }
+
         .header-inner { display: flex; justify-content: space-between; align-items: center; }
 
         .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .logo-box { background: var(--accent); color: #fff; font-weight: 900; font-size: 18px; padding: 6px 12px; border-radius: 10px; }
         .logo-text { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
 
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-size: 15px; font-weight: 600; color: var(--text-muted); transition: 0.3s; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 16px; font-weight: 500; color: #aaa; transition: 0.3s; }
         .nav-links a:hover { color: #fff; }
 
-        /* 3. HERO (FULLSCREEN) */
+        /* 3. HERO (TUZATILDI) */
         .hero {
             height: 100vh;
             display: flex;
@@ -58,41 +65,51 @@
             align-items: center;
             text-align: center;
             position: relative;
+            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: clamp(50px, 7vw, 90px);
-            font-weight: 900; line-height: 1; letter-spacing: -2px;
+            font-size: clamp(60px, 8vw, 110px); /* Shrift yanada kattalashtirildi */
+            font-weight: 900; 
+            line-height: 1; 
+            letter-spacing: -3px;
             margin-bottom: 30px;
+            width: 100%;
         }
         .hero h1 span { color: var(--accent); }
 
+        /* MUHIM O'ZGARISH: PASTKI JUMLA DIZAYNI */
         .hero p {
-            font-size: 20px; color: var(--text-muted);
-            max-width: 600px; margin-bottom: 50px; line-height: 1.5;
+            font-size: 24px; /* Kattalashtirildi (20px edi) */
+            color: var(--text-sub); /* Oqroq rang berildi */
+            max-width: 800px; /* Kengroq joy */
+            margin-bottom: 60px; 
+            line-height: 1.4;
+            font-weight: 500; /* Qalinroq */
+            opacity: 0.9;
         }
 
         .btn-large {
             background: #fff; color: #000;
             font-size: 18px; font-weight: 700;
-            padding: 20px 50px; border-radius: 100px;
+            padding: 22px 60px; border-radius: 100px;
             transition: transform 0.2s; display: inline-block;
         }
         .btn-large:hover { transform: scale(1.05); }
 
         /* 4. MARKET (XIZMATLAR) */
         .market-section {
-            padding: 100px 0;
+            padding: 120px 0;
             background: #050505;
             min-height: 100vh;
         }
         
-        .section-title { font-size: 32px; font-weight: 800; margin-bottom: 40px; }
+        .section-title { font-size: 40px; font-weight: 800; margin-bottom: 50px; }
 
         .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); /* Kartalar ham kengaydi */
+            gap: 24px;
         }
 
         .card {
@@ -100,15 +117,15 @@
             border-radius: var(--radius);
             padding: 40px;
             display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 280px; transition: 0.3s;
+            min-height: 300px; transition: 0.3s;
             position: relative; overflow: hidden; border: 1px solid #222;
         }
 
         .card:hover { background: #1a1a1a; transform: translateY(-5px); border-color: #333; }
 
-        .card-icon { font-size: 40px; margin-bottom: 20px; }
-        .card h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
-        .card p { color: var(--text-muted); font-size: 16px; line-height: 1.5; }
+        .card-icon { font-size: 48px; margin-bottom: 24px; }
+        .card h3 { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+        .card p { color: #888; font-size: 16px; line-height: 1.5; }
 
         .card-arrow {
             position: absolute; bottom: 30px; right: 30px;
@@ -118,12 +135,25 @@
         }
         .card:hover .card-arrow { background: var(--accent); color: #fff; }
 
-        footer { padding: 50px 0; border-top: 1px solid #222; text-align: center; color: #555; font-size: 14px; background: #050505; }
+        /* 5. YANGI: BIZ HAQIMIZDA (ABOUT) */
+        .about-section {
+            padding: 100px 0;
+            background: #000;
+            border-top: 1px solid #222;
+            text-align: center;
+        }
+        .about-content { max-width: 800px; margin: 0 auto; }
+        .about-content h2 { font-size: 40px; font-weight: 800; margin-bottom: 20px; }
+        .about-content p { font-size: 18px; color: #888; line-height: 1.6; }
+
+        footer { padding: 50px 0; border-top: 1px solid #222; text-align: center; color: #555; font-size: 14px; background: #000; }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 46px; }
-            .card { min-height: 220px; padding: 30px; }
+            .hero h1 { font-size: 50px; letter-spacing: -1px; }
+            .hero p { font-size: 18px; }
+            .container { padding: 0 24px; }
+            .card { min-height: 240px; padding: 30px; }
         }
     </style>
 </head>
@@ -146,7 +176,7 @@
 
         <div>
             <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
-            <p>Virtual raqamlar, premium username va faol auditoriya. Hammasi bitta ishonchli platformada.</p>
+            <p>Virtual raqamlar, premium username va faol auditoriya.<br>Hammasi bitta ishonchli platformada.</p>
             
             <a href="shop.html" class="btn-large">DO‘KONGA O‘TISH</a>
         </div>
@@ -182,6 +212,13 @@
                     <div class="card-arrow">↗</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container about-content">
+            <h2>Biz Haqimizda</h2>
+            <p>KH SHOP — 6 yillik tajribaga ega bo'lgan ishonchli raqamli xizmatlar platformasi. Bizning maqsadimiz Telegram biznesingizni yangi bosqichga olib chiqish uchun eng xavfsiz va sifatli vositalarni taqdim etishdir.</p>
         </div>
     </section>
 
