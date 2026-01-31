@@ -21,6 +21,7 @@
             background-color: var(--bg);
             color: var(--text);
             overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -29,74 +30,75 @@
         /* --- NAVBAR (MENU) --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 5%;
-            background: rgba(0,0,0,0.9);
+            padding: 20px 10%; /* Desktopda kengroq joy */
+            background: rgba(0,0,0,0.95);
             position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid #222;
-            backdrop-filter: blur(10px);
         }
 
-        .logo { font-size: 20px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; }
+        .logo { font-size: 22px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; cursor: pointer; }
         .logo span { color: var(--accent); }
 
-        /* Desktop Menu */
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray); }
+        /* DESKTOP MENU (Kompyuterda ko'rinadi) */
+        .nav-links { display: flex; gap: 40px; align-items: center; }
+        .nav-links a { font-size: 15px; font-weight: 500; color: var(--gray); position: relative; }
         .nav-links a:hover { color: var(--text); }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px;
+            background: var(--accent); transition: 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
-        /* Mobil Menu Button (Gamburger) */
-        .menu-toggle { display: none; font-size: 24px; cursor: pointer; }
+        /* Nav Button (Desktop) */
+        .nav-btn {
+            background: var(--surface); border: 1px solid #333;
+            padding: 10px 20px; border-radius: 30px; font-size: 14px; font-weight: 600;
+        }
+        .nav-btn:hover { background: #222; border-color: var(--text); }
 
-        /* --- HERO SECTION (BOSH QISM) --- */
+        /* MOBIL MENU BUTTON (Boshida yashirin) */
+        .menu-toggle { display: none; font-size: 26px; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
         .hero {
-            text-align: center; padding: 80px 20px;
-            background: radial-gradient(circle at center, #111 0%, #000 70%);
+            flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 100px 20px;
+            background: radial-gradient(circle at center, #151515 0%, #000 70%);
         }
         
         .hero h1 {
-            font-size: 48px; font-weight: 900; line-height: 1.1; margin-bottom: 20px;
-            background: linear-gradient(to bottom right, #fff, #999);
+            font-size: 64px; /* Desktopda katta */
+            font-weight: 900; line-height: 1.1; margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, #999);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            max-width: 900px;
         }
         .hero span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
         
-        .hero p { color: var(--gray); font-size: 16px; margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .hero p { 
+            color: var(--gray); font-size: 18px; margin-bottom: 40px; 
+            max-width: 600px; line-height: 1.6;
+        }
 
         .cta-btn {
             background: var(--accent); color: #fff;
-            padding: 16px 32px; border-radius: 50px;
-            font-weight: 700; display: inline-block;
-            box-shadow: 0 10px 30px rgba(34, 158, 217, 0.3);
+            padding: 18px 40px; border-radius: 50px; font-size: 16px;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 10px 40px rgba(34, 158, 217, 0.3);
+            transition: 0.3s;
         }
-        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(34, 158, 217, 0.5); }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(34, 158, 217, 0.5); }
 
-        /* --- FEATURES (AFZALLIKLAR) --- */
-        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        
-        .card {
-            background: var(--surface); padding: 30px; border-radius: 20px;
-            border: 1px solid #222; transition: 0.3s;
+        /* --- STATS BAR (Desktop) --- */
+        .stats-container {
+            display: flex; justify-content: center; gap: 80px;
+            padding: 40px; border-top: 1px solid #222; background: #050505;
         }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
-        
-        .card-icon { font-size: 30px; margin-bottom: 15px; }
-        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-        .card p { font-size: 14px; color: var(--gray); line-height: 1.5; }
+        .stat-box { text-align: center; }
+        .stat-num { font-size: 36px; font-weight: 800; color: #fff; display: block; }
+        .stat-label { font-size: 14px; color: var(--accent); font-weight: 600; letter-spacing: 1px; }
 
-        /* --- STATS (RAQAMLAR) --- */
-        .stats {
-            display: flex; justify-content: space-around; padding: 40px 5%;
-            border-top: 1px solid #222; border-bottom: 1px solid #222;
-            background: #050505;
-        }
-        .stat-item { text-align: center; }
-        .stat-num { font-size: 32px; font-weight: 900; color: #fff; display: block; }
-        .stat-label { font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase; }
-
-        /* --- FOOTER --- */
-        footer { padding: 40px 5%; text-align: center; color: var(--gray); font-size: 14px; }
-
-        /* --- MOBIL MENU DIZAYNI (DRAWER) --- */
+        /* --- MOBIL MENU OVERLAY (Telefonda chiqadigan) --- */
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.95); z-index: 200;
@@ -107,28 +109,36 @@
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
         
         .mobile-link { font-size: 24px; font-weight: 700; color: #fff; }
-        .close-menu { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; color: #fff; }
+        .close-menu { position: absolute; top: 25px; right: 25px; font-size: 30px; cursor: pointer; color: #fff; }
 
-        /* --- RESPONSIVE (TELEFON UCHUN) --- */
+        /* --- MEDIA QUERY (Faqat Telefonlar uchun) --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Desktop menyuni yashirish */
-            .menu-toggle { display: block; color: #fff; } /* Gamburgerni ko'rsatish */
+            /* Navbarni o'zgartiramiz */
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Desktop menyuni yashiramiz */
+            .menu-toggle { display: block; color: #fff; } /* Gamburgerni yoqamiz */
             
-            .hero h1 { font-size: 36px; }
-            .features { grid-template-columns: 1fr; }
-            .stats { flex-direction: column; gap: 30px; }
+            /* Hero qismini kichraytiramiz */
+            .hero { padding: 60px 20px; }
+            .hero h1 { font-size: 38px; }
+            .hero p { font-size: 15px; }
+            .cta-btn { width: 100%; justify-content: center; }
+            
+            /* Statslarni ustma-ust qilamiz */
+            .stats-container { flex-direction: column; gap: 30px; padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">KH <span>SHOP</span></div>
+        <div class="logo" onclick="window.location.href='index.html'">KH <span>SHOP</span></div>
         
         <div class="nav-links">
             <a href="shop.html">Xizmatlar</a>
             <a href="#">Biz haqimizda</a>
-            <a href="#">Aloqa</a>
+            <a href="#">Kontakt</a>
+            <a href="shop.html" class="nav-btn">Do'konga kirish →</a>
         </div>
 
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -136,53 +146,35 @@
 
     <div class="mobile-menu-overlay" id="mobileMenu">
         <div class="close-menu" onclick="toggleMenu()">✕</div>
-        <a href="shop.html" class="mobile-link">Do'konga kirish</a>
+        <a href="shop.html" class="mobile-link">Xizmatlar</a>
         <a href="#" class="mobile-link">Biz haqimizda</a>
-        <a href="#" class="mobile-link">Qo'llab-quvvatlash</a>
+        <a href="#" class="mobile-link">Kontakt</a>
+        <a href="shop.html" class="mobile-link" style="color: var(--accent)">Do'konga kirish</a>
     </div>
 
     <section class="hero">
         <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
-        <p>Virtual raqamlar, Stars va jonli obunachilar. Eng arzon narxlar va 100% kafolat.</p>
-        <a href="shop.html" class="cta-btn">Xizmatlarni tanlash →</a>
+        <p>Virtual raqamlar, Stars va jonli obunachilar.<br>Ishonchli xizmat va 24/7 qo'llab-quvvatlash markazi.</p>
+        
+        <a href="shop.html" class="cta-btn">
+            XIZMATLARNI TANLASH →
+        </a>
     </section>
 
-    <section class="stats">
-        <div class="stat-item">
-            <span class="stat-num">5k+</span>
-            <span class="stat-label">Mamnun Mijozlar</span>
+    <div class="stats-container">
+        <div class="stat-box">
+            <span class="stat-num">5,000+</span>
+            <span class="stat-label">MAMNUN MIJOZLAR</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-box">
             <span class="stat-num">24/7</span>
-            <span class="stat-label">Texnik Yordam</span>
+            <span class="stat-label">TEXNIK YORDAM</span>
         </div>
-        <div class="stat-item">
+        <div class="stat-box">
             <span class="stat-num">100%</span>
-            <span class="stat-label">Ishonchli</span>
+            <span class="stat-label">ISHONCHLI</span>
         </div>
-    </section>
-
-    <section class="features">
-        <div class="card">
-            <div class="card-icon">🚀</div>
-            <h3>Tezkor Xizmat</h3>
-            <p>Barcha buyurtmalar avtomatik tarzda 5 daqiqa ichida bajariladi. Kutib qolish yo'q.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🛡</div>
-            <h3>Xavfsiz To'lov</h3>
-            <p>To'lovlar himoyalangan va shaxsiy ma'lumotlaringiz sir saqlanadi.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">💎</div>
-            <h3>Premium Sifat</h3>
-            <p>Faqat sifatli raqamlar va obunachilar. Hech qanday "spam" xizmatlar yo'q.</p>
-        </div>
-    </section>
-
-    <footer>
-        © 2024 KH SHOP. Barcha huquqlar himoyalangan.
-    </footer>
+    </div>
 
     <script>
         function toggleMenu() {
