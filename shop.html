@@ -10,10 +10,11 @@
         :root {
             --bg-color: #000000;
             --item-bg: #111111;
-            --accent: #229ED9;
+            --accent: #229ED9; /* Telegram Blue */
             --text-main: #FFFFFF;
             --text-sub: #888888;
             --danger: #FF3B30;
+            --success: #34C759;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -21,14 +22,14 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            padding-bottom: 120px; /* Savat paneli uchun joy */
+            padding-bottom: 100px; /* Savat tugmasi uchun joy */
         }
 
         /* --- 2. HEADER & TABS --- */
         .shop-header {
             position: sticky; top: 0;
             background: rgba(0, 0, 0, 0.95);
-            padding: 20px 24px; z-index: 90;
+            padding: 15px 20px; z-index: 90;
             border-bottom: 1px solid #222;
         }
 
@@ -37,140 +38,163 @@
         .page-title { font-size: 18px; font-weight: 800; }
 
         .tabs {
-            display: flex; gap: 10px; overflow-x: auto;
+            display: flex; gap: 8px; overflow-x: auto;
             padding-bottom: 5px; scrollbar-width: none;
         }
         .tabs::-webkit-scrollbar { display: none; }
 
         .tab-btn {
             background: #1A1A1A; color: #888;
-            padding: 10px 20px; border-radius: 20px;
-            font-size: 14px; font-weight: 600;
+            padding: 8px 16px; border-radius: 20px;
+            font-size: 13px; font-weight: 600;
             border: 1px solid transparent; cursor: pointer; white-space: nowrap;
             transition: 0.3s;
         }
         .tab-btn.active {
-            background: rgba(34, 158, 217, 0.2);
+            background: rgba(34, 158, 217, 0.15);
             color: var(--accent); border-color: var(--accent);
         }
 
         /* --- 3. SEKSIYALAR --- */
-        .section { display: none; padding: 20px 24px; animation: fadeIn 0.3s ease; }
+        .section { display: none; padding: 20px; animation: fadeIn 0.3s ease; }
         .section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- YULDUZCHA KALKULYATORI --- */
+        /* YULDUZCHA BO'LIMI */
         .stars-calc {
             background: var(--item-bg); padding: 25px; border-radius: 24px;
             text-align: center; border: 1px solid #222;
         }
-        .stars-icon { font-size: 60px; margin-bottom: 15px; display: block; }
+        .stars-icon { font-size: 50px; margin-bottom: 10px; display: block; }
         .stars-input {
             width: 100%; background: #000; border: 1px solid #333;
-            color: #fff; font-size: 32px; font-weight: 700; text-align: center;
-            padding: 15px; border-radius: 16px; outline: none; margin-bottom: 10px;
+            color: #fff; font-size: 28px; font-weight: 700; text-align: center;
+            padding: 12px; border-radius: 16px; outline: none; margin-bottom: 10px;
         }
         .stars-input:focus { border-color: var(--accent); }
-        .stars-price { font-size: 18px; color: var(--text-sub); margin-bottom: 20px; }
-        .stars-price span { color: var(--accent); font-weight: 700; font-size: 22px; }
+        .stars-price { font-size: 16px; color: var(--text-sub); margin-bottom: 20px; }
+        .stars-price span { color: var(--accent); font-weight: 700; font-size: 20px; }
         
-        .quick-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 20px; }
+        .quick-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px; }
         .chip {
-            background: #222; color: #fff; padding: 8px 16px; border-radius: 50px;
-            font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid #333;
+            background: #222; color: #fff; padding: 6px 14px; border-radius: 50px;
+            font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid #333;
         }
-        .chip:hover { background: #333; }
-
         .add-cart-btn {
             width: 100%; background: var(--accent); color: #fff;
-            padding: 16px; border-radius: 16px; font-weight: 700; font-size: 16px;
-            border: none; cursor: pointer; transition: 0.2s;
+            padding: 14px; border-radius: 14px; font-weight: 700; font-size: 15px;
+            border: none; cursor: pointer; opacity: 0.5; pointer-events: none;
         }
-        .add-cart-btn:disabled { background: #333; color: #666; cursor: not-allowed; }
-        .add-cart-btn:active { transform: scale(0.98); }
+        .add-cart-btn.active { opacity: 1; pointer-events: auto; }
 
-        /* --- RAQAMLAR & OBUNACHI LIST --- */
+        /* MAHSULOT KARTASI */
         .item-card {
             display: flex; align-items: center; justify-content: space-between;
             background: var(--item-bg); padding: 16px; margin-bottom: 12px;
             border-radius: 20px; border: 1px solid #222;
         }
-        .item-info { display: flex; align-items: center; gap: 15px; }
-        .item-icon { font-size: 32px; width: 45px; text-align: center; }
-        .item-text h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
-        .item-text p { font-size: 13px; color: var(--text-sub); }
+        .item-info { display: flex; align-items: center; gap: 12px; }
+        .item-icon { font-size: 28px; width: 40px; text-align: center; }
+        .item-text h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+        .item-text p { font-size: 12px; color: var(--text-sub); }
         
         .item-price-btn { text-align: right; }
-        .price-tag { display: block; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+        .price-tag { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
         .mini-add-btn {
-            background: #222; color: var(--accent); width: 32px; height: 32px;
-            border-radius: 50%; border: none; font-size: 20px; cursor: pointer;
+            background: #222; color: var(--accent); width: 30px; height: 30px;
+            border-radius: 50%; border: none; font-size: 18px; cursor: pointer;
             display: inline-flex; align-items: center; justify-content: center;
         }
-        .mini-add-btn:hover { background: var(--accent); color: #fff; }
 
-        /* --- PLACEHOLDER (TEZ KUNDA) --- */
-        .coming-soon {
-            text-align: center; padding: 50px 20px; color: var(--text-sub);
-        }
-        .coming-soon h2 { color: #fff; margin-bottom: 10px; }
-
-        /* --- SAVAT PANELI (BOTTOM) --- */
-        .bottom-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #111; padding: 16px 24px; border-top: 1px solid #222;
-            display: flex; justify-content: space-between; align-items: center;
+        /* --- 4. UZUM STYLE SAVAT TUGMASI (FLOATING) --- */
+        .floating-cart-btn {
+            position: fixed; 
+            bottom: 30px; 
+            left: 50%; 
+            transform: translateX(-50%) translateY(100px); /* Boshida yashirin */
+            width: 90%; 
+            max-width: 400px;
+            background: var(--accent); 
+            color: #fff;
+            padding: 15px 20px; 
+            border-radius: 20px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(34, 158, 217, 0.4);
+            cursor: pointer; 
             z-index: 100;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Sakrash effekti */
         }
-        .total-info { font-size: 14px; color: #888; }
-        .total-info b { display: block; font-size: 18px; color: #fff; }
         
-        .open-cart-btn {
-            background: #fff; color: #000; padding: 12px 25px;
-            border-radius: 12px; font-weight: 700; cursor: pointer; border: none;
-            position: relative;
+        .floating-cart-btn.visible {
+            transform: translateX(-50%) translateY(0);
         }
-        .cart-badge {
-            position: absolute; top: -5px; right: -5px;
-            background: var(--danger); color: #fff; font-size: 12px;
-            width: 20px; height: 20px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; opacity: 0; transition: 0.2s;
-        }
-        .cart-badge.show { opacity: 1; }
 
-        /* --- SAVAT MODAL (DRAWER) --- */
-        .cart-drawer {
+        .cart-left { display: flex; align-items: center; gap: 10px; }
+        .cart-icon-box { 
+            background: rgba(255,255,255,0.2); 
+            width: 35px; height: 35px; 
+            border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+        }
+        .cart-count { font-weight: 700; font-size: 16px; }
+        .cart-total { font-weight: 800; font-size: 16px; }
+
+        /* --- 5. SAVAT MODAL (FULL SCREEN) --- */
+        .cart-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: 200;
-            display: none; justify-content: flex-end; flex-direction: column;
+            display: none; justify-content: center; align-items: flex-end;
+            backdrop-filter: blur(5px);
         }
-        .cart-drawer.open { display: flex; }
-        
-        .cart-content {
-            background: #111; width: 100%; max-height: 80vh;
+        .cart-modal.open { display: flex; }
+
+        .modal-content {
+            background: #111; width: 100%; max-width: 500px; height: 85vh;
             border-radius: 24px 24px 0 0; padding: 24px;
-            overflow-y: auto; position: relative;
-            border-top: 1px solid #333;
-            animation: slideUp 0.3s ease;
+            display: flex; flex-direction: column;
+            animation: slideUp 0.3s ease; border-top: 1px solid #333;
         }
         @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
 
-        .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .close-cart { background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+        .modal-header { 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; 
+        }
+        .modal-title { font-size: 20px; font-weight: 800; }
+        .close-modal { 
+            background: #222; border: none; color: #fff; width: 35px; height: 35px; 
+            border-radius: 50%; font-size: 18px; cursor: pointer; 
+        }
+
+        .cart-items-scroll { flex: 1; overflow-y: auto; padding-bottom: 20px; }
         
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
+        /* UZUM STYLE ITEM ROW */
+        .cart-row {
+            display: flex; align-items: center; justify-content: space-between;
             background: #1A1A1A; padding: 15px; border-radius: 16px; margin-bottom: 10px;
         }
-        .cart-item-title { font-size: 15px; font-weight: 600; }
-        .cart-item-price { font-size: 13px; color: #888; margin-top: 4px; }
-        .cart-remove { color: var(--danger); background: none; border: none; font-weight: 600; cursor: pointer; }
+        .cart-row-left { display: flex; align-items: center; gap: 12px; }
+        .cart-row-icon { font-size: 24px; }
+        .cart-row-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+        .cart-row-info p { font-size: 12px; color: var(--accent); font-weight: 700; }
 
+        .cart-controls { display: flex; align-items: center; gap: 10px; background: #000; padding: 5px; border-radius: 12px; border: 1px solid #333; }
+        .ctrl-btn { 
+            width: 28px; height: 28px; background: #222; color: #fff; 
+            border: none; border-radius: 8px; font-size: 16px; cursor: pointer; 
+        }
+        .qty-display { font-size: 14px; font-weight: 700; min-width: 20px; text-align: center; }
+
+        .modal-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid #222; }
+        .final-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; color: #888; }
+        .final-row b { color: #fff; font-size: 18px; }
+        
         .checkout-btn {
             width: 100%; background: var(--accent); color: #fff;
-            padding: 18px; border-radius: 16px; font-weight: 800; font-size: 18px;
-            border: none; margin-top: 20px; cursor: pointer;
+            padding: 18px; border-radius: 16px; font-weight: 800; font-size: 16px;
+            border: none; cursor: pointer;
         }
 
     </style>
@@ -183,13 +207,11 @@
             <span class="page-title">Xizmatlar Do'koni</span>
             <div style="width: 50px;"></div>
         </div>
-        
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('stars')">⭐️ Yulduzcha</button>
             <button class="tab-btn" onclick="switchTab('virtual')">📱 Virtual Nomer</button>
             <button class="tab-btn" onclick="switchTab('followers')">👥 Obunachi</button>
             <button class="tab-btn" onclick="switchTab('gift')">🎁 Giftlar</button>
-            <button class="tab-btn" onclick="switchTab('username')">🔤 Username</button>
         </div>
     </div>
 
@@ -197,102 +219,80 @@
         <div class="stars-calc">
             <span class="stars-icon">⭐️</span>
             <input type="number" id="starInput" class="stars-input" placeholder="0" oninput="calcStars()">
+            <div class="stars-price">Narxi: <span id="starPriceDisplay">0 so'm</span></div>
             
-            <div class="stars-price">
-                Narxi: <span id="starPriceDisplay">0 so'm</span>
-            </div>
-
             <div class="quick-chips">
                 <div class="chip" onclick="setStars(50)">50</div>
                 <div class="chip" onclick="setStars(100)">100</div>
-                <div class="chip" onclick="setStars(300)">300</div>
                 <div class="chip" onclick="setStars(500)">500</div>
-                <div class="chip" onclick="setStars(1000)">1000</div>
-                <div class="chip" onclick="setStars(5000)">5000</div>
+                <div class="chip" onclick="setStars(1000)">1k</div>
+                <div class="chip" onclick="setStars(5000)">5k</div>
             </div>
 
-            <button id="addStarBtn" class="add-cart-btn" onclick="addStarsToCart()" disabled>
-                Savatga qo'shish
-            </button>
-            <p id="starError" style="color: var(--danger); font-size: 12px; margin-top: 10px; display: none;">Min: 50, Max: 100,000</p>
+            <button id="addStarBtn" class="add-cart-btn" onclick="addStarsToCart()">Savatga qo'shish</button>
+            <p id="starError" style="color: var(--danger); font-size: 12px; margin-top: 10px; display: none;">Min: 50</p>
         </div>
     </div>
 
-    <div id="virtual" class="section">
-        </div>
+    <div id="virtual" class="section"></div>
 
     <div id="followers" class="section">
         <div class="item-card">
             <div class="item-info">
                 <div class="item-icon">👥</div>
-                <div class="item-text">
-                    <h3>Jonli Obunachi (Aralash)</h3>
-                    <p>1000 ta, sifatli</p>
-                </div>
+                <div class="item-text"><h3>Obunachi (Aralash)</h3><p>1000 ta</p></div>
             </div>
             <div class="item-price-btn">
                 <span class="price-tag">70,000 so'm</span>
-                <button class="mini-add-btn" onclick="addItemToCart('Obunachi (Aralash 1k)', 70000)">+</button>
+                <button class="mini-add-btn" onclick="addToCart('Obunachi (Aralash)', 70000, '👥')">+</button>
             </div>
         </div>
-
         <div class="item-card">
             <div class="item-info">
                 <div class="item-icon">💎</div>
-                <div class="item-text">
-                    <h3>Jonli Obunachi (Toza)</h3>
-                    <p>1000 ta, kafolatli</p>
-                </div>
+                <div class="item-text"><h3>Obunachi (Toza)</h3><p>1000 ta</p></div>
             </div>
             <div class="item-price-btn">
                 <span class="price-tag">85,000 so'm</span>
-                <button class="mini-add-btn" onclick="addItemToCart('Obunachi (Toza 1k)', 85000)">+</button>
+                <button class="mini-add-btn" onclick="addToCart('Obunachi (Toza)', 85000, '💎')">+</button>
             </div>
         </div>
     </div>
 
     <div id="gift" class="section">
-        <div class="coming-soon">
-            <h2>🎁 Tez Kunda...</h2>
-            <p>Bu bo'lim ustida ishlayapmiz</p>
-        </div>
-    </div>
-    <div id="username" class="section">
-        <div class="coming-soon">
-            <h2>🔤 Tez Kunda...</h2>
-            <p>Eksklyuziv usernamelar bo'limi</p>
-        </div>
+        <div style="text-align:center; padding:50px; color:#666;">Tez kunda... 🎁</div>
     </div>
 
-    <div class="bottom-bar">
-        <div class="total-info">
-            Jami hisob:
-            <b id="mainTotal">0 so'm</b>
+    <div id="floatingCart" class="floating-cart-btn" onclick="openModal()">
+        <div class="cart-left">
+            <div class="cart-icon-box">🛒</div>
+            <span class="cart-count" id="cartCountBtn">0 dona</span>
         </div>
-        <button class="open-cart-btn" onclick="toggleCart()">
-            Savatni ko'rish
-            <div id="cartBadge" class="cart-badge">0</div>
-        </button>
+        <div class="cart-total" id="cartTotalBtn">0 so'm</div>
     </div>
 
-    <div id="cartDrawer" class="cart-drawer">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h2>Savat</h2>
-                <button class="close-cart" onclick="toggleCart()">✕</button>
+    <div id="cartModal" class="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title">Savat</span>
+                <button class="close-modal" onclick="closeModal()">✕</button>
             </div>
             
-            <div id="cartItemsList">
-                <p style="color: #666; text-align: center;">Savatingiz bo'sh</p>
-            </div>
+            <div id="cartList" class="cart-items-scroll">
+                </div>
 
-            <button class="checkout-btn" onclick="checkout()">Sotib Olish</button>
+            <div class="modal-footer">
+                <div class="final-row">
+                    <span>Jami to'lov:</span>
+                    <b id="modalTotal">0 so'm</b>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Rasmiylashtirish</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // --- 1. MA'LUMOTLAR BAZASI ---
-        // Virtual raqamlar (Arzondan qimmatga tartiblangan)
+        // --- DATA ---
         const countries = [
             { name: "Marokash", price: 15000, flag: "🇲🇦" },
             { name: "Vyetnam", price: 17000, flag: "🇻🇳" },
@@ -308,156 +308,137 @@
             { name: "Janubiy Koreya", price: 75000, flag: "🇰🇷" }
         ];
 
-        // Raqamlarni ekranga chiqarish
-        const virtualContainer = document.getElementById('virtual');
+        // --- RENDER VIRTUAL NUMBERS ---
+        const vContainer = document.getElementById('virtual');
         countries.forEach(c => {
-            const div = document.createElement('div');
-            div.className = 'item-card';
-            div.innerHTML = `
-                <div class="item-info">
-                    <div class="item-icon">${c.flag}</div>
-                    <div class="item-text">
-                        <h3>${c.name}</h3>
-                        <p>Telegram uchun</p>
+            vContainer.innerHTML += `
+                <div class="item-card">
+                    <div class="item-info">
+                        <div class="item-icon">${c.flag}</div>
+                        <div class="item-text"><h3>${c.name}</h3><p>Telegram</p></div>
                     </div>
-                </div>
-                <div class="item-price-btn">
-                    <span class="price-tag">${c.price.toLocaleString()} so'm</span>
-                    <button class="mini-add-btn" onclick="addItemToCart('${c.name} Raqam', ${c.price})">+</button>
-                </div>
-            `;
-            virtualContainer.appendChild(div);
+                    <div class="item-price-btn">
+                        <span class="price-tag">${c.price.toLocaleString()} so'm</span>
+                        <button class="mini-add-btn" onclick="addToCart('${c.name} Raqam', ${c.price}, '${c.flag}')">+</button>
+                    </div>
+                </div>`;
         });
 
-        // --- 2. TAB SWITCHING ---
-        function switchTab(tabId) {
-            // Hammasini yashirish
+        // --- TABS ---
+        function switchTab(id) {
             document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
-            // Keraklisini ochish
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(id).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // --- 3. STARS CALCULATOR ---
+        // --- STARS LOGIC ---
         const starRate = 275;
         const starInput = document.getElementById('starInput');
-        const starDisplay = document.getElementById('starPriceDisplay');
-        const addStarBtn = document.getElementById('addStarBtn');
-        const starError = document.getElementById('starError');
+        const starBtn = document.getElementById('addStarBtn');
 
-        function setStars(amount) {
-            starInput.value = amount;
-            calcStars();
-        }
-
+        function setStars(val) { starInput.value = val; calcStars(); }
+        
         function calcStars() {
-            let amount = parseInt(starInput.value) || 0;
-            let price = amount * starRate;
+            let val = parseInt(starInput.value) || 0;
+            let price = val * starRate;
+            document.getElementById('starPriceDisplay').innerText = price.toLocaleString() + " so'm";
             
-            starDisplay.innerText = price.toLocaleString() + " so'm";
-
-            // Validatsiya (50 - 100,000)
-            if (amount >= 50 && amount <= 100000) {
-                addStarBtn.disabled = false;
-                starError.style.display = 'none';
+            if(val >= 50 && val <= 100000) {
+                starBtn.classList.add('active');
+                document.getElementById('starError').style.display = 'none';
             } else {
-                addStarBtn.disabled = true;
-                if(amount > 0) starError.style.display = 'block';
+                starBtn.classList.remove('active');
+                if(val > 0) document.getElementById('starError').style.display = 'block';
             }
         }
 
         function addStarsToCart() {
-            let amount = parseInt(starInput.value);
-            let price = amount * starRate;
-            addItemToCart(`${amount} Stars`, price);
-            starInput.value = '';
-            calcStars();
-            // Animatsiya yoki xabar uchun joy
+            let val = parseInt(starInput.value);
+            addToCart(`${val} Stars`, val * starRate, '⭐️');
+            starInput.value = ''; calcStars();
         }
 
-        // --- 4. SAVAT (CART) LOGIKASI ---
-        let cart = []; // Savatdagi narsalar
+        // --- CART LOGIC (UZUM STYLE) ---
+        // Savat formati: { id: "USA Raqam", name: "...", price: 17000, qty: 1, icon: "🇺🇸" }
+        let cart = {};
 
-        function addItemToCart(name, price) {
-            cart.push({ name, price });
+        function addToCart(name, price, icon) {
+            if (cart[name]) {
+                cart[name].qty++;
+            } else {
+                cart[name] = { name, price, qty: 1, icon };
+            }
             updateCartUI();
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
+        function changeQty(name, delta) {
+            if (cart[name]) {
+                cart[name].qty += delta;
+                if (cart[name].qty <= 0) delete cart[name];
+            }
             updateCartUI();
         }
 
         function updateCartUI() {
-            // 1. Jami narxni hisoblash
-            let total = cart.reduce((sum, item) => sum + item.price, 0);
-            document.getElementById('mainTotal').innerText = total.toLocaleString() + " so'm";
-            
-            // 2. Badge (qizil dumaloq) yangilash
-            const badge = document.getElementById('cartBadge');
-            badge.innerText = cart.length;
-            if (cart.length > 0) badge.classList.add('show');
-            else badge.classList.remove('show');
+            let totalQty = 0;
+            let totalPrice = 0;
+            let html = '';
 
-            // 3. Savat ro'yxatini yangilash (HTML)
-            const list = document.getElementById('cartItemsList');
-            if (cart.length === 0) {
-                list.innerHTML = `<p style="color: #666; text-align: center; margin-top: 50px;">Savatingiz bo'sh 🛒</p>`;
-            } else {
-                list.innerHTML = '';
-                cart.forEach((item, index) => {
-                    const div = document.createElement('div');
-                    div.className = 'cart-item';
-                    div.innerHTML = `
-                        <div>
-                            <div class="cart-item-title">${item.name}</div>
-                            <div class="cart-item-price">${item.price.toLocaleString()} so'm</div>
+            for (let key in cart) {
+                let item = cart[key];
+                totalQty += item.qty;
+                totalPrice += (item.price * item.qty);
+
+                html += `
+                <div class="cart-row">
+                    <div class="cart-row-left">
+                        <div class="cart-row-icon">${item.icon}</div>
+                        <div class="cart-row-info">
+                            <h4>${item.name}</h4>
+                            <p>${item.price.toLocaleString()} so'm</p>
                         </div>
-                        <button class="cart-remove" onclick="removeFromCart(${index})">O'chirish</button>
-                    `;
-                    list.appendChild(div);
-                });
-            }
-        }
-
-        // Savatni ochish/yopish
-        function toggleCart() {
-            const drawer = document.getElementById('cartDrawer');
-            if (drawer.style.display === 'flex') {
-                drawer.style.display = 'none';
-            } else {
-                drawer.style.display = 'flex';
-            }
-        }
-
-        // Modal tashqarisiga bosganda yopish
-        document.getElementById('cartDrawer').addEventListener('click', (e) => {
-            if (e.target.id === 'cartDrawer') toggleCart();
-        });
-
-        // --- 5. CHECKOUT (TELEGRAM) ---
-        function checkout() {
-            if (cart.length === 0) {
-                alert("Savatingiz bo'sh!");
-                return;
+                    </div>
+                    <div class="cart-controls">
+                        <button class="ctrl-btn" onclick="changeQty('${key}', -1)">-</button>
+                        <span class="qty-display">${item.qty}</span>
+                        <button class="ctrl-btn" onclick="changeQty('${key}', 1)">+</button>
+                    </div>
+                </div>`;
             }
 
-            let total = cart.reduce((sum, item) => sum + item.price, 0);
+            // Floating Button Update
+            document.getElementById('cartCountBtn').innerText = totalQty + " dona";
+            document.getElementById('cartTotalBtn').innerText = totalPrice.toLocaleString() + " so'm";
             
-            // Xabarni shakllantirish
-            let msg = "👋 Salom! Men quyidagilarni buyurtma qilmoqchiman:\n\n";
-            cart.forEach((item, i) => {
-                msg += `${i + 1}. ${item.name} - ${item.price.toLocaleString()} so'm\n`;
-            });
-            msg += `\n💰 <b>Jami: ${total.toLocaleString()} so'm</b>`;
+            const floatBtn = document.getElementById('floatingCart');
+            if (totalQty > 0) floatBtn.classList.add('visible');
+            else {
+                floatBtn.classList.remove('visible');
+                closeModal(); // Agar bo'sh qolsa modalni yopish
+            }
 
-            // Link yaratish
-            const encodedMsg = encodeURIComponent(msg);
-            window.location.href = `https://t.me/minora?text=${encodedMsg}`;
+            // Modal Update
+            document.getElementById('cartList').innerHTML = html || '<p style="text-align:center; color:#666; margin-top:50px">Savat bo\'sh 🛒</p>';
+            document.getElementById('modalTotal').innerText = totalPrice.toLocaleString() + " so'm";
+        }
+
+        // --- MODAL CONTROLS ---
+        function openModal() { document.getElementById('cartModal').classList.add('open'); }
+        function closeModal() { document.getElementById('cartModal').classList.remove('open'); }
+
+        // --- CHECKOUT ---
+        function checkout() {
+            let msg = "👋 Salom! Buyurtma:\n\n";
+            let total = 0;
+            for(let key in cart) {
+                let item = cart[key];
+                msg += `${item.qty}x ${item.name} (${(item.price*item.qty).toLocaleString()})\n`;
+                total += item.price * item.qty;
+            }
+            msg += `\n💰 Jami: ${total.toLocaleString()} so'm`;
+            window.location.href = `https://t.me/minora?text=${encodeURIComponent(msg)}`;
         }
     </script>
-
 </body>
 </html>
