@@ -13,6 +13,8 @@
             --accent: #229ED9;
             --text: #FFFFFF;
             --gray: #888888;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -25,165 +27,176 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* --- NAVBAR (MENU) --- */
+        /* --- NAVBAR --- */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
             padding: 25px 8%; 
             background: rgba(0,0,0,0.85); 
-            backdrop-filter: blur(15px);
-            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            z-index: 1000; border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-size: 30px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; cursor: pointer; }
+        .logo { font-size: 26px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; cursor: pointer; }
         .logo span { color: var(--accent); }
 
-        /* NAV LINKS (Katta va Qalin) */
-        .nav-links { display: flex; gap: 50px; align-items: center; }
-        
+        .nav-links { display: flex; gap: 40px; align-items: center; }
         .nav-links a { 
-            font-size: 19px; 
-            font-weight: 700; 
-            color: #ccc; 
-            position: relative; 
-            letter-spacing: 0.5px;
+            font-size: 16px; font-weight: 600; color: #ccc; position: relative; 
         }
-        
         .nav-links a:hover { color: var(--text); }
         .nav-links a::after {
-            content: ''; position: absolute; bottom: -8px; left: 0; width: 0%; height: 3px;
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0%; height: 2px;
             background: var(--accent); transition: 0.3s;
         }
         .nav-links a:hover::after { width: 100%; }
 
-        .menu-toggle { display: none; font-size: 32px; cursor: pointer; color: #fff; }
+        .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: #fff; }
 
-        /* --- 1-SAHIFA (FULL SCREEN HERO) --- */
+        /* --- 1-SAHIFA (HERO) --- */
         .landing-screen {
-            height: 100vh;
-            min-height: 700px;
+            min-height: 100vh;
             display: flex; flex-direction: column;
-            padding-top: 90px;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 80%);
+            justify-content: center;
+            padding: 120px 8% 60px 8%;
+            background: radial-gradient(circle at top right, rgba(34, 158, 217, 0.15), transparent 60%);
             position: relative;
         }
 
+        /* Hero Text */
         .hero-content {
-            flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px;
+            max-width: 900px; z-index: 2;
         }
 
         .hero-content h1 {
-            font-size: 80px; font-weight: 900; line-height: 1.1; margin-bottom: 30px;
-            background: linear-gradient(to right, #fff, #999);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            max-width: 1100px;
+            font-size: 72px; font-weight: 900; line-height: 1.1; margin-bottom: 25px;
+            letter-spacing: -2px;
         }
-        .hero-content span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+        .hero-content h1 span {
+            background: linear-gradient(to right, #229ED9, #00d2ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
         
         .hero-content p { 
-            color: var(--gray); font-size: 24px; margin-bottom: 50px; 
-            max-width: 750px; line-height: 1.6;
+            color: var(--gray); font-size: 20px; margin-bottom: 40px; 
+            max-width: 600px; line-height: 1.6;
+            border-left: 3px solid var(--accent); padding-left: 20px;
         }
 
         .cta-btn {
             background: var(--accent); color: #fff;
-            padding: 24px 65px; border-radius: 60px; font-size: 20px;
-            font-weight: 800; display: inline-flex; align-items: center; gap: 10px;
-            box-shadow: 0 0 50px rgba(34, 158, 217, 0.4);
-            transition: 0.3s; text-transform: uppercase; letter-spacing: 1px;
+            padding: 18px 45px; border-radius: 50px; font-size: 18px;
+            font-weight: 700; display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 30px rgba(34, 158, 217, 0.3);
+            transition: 0.3s; 
         }
-        .cta-btn:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 70px rgba(34, 158, 217, 0.7); }
+        .cta-btn:hover { transform: translateY(-5px); box-shadow: 0 0 50px rgba(34, 158, 217, 0.6); }
 
-        /* STATISTIKA */
+        /* STATISTIKA (Bottom Bar) */
         .stats-bar {
-            width: 100%; display: flex; justify-content: center; gap: 100px;
-            padding: 40px; border-top: 1px solid #222; 
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+            margin-top: 80px;
+            display: flex; gap: 60px;
+            padding-top: 30px; border-top: 1px solid var(--border);
         }
-        .stat-box { text-align: center; }
-        .stat-num { font-size: 46px; font-weight: 900; color: #fff; display: block; margin-bottom: 5px; }
-        .stat-label { font-size: 14px; color: var(--accent); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+        .stat-box { text-align: left; }
+        .stat-num { font-size: 32px; font-weight: 800; color: #fff; display: block; }
+        .stat-label { font-size: 13px; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; }
 
         /* --- 2-SAHIFA (VITRINA) --- */
         .showcase-section {
-            min-height: 100vh; padding: 120px 8%; background: #000;
+            padding: 100px 8%; position: relative;
         }
         
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-title { font-size: 48px; font-weight: 900; color: #fff; margin-bottom: 15px; }
-        .section-subtitle { color: var(--gray); font-size: 20px; }
+        .section-header { margin-bottom: 60px; max-width: 700px; }
+        .section-title { font-size: 40px; font-weight: 900; color: #fff; margin-bottom: 15px; }
+        .section-subtitle { color: var(--gray); font-size: 18px; }
 
-        /* --- GRID VA KARTALAR (YANGILANDI: KENGROQ) --- */
+        /* Grid */
         .grid-container {
             display: grid; 
-            /* 320px emas 400px qildik. Bu desktopda kartalarni kengaytiradi */
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
         }
 
         .service-card {
-            background: #0A0A0A; padding: 40px; border-radius: 30px;
-            border: 1px solid #1A1A1A; position: relative;
+            background: var(--glass); padding: 40px; border-radius: 24px;
+            border: 1px solid var(--border); position: relative;
             transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between;
-            /* Balandlikni sal pasaytirdik, chunki eni kengaydi */
-            min-height: 240px; 
-            text-decoration: none; overflow: hidden;
+            min-height: 260px; text-decoration: none; overflow: hidden;
+            backdrop-filter: blur(10px);
         }
         .service-card:hover {
-            border-color: var(--accent); transform: translateY(-10px);
-            background: #111; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border-color: var(--accent); transform: translateY(-8px);
+            background: rgba(34, 158, 217, 0.05);
         }
 
         .card-icon { 
-            font-size: 50px; margin-bottom: 25px; display: inline-block;
-            background: linear-gradient(135deg, rgba(34, 158, 217, 0.15), transparent);
-            padding: 15px; border-radius: 20px; width: fit-content;
+            font-size: 40px; margin-bottom: 20px; display: inline-block;
+            background: rgba(255,255,255,0.05);
+            padding: 15px; border-radius: 16px;
         }
 
-        .service-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 10px; color: #fff; }
-        .service-card p { font-size: 16px; color: #777; line-height: 1.5; margin-bottom: 10px;}
+        .service-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 10px; color: #fff; }
+        .service-card p { font-size: 15px; color: #888; line-height: 1.5; }
         
         .arrow-icon {
-            position: absolute; bottom: 35px; right: 35px;
-            background: #1A1A1A; width: 45px; height: 45px; border-radius: 50%;
+            position: absolute; bottom: 30px; right: 30px;
+            width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center; color: #fff;
-            transition: 0.3s; font-size: 20px; border: 1px solid #333;
+            transition: 0.3s; font-size: 18px;
         }
-        .service-card:hover .arrow-icon { background: var(--accent); border-color: var(--accent); transform: rotate(45deg); color: #fff; }
+        .service-card:hover .arrow-icon { background: var(--accent); border-color: var(--accent); transform: rotate(45deg); }
 
         /* FOOTER */
-        footer { padding: 40px; text-align: center; border-top: 1px solid #222; color: #444; font-size: 14px; background: #050505; }
+        footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); color: #555; font-size: 14px; background: #050505; }
 
-        /* MOBIL MENU */
+        /* MOBIL MENU OVERLAY */
         .mobile-menu-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 200;
+            background: rgba(0,0,0,0.95); z-index: 2000;
             display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
-            opacity: 0; visibility: hidden; transition: 0.3s; backdrop-filter: blur(10px);
+            opacity: 0; visibility: hidden; transition: 0.3s; backdrop-filter: blur(15px);
         }
         .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
         .mobile-link { font-size: 24px; font-weight: 700; color: #fff; }
         .close-menu { position: absolute; top: 25px; right: 25px; font-size: 35px; cursor: pointer; color: #fff; }
 
-        /* RESPONSIVE */
+        /* --- RESPONSIVE (MOBIL QISM) --- */
         @media (max-width: 768px) {
-            nav { padding: 20px; }
+            nav { padding: 15px 20px; }
             .nav-links { display: none; }
             .menu-toggle { display: block; }
             
-            .landing-screen { height: auto; min-height: 100vh; padding-top: 100px; padding-bottom: 30px; }
-            .hero-content h1 { font-size: 42px; margin-bottom: 20px; }
-            .hero-content p { font-size: 16px; margin-bottom: 30px; }
-            .cta-btn { width: 100%; justify-content: center; padding: 20px; font-size: 16px; }
-            
-            .stats-bar { flex-direction: column; gap: 30px; background: transparent; border: none; padding: 20px; margin-top: 40px; }
-            .stat-num { font-size: 38px; }
+            /* HERO: Chapga tekislash */
+            .landing-screen { 
+                padding: 110px 20px 60px 20px; 
+                justify-content: flex-start; /* Tepadan boshlanadi */
+                background: radial-gradient(circle at top right, rgba(34, 158, 217, 0.1), transparent 50%);
+            }
 
-            .showcase-section { padding: 60px 5%; }
+            .hero-content { text-align: left; }
+            .hero-content h1 { font-size: 42px; margin-bottom: 20px; }
+            .hero-content p { 
+                font-size: 16px; margin-bottom: 30px; 
+                border-left: 3px solid var(--accent); padding-left: 15px; /* Chiziq */
+            }
+            
+            .cta-btn { width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+            
+            /* STATISTIKA: Chapga tekislash */
+            .stats-bar { 
+                flex-direction: column; gap: 25px; margin-top: 50px; 
+                border-top: none; padding-top: 0;
+            }
+            .stat-num { font-size: 28px; }
+
+            /* VITRINA */
+            .showcase-section { padding: 60px 20px; }
+            .section-header { text-align: left; }
             .section-title { font-size: 32px; }
-            .grid-container { grid-template-columns: 1fr; }
-            .service-card { padding: 30px; min-height: auto; }
+            
+            .grid-container { grid-template-columns: 1fr; } /* Bir qator */
+            .service-card { min-height: auto; padding: 30px; }
         }
     </style>
 </head>
@@ -210,22 +223,25 @@
     <header class="landing-screen">
         <div class="hero-content">
             <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
-            <p>Virtual raqamlar, Stars va jonli obunachilar.<br>Premium xizmatlar endi bitta platformada.</p>
+            <p>
+                Virtual raqamlar, Stars va jonli obunachilar.
+                Siz uchun kerakli barcha Premium xizmatlar endi bitta platformada.
+            </p>
             <a href="shop.html" class="cta-btn">DO'KONGA O'TISH →</a>
-        </div>
 
-        <div class="stats-bar">
-            <div class="stat-box">
-                <span class="stat-num">5,000+</span>
-                <span class="stat-label">MAMNUN MIJOZLAR</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-num">24/7</span>
-                <span class="stat-label">TEXNIK YORDAM</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-num">100%</span>
-                <span class="stat-label">ISHONCHLI</span>
+            <div class="stats-bar">
+                <div class="stat-box">
+                    <span class="stat-num">5,000+</span>
+                    <span class="stat-label">Mamnun Mijozlar</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">24/7</span>
+                    <span class="stat-label">Texnik Yordam</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Ishonchli</span>
+                </div>
             </div>
         </div>
     </header>
@@ -305,7 +321,7 @@
     </section>
 
     <footer>
-        © 2024 KH SHOP. Premium Services.
+        © 2026 KH SHOP. Premium Services.
     </footer>
 
     <script>

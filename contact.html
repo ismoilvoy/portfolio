@@ -8,10 +8,11 @@
     <style>
         :root {
             --bg: #000000;
-            --surface: #111111;
             --accent: #229ED9;
             --text: #FFFFFF;
             --gray: #888888;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
@@ -21,6 +22,7 @@
             color: var(--text);
             line-height: 1.5;
             display: flex; flex-direction: column; min-height: 100vh;
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -29,76 +31,122 @@
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 8%; z-index: 1000;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 20px; z-index: 1000;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-size: 24px; font-weight: 900; }
+        .logo { font-size: 22px; font-weight: 900; }
         .logo span { color: var(--accent); }
-        .back-link { font-size: 14px; font-weight: 600; color: #bbb; display: flex; align-items: center; gap: 8px; }
-        .back-link:hover { color: #fff; }
+        .back-link { font-size: 13px; font-weight: 600; color: #bbb; display: flex; align-items: center; gap: 5px; }
 
-        /* ASOSIY QISM */
-        .contact-hero {
+        /* ASOSIY WRAPPER */
+        .contact-wrapper {
             flex: 1;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            padding: 140px 20px 60px 20px; text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 140px 8% 60px 8%;
+            max-width: 1400px; margin: 0 auto; width: 100%;
+            gap: 80px; position: relative;
         }
+
+        /* ORQA FON NURI (GLOW) */
+        .glow-blob {
+            position: absolute; top: 20%; left: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(34, 158, 217, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1; pointer-events: none;
+        }
+
+        /* CHAP TARAF (MATN) */
+        .text-side { flex: 1; max-width: 600px; }
 
         .hero-title {
-            font-size: 56px; font-weight: 900; margin-bottom: 20px;
+            font-size: 64px; font-weight: 900; margin-bottom: 25px; line-height: 1.1;
             background: linear-gradient(to right, #fff, #999);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
-            color: var(--gray); font-size: 18px; margin-bottom: 60px; max-width: 600px;
+            color: var(--gray); font-size: 18px; line-height: 1.6; margin-bottom: 40px;
+            border-left: 3px solid var(--accent); padding-left: 20px;
         }
 
-        /* CONTACT GRID */
-        .contact-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px; max-width: 1100px; width: 100%;
+        /* O'NG TARAF (KARTALAR) */
+        .cards-side {
+            flex: 1;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .contact-card {
-            background: var(--surface); padding: 40px; border-radius: 24px;
-            border: 1px solid #222; text-align: center;
+            background: var(--glass); padding: 35px; border-radius: 28px;
+            border: 1px solid var(--border); text-align: center;
             transition: 0.3s; display: flex; flex-direction: column; align-items: center;
+            position: relative; overflow: hidden;
+            backdrop-filter: blur(10px);
         }
+        
         .contact-card:hover {
-            transform: translateY(-10px); border-color: var(--accent);
-            box-shadow: 0 10px 30px rgba(34, 158, 217, 0.15);
+            transform: translateY(-8px); border-color: var(--accent);
+            background: rgba(34, 158, 217, 0.05);
         }
 
         .icon-box {
-            width: 70px; height: 70px; background: #000; border-radius: 50%;
+            width: 60px; height: 60px; background: rgba(0,0,0,0.3); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 20px; border: 1px solid #333;
-            color: #fff; /* SVG rangi */
+            margin-bottom: 20px; border: 1px solid var(--border);
+            color: #fff; transition: 0.3s;
         }
-        .icon-box svg { width: 32px; height: 32px; fill: currentColor; }
+        .icon-box svg { width: 28px; height: 28px; fill: currentColor; }
         
-        .contact-card:hover .icon-box { background: var(--accent); border-color: var(--accent); }
+        .contact-card:hover .icon-box { background: var(--accent); border-color: var(--accent); transform: scale(1.1); }
 
-        .card-title { font-size: 20px; font-weight: 700; margin-bottom: 5px; color: #fff; }
-        .card-info { color: var(--gray); font-size: 14px; margin-bottom: 25px; }
+        .card-title { font-size: 18px; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .card-info { color: var(--gray); font-size: 13px; margin-bottom: 20px; }
 
         .contact-btn {
-            background: #222; color: #fff; padding: 12px 25px; border-radius: 30px;
-            font-size: 14px; font-weight: 600; border: 1px solid #333; width: 100%;
+            background: rgba(255,255,255,0.1); color: #fff; padding: 12px 25px; border-radius: 30px;
+            font-size: 14px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); width: 100%; transition: 0.3s;
         }
-        .contact-card:hover .contact-btn { background: #fff; color: #000; }
+        .contact-card:hover .contact-btn { background: #fff; color: #000; border-color: #fff; }
 
         /* FOOTER */
-        footer { padding: 30px; text-align: center; color: #444; font-size: 13px; margin-top: auto; }
+        footer { padding: 30px; text-align: center; color: #444; font-size: 13px; margin-top: auto; border-top: 1px solid #111; }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 36px; }
-            .contact-grid { grid-template-columns: 1fr; }
-            nav { padding: 20px; }
+        /* --- RESPONSIVE (MOBIL) --- */
+        @media (max-width: 1024px) {
+            nav { padding: 15px 20px; }
+
+            .contact-wrapper {
+                flex-direction: column; /* Ustma-ust tushirish */
+                align-items: flex-start; /* Chapga tekislash */
+                gap: 50px;
+                padding: 100px 20px 60px 20px;
+            }
+
+            .glow-blob { width: 300px; height: 300px; top: 0; left: 0; opacity: 0.5; }
+
+            .text-side { max-width: 100%; text-align: left; }
+            .hero-title { font-size: 42px; margin-bottom: 20px; }
+            
+            .hero-subtitle { 
+                font-size: 16px; margin-bottom: 30px; 
+                border-left: 3px solid var(--accent); padding-left: 15px;
+            }
+            
+            .cards-side { width: 100%; grid-template-columns: 1fr; } /* Bir qator */
+            .contact-card { padding: 30px; flex-direction: row; text-align: left; align-items: center; gap: 20px; }
+            
+            .icon-box { margin-bottom: 0; width: 50px; height: 50px; flex-shrink: 0; }
+            .icon-box svg { width: 22px; height: 22px; }
+            
+            /* Mobilda tugma va matnni chiroyli joylash */
+            .card-content { flex: 1; }
+            .card-info { margin-bottom: 0; font-size: 12px; }
+            .contact-btn { display: none; } /* Mobilda tugmani yashirib, butun kartani bosiladigan qilamiz */
         }
     </style>
 </head>
@@ -109,21 +157,27 @@
         <a href="index.html" class="back-link">← Bosh sahifa</a>
     </nav>
 
-    <div class="contact-hero">
-        <h1 class="hero-title">Qo'llab-quvvatlash</h1>
-        <p class="hero-subtitle">
-            Savollaringiz bormi? Biz har doim aloqadamiz. <br>
-            O'zingizga qulay usulni tanlang.
-        </p>
+    <div class="contact-wrapper">
+        <div class="glow-blob"></div>
+        
+        <div class="text-side">
+            <h1 class="hero-title">Biz har doim <br> aloqadamiz.</h1>
+            <p class="hero-subtitle">
+                Texnik yordam kerakmi yoki hamkorlik taklifingiz bormi? 
+                Quyidagi usullardan o'zingizga qulayini tanlang va bizga bog'laning.
+            </p>
+        </div>
 
-        <div class="contact-grid">
+        <div class="cards-side">
             
             <a href="https://t.me/turknomerlar?text=Salom!%20Menga%20yordamingiz%20kerak%3F" target="_blank" class="contact-card">
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.008-1.252-.241-1.865-.44-.751-.244-1.349-.374-1.297-.789.027-.216.324-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.119.098.152.228.166.331.016.119.034.239.026.345z"/></svg>
                 </div>
-                <h3 class="card-title">Telegram</h3>
-                <p class="card-info">Tezkor javob olish uchun</p>
+                <div class="card-content">
+                    <h3 class="card-title">Telegram</h3>
+                    <p class="card-info">Tezkor javob olish uchun</p>
+                </div>
                 <div class="contact-btn">Xabar yuborish</div>
             </a>
 
@@ -131,8 +185,10 @@
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
                 </div>
-                <h3 class="card-title">Qo'ng'iroq</h3>
-                <p class="card-info">Favqulodda holatlar uchun</p>
+                <div class="card-content">
+                    <h3 class="card-title">Qo'ng'iroq</h3>
+                    <p class="card-info">Favqulodda holatlar uchun</p>
+                </div>
                 <div class="contact-btn">Qo'ng'iroq qilish</div>
             </a>
 
@@ -140,8 +196,10 @@
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 </div>
-                <h3 class="card-title">Email</h3>
-                <p class="card-info">Rasmiy takliflar uchun</p>
+                <div class="card-content">
+                    <h3 class="card-title">Email</h3>
+                    <p class="card-info">Rasmiy takliflar uchun</p>
+                </div>
                 <div class="contact-btn">Xat yuborish</div>
             </a>
 
@@ -149,7 +207,7 @@
     </div>
 
     <footer>
-        © 2024 KH SHOP. Support Center.
+        © 2026 KH SHOP. Support Center.
     </footer>
 
 </body>
