@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Professional</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>KH SHOP | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* 1. Global sozlamalar */
+        /* 1. Global Sozlamalar */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -20,7 +20,7 @@
             position: relative;
         }
 
-        /* Oq diagonal qism (Piksel-aniqlikda) */
+        /* Namunadagi oq diagonal qism */
         body::after {
             content: "";
             position: absolute;
@@ -45,31 +45,37 @@
             z-index: 100;
         }
 
-        .header-logo-group {
+        .header-brand {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-
-        .header-logo-group img { width: 45px; }
+        .header-brand img { width: 45px; }
+        .header-brand .brand-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            line-height: 0.9;
+            color: #000;
+        }
 
         .nav-links { display: flex; gap: 35px; align-items: center; }
-
         .nav-links a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
             font-size: 15px;
+            transition: 0.3s;
         }
-
+        .nav-links a:hover { color: #000; font-weight: 700; }
         .btn-hobil {
             background: #3b71ca;
             color: white !important;
             padding: 10px 25px;
             border-radius: 6px;
+            font-weight: 600 !important;
         }
 
-        /* 3. Hero bo'limi */
+        /* 3. Hero Bo'limi */
         .hero {
             display: flex;
             width: 100%;
@@ -80,68 +86,78 @@
             z-index: 10;
         }
 
-        .content { flex: 1; }
+        .content { flex: 1.2; }
 
-        /* Sarlavha ustidagi kichik logotip */
-        .mini-logo {
+        /* Sarlavha ustidagi o'sha "yarashmagan" belgini brend ko'rinishiga keltiramiz */
+        .main-brand-mark {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 35px;
+        }
+        .main-brand-mark img { width: 50px; }
+        .main-brand-mark .mark-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: #000;
+            line-height: 0.9;
         }
 
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 68px;
+            font-size: clamp(40px, 6vw, 72px);
             color: #000;
-            line-height: 1.05;
+            line-height: 1;
             text-transform: uppercase;
-            letter-spacing: -1.5px;
+            letter-spacing: -2px;
             margin-bottom: 40px;
         }
 
-        .btn-main {
+        .btn-cta {
             background: #fff;
             color: #3b71ca;
-            padding: 14px 40px;
-            border-radius: 35px;
+            padding: 15px 45px;
+            border-radius: 40px;
             text-decoration: none;
-            font-weight: 700;
-            font-size: 15px;
+            font-weight: 800;
+            font-size: 16px;
             text-transform: uppercase;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: inline-block;
+            transition: 0.3s ease;
         }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-        /* 4. Rasm (Yangi shaffof fayl uchun) */
+        /* 4. Rasm (Piksel masofalari aniq) */
         .image-box {
             flex: 1;
             display: flex;
             justify-content: flex-end;
         }
-
         .image-box img {
-            width: 115%;
-            max-width: 680px;
-            /* Shaffof rasm bo'lgani uchun blend-mode shart emas */
-            transform: translate(20px, 30px);
+            width: 110%;
+            max-width: 650px;
+            /* Shaffof rasm uchun filtrlar */
+            filter: drop-shadow(20px 30px 50px rgba(0,0,0,0.15));
+            transform: translate(10px, 30px); /* Namunadagi joylashuv */
         }
 
-        /* Mobil qurilmalar uchun moslashuv */
+        /* Mobil qurilmalar */
         @media (max-width: 1024px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 100px; }
-            .content h1 { font-size: 42px; }
-            .image-box { justify-content: center; width: 100%; margin-top: 50px; }
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .content h1 { font-size: 45px; }
+            .image-box { justify-content: center; width: 100%; margin-top: 40px; }
             .nav-links { display: none; }
+            .main-brand-mark { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-logo-group">
+        <div class="header-brand">
             <img src="img/logo.png" alt="Logo">
-            <div style="font-family: 'Montserrat'; font-weight: 800; line-height: 0.9;">
+            <div class="brand-text">
                 <p style="font-size: 14px;">KH</p>
                 <p style="font-size: 22px;">SHOP 2</p>
             </div>
@@ -157,15 +173,17 @@
 
     <section class="hero">
         <div class="content">
-            <div class="mini-logo">
-                <img src="img/logo.png" width="45">
-                <div style="font-family: 'Montserrat'; font-weight: 800; line-height: 0.9;">
+            <div class="main-brand-mark">
+                <img src="img/logo.png" alt="Brand Logo">
+                <div class="mark-text">
                     <p style="font-size: 13px;">KH</p>
                     <p style="font-size: 20px;">SHOP</p>
                 </div>
             </div>
+            
             <h1>HAMMASI BITTA – <br> ILOVADA</h1>
-            <a href="#market" class="btn-main">BATAFSIL MA'LUMOT</a>
+            
+            <a href="#market" class="btn-cta">BATAFFSIL MA'LUMOT</a>
         </div>
 
         <div class="image-box">
