@@ -8,6 +8,10 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
+    },
+    {
+      "src": "img/*",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -16,8 +20,8 @@
       "dest": "/api/market.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/img/(.*)",
+      "dest": "/img/$1"
     }
   ]
 }
