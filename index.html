@@ -13,8 +13,8 @@
         
         /* 2. PREMIUM DARK FON */
         body {
-            background-color: #020617; /* To'q tun rangi */
-            color: #F8FAFC; /* Oq matn */
+            background-color: #020617;
+            color: #F8FAFC;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -32,18 +32,18 @@
             pointer-events: none;
         }
 
-        /* 4. HEADER (MENU) */
+        /* 4. HEADER */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
             padding: 20px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            background: rgba(2, 6, 23, 0.8); /* Shaffof qora */
-            backdrop-filter: blur(15px); /* Xira oyna effekti */
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
             z-index: 1000;
         }
 
-        /* --- LOGOTIP UCHUN YANGILANGAN CSS (MUHIM QISM) --- */
+        /* LOGO STILI (NUQTASIZ) */
         .logo {
             display: flex;
             align-items: center;
@@ -66,20 +66,8 @@
             font-size: 24px;
             color: #F8FAFC;
             letter-spacing: -1px;
-            position: relative;
+            /* Nuqta kodi olib tashlandi */
         }
-        
-        /* 'SHOP' so'zidan keyingi yashil nuqta */
-        .logo-text::after {
-            content: ".";
-            color: #22C55E;
-            font-size: 30px;
-            line-height: 0;
-            position: absolute;
-            right: -12px;
-            bottom: 2px;
-        }
-        /* ------------------------------------------------ */
         
         .nav-links a { color: #94A3B8; margin-left: 30px; font-weight: 500; font-size: 14px; }
         .nav-links a:hover { color: #fff; }
@@ -94,10 +82,10 @@
         }
         .btn-tg:hover { box-shadow: 0 6px 25px rgba(34,197,94,0.4); transform: translateY(-2px); }
 
-        /* 5. ASOSIY KONTEYNER */
+        /* 5. KONTEYNER */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        /* 6. HERO SECTION */
+        /* 6. HERO */
         .hero {
             padding-top: 160px; padding-bottom: 100px;
             text-align: center;
@@ -120,7 +108,7 @@
             margin: 0 auto 40px auto;
         }
 
-        /* 7. GLASS CARDS (XIZMATLAR) */
+        /* 7. CARDS */
         .grid-services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -154,9 +142,8 @@
             margin-top: 80px;
         }
 
-        /* MOBIL UCHUN */
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Mobil menyuni keyinroq qo'shamiz */
+            .nav-links { display: none; }
             .hero { padding-top: 120px; }
         }
     </style>
