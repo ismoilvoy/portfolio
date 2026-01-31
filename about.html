@@ -19,10 +19,11 @@
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* NAVBAR (Index bilan bir xil) */
+        /* NAVBAR */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
@@ -36,73 +37,86 @@
         .back-link { font-size: 14px; font-weight: 600; color: #bbb; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
         .back-link:hover { color: #fff; }
 
-        /* HERO SECTION (Katta shior) */
-        .about-hero {
-            padding: 180px 8% 100px 8%;
-            max-width: 1200px; margin: 0 auto;
+        /* ASOSIY WRAPPER */
+        .about-wrapper {
+            max-width: 1400px; margin: 0 auto;
+            padding: 140px 8% 80px 8%;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Chap taraf kengroq */
+            gap: 80px; align-items: start;
         }
 
-        .big-title {
-            font-size: 64px; font-weight: 900; line-height: 1.1; margin-bottom: 40px;
-            letter-spacing: -2px;
+        /* CHAP TARAF (MATNLAR) */
+        .content-side h1 {
+            font-size: 56px; font-weight: 900; line-height: 1.1; margin-bottom: 30px;
+            letter-spacing: -1px;
         }
-        .big-title span { color: var(--accent); }
+        .content-side h1 span { color: var(--accent); }
 
-        .subtitle {
-            font-size: 20px; color: var(--gray); max-width: 600px;
-            font-weight: 400; line-height: 1.6;
-        }
-
-        /* HIKOYA QISMI (Grid) */
-        .story-section {
-            padding: 100px 8%;
-            background: var(--surface);
-            border-top: 1px solid #222;
+        .intro-text {
+            font-size: 18px; color: var(--gray); margin-bottom: 40px;
+            border-left: 3px solid var(--accent); padding-left: 20px;
         }
 
-        .story-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-            max-width: 1200px; margin: 0 auto; align-items: start;
+        .story-block { margin-bottom: 40px; }
+        .story-block h2 { font-size: 28px; font-weight: 800; margin-bottom: 15px; color: #fff; }
+        .story-block p { font-size: 16px; color: #aaa; margin-bottom: 15px; }
+
+        /* YILLIK TAJRIBA BELGISI */
+        .experience-badge {
+            display: inline-block; background: #1a1a1a; color: #fff;
+            padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600;
+            border: 1px solid #333; margin-bottom: 20px;
+        }
+        .experience-badge span { color: var(--accent); }
+
+        /* O'NG TARAF (KARTALAR) */
+        .cards-side {
+            position: sticky; top: 120px;
+            display: flex; flex-direction: column; gap: 30px;
         }
 
-        .story-content h2 { font-size: 32px; font-weight: 800; margin-bottom: 20px; }
-        .story-content p { color: #aaa; font-size: 16px; margin-bottom: 20px; }
-
-        .story-card {
-            background: #000; padding: 40px; border-radius: 30px;
-            border: 1px solid #222; position: relative; overflow: hidden;
+        /* Missiya Kartasi */
+        .mission-card {
+            background: linear-gradient(145deg, #111, #0a0a0a);
+            padding: 40px; border-radius: 30px;
+            border: 1px solid #222; position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .story-card h3 { font-size: 24px; margin-bottom: 10px; color: #fff; }
-        .story-card p { color: #666; font-size: 15px; }
-        
-        /* VALUE CARDS (Nega biz?) */
-        .values-section { padding: 100px 8%; max-width: 1200px; margin: 0 auto; }
-        .section-head { margin-bottom: 60px; }
-        .section-head h2 { font-size: 40px; font-weight: 900; }
+        .mission-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+        .mission-card h3 { font-size: 24px; font-weight: 800; margin-bottom: 15px; }
+        .mission-card p { font-size: 15px; color: #888; line-height: 1.5; font-style: italic; }
 
+        /* Qadriyatlar (Grid) */
         .values-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px;
         }
-
-        .value-box {
-            background: #0A0A0A; padding: 40px 30px; border-radius: 24px;
-            border: 1px solid #1A1A1A; transition: 0.3s;
+        .value-item {
+            background: #0f0f0f; padding: 20px; border-radius: 20px;
+            border: 1px solid #1a1a1a; text-align: center;
+            transition: 0.3s;
         }
-        .value-box:hover { transform: translateY(-10px); border-color: var(--accent); }
-        
-        .value-icon { font-size: 36px; margin-bottom: 20px; display: block; }
-        .value-box h4 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
-        .value-box p { font-size: 14px; color: #777; line-height: 1.5; }
+        .value-item:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .value-item span { font-size: 24px; display: block; margin-bottom: 10px; }
+        .value-item h4 { font-size: 14px; font-weight: 700; color: #fff; }
 
         /* FOOTER */
         footer { padding: 40px; text-align: center; border-top: 1px solid #222; color: #444; font-size: 14px; margin-top: 50px; }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .big-title { font-size: 42px; }
-            .story-grid { grid-template-columns: 1fr; }
-            .values-grid { grid-template-columns: 1fr; }
-            nav { padding: 20px; }
+        /* RESPONSIVE (MOBIL) */
+        @media (max-width: 1024px) {
+            .about-wrapper {
+                display: flex; flex-direction: column;
+                gap: 50px; padding-top: 100px;
+            }
+            .content-side h1 { font-size: 42px; text-align: center; }
+            .intro-text { text-align: center; border: none; padding: 0; font-size: 16px; }
+            .story-block { text-align: center; }
+            .experience-badge { display: table; margin: 0 auto 20px auto; } /* O'rtaga olish */
+            
+            .cards-side { position: static; width: 100%; }
+            .mission-card { text-align: center; }
+            .values-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -113,65 +127,73 @@
         <a href="index.html" class="back-link">← Bosh sahifaga</a>
     </nav>
 
-    <section class="about-hero">
-        <h1 class="big-title">
-            Biz Telegramda <br>
-            <span>Cheklovlarni</span> Olib Tashlaymiz.
-        </h1>
-        <p class="subtitle">
-            Biz shunchaki xizmat sotmaymiz. Biz sizga raqamli erkinlik va o'sish uchun kerakli vositalarni taqdim etamiz.
-        </p>
-    </section>
+    <div class="about-wrapper">
+        
+        <div class="content-side">
+            <div class="experience-badge">🚀 <span>2020-yildan</span> beri xizmatdamiz</div>
+            
+            <h1>Biz Telegramda <br> <span>Cheklovlarni</span> Olib Tashlaymiz.</h1>
+            <p class="intro-text">
+                Biz shunchaki xizmat sotmaymiz. Biz sizga raqamli erkinlik va o'sish uchun kerakli vositalarni taqdim etamiz.
+            </p>
 
-    <section class="story-section">
-        <div class="story-grid">
-            <div class="story-content">
-                <h2>Nega aynan KH SHOP?</h2>
+            <div class="story-block">
+                <h2>6 yillik tajriba tarixi</h2>
                 <p>
-                    Telegram bugungi kunda shunchaki messenjer emas, u biznes va muloqot markazi. 
-                    Lekin ko'pchilik uchun Premium, Virtual raqamlar yoki Stars olish qiyin va qimmat.
+                    KH SHOP loyihasi <strong>2020-yilda</strong> oddiy g'oya sifatida boshlangan edi. 
+                    O'sha paytda Telegram Premium yoki Virtual raqam olish juda qiyin jarayon edi.
                 </p>
                 <p>
-                    Biz buni o'zgartirishga qaror qildik. Bizning maqsadimiz — har bir o'zbekistonlik foydalanuvchi 
-                    uchun Telegram imkoniyatlarini <b>oson, tez va hamyonbop</b> qilishdir.
+                    Biz bu muammoni hal qilish uchun yillar davomida ishonchli hamkorlar tizimini yo'lga qo'ydik. 
+                    Bugungi kunda biz 5000 dan ortiq mamnun mijozga ega yirik platformaga aylandik.
                 </p>
             </div>
-            <div class="story-card">
-                <h3>Bizning Missiyamiz 🚀</h3>
-                <br>
+
+            <div class="story-block">
+                <h2>Kelajakdagi rejalar</h2>
+                <p>
+                    Biz to'xtab qolmaymiz. Tez orada sun'iy intellekt (AI) yordamida ishlaydigan 
+                    marketing botlari va yangi to'lov tizimlarini ishga tushiramiz.
+                </p>
+            </div>
+        </div>
+
+        <div class="cards-side">
+            
+            <div class="mission-card">
+                <span class="mission-icon">🎯</span>
+                <h3>Bizning Missiyamiz</h3>
                 <p>
                     "Murakkab to'lov tizimlari va ishonchsiz sotuvchilardan xalos bo'lish. 
-                    Bir tugmani bosish orqali xizmatlarga ega bo'lish."
+                    Bir tugmani bosish orqali sifatli xizmatlarga ega bo'lish."
                 </p>
             </div>
-        </div>
-    </section>
 
-    <section class="values-section">
-        <div class="section-head">
-            <h2>Bizning qadriyatlar</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <span>⚡️</span>
+                    <h4>Tezlik</h4>
+                </div>
+                <div class="value-item">
+                    <span>🛡</span>
+                    <h4>Ishonch</h4>
+                </div>
+                <div class="value-item">
+                    <span>💎</span>
+                    <h4>Sifat</h4>
+                </div>
+                <div class="value-item">
+                    <span>🤝</span>
+                    <h4>Yordam</h4>
+                </div>
+            </div>
+
         </div>
-        <div class="values-grid">
-            <div class="value-box">
-                <span class="value-icon">⚡️</span>
-                <h4>Tezlik</h4>
-                <p>Bizda kutish yo'q. Avtomatlashtirilgan tizim orqali buyurtmangiz sanoqli daqiqalarda bajariladi.</p>
-            </div>
-            <div class="value-box">
-                <span class="value-icon">🛡</span>
-                <h4>Ishonch</h4>
-                <p>Har bir xarid himoyalangan. Agar xizmat ko'rsatilmasa, pulingiz 100% qaytariladi.</p>
-            </div>
-            <div class="value-box">
-                <span class="value-icon">🤝</span>
-                <h4>Mijoz emas, Do'st</h4>
-                <p>Biz uchun siz shunchaki xaridor emassiz. Muammo bo'lsa, 24/7 yordam berishga tayyormiz.</p>
-            </div>
-        </div>
-    </section>
+
+    </div>
 
     <footer>
-        © 2024 KH SHOP. Biz haqimizda.
+        © 2026 KH SHOP. Biz haqimizda.
     </footer>
 
 </body>
