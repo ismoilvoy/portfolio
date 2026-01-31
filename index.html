@@ -3,229 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Superapp Style</title>
-    <meta name="description" content="Telegram xizmatlari supermarketi">
+    <title>KH SHOP | Telegram Xizmatlari</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    
     <style>
-        /* 1. RESET VA RANGLAR */
+        /* --- ASOSIY SOZLAMALAR --- */
         :root {
-            --bg-color: #000000;
-            --card-bg: #111111;
+            --bg: #000000;
+            --surface: #111111;
             --accent: #229ED9;
-            --text-main: #FFFFFF;
-            --text-sub: #E2E8F0;
-            --radius: 32px;
+            --text: #FFFFFF;
+            --gray: #888888;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        
-        html { scroll-behavior: smooth; }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        /* 2. HEADER */
-        header {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            padding: 40px 0;
-            z-index: 10;
+        /* --- NAVBAR (MENU) --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%;
+            background: rgba(0,0,0,0.9);
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
         }
 
-        .container { 
-            max-width: 1400px; /* Kengaytirilgan konteyner */
-            margin: 0 auto; 
-            padding: 0 40px; 
-            width: 100%;
-        }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: -1px; display: flex; align-items: center; gap: 5px; }
+        .logo span { color: var(--accent); }
 
-        .header-inner { display: flex; justify-content: space-between; align-items: center; }
+        /* Desktop Menu */
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray); }
+        .nav-links a:hover { color: var(--text); }
 
-        .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .logo-box { background: var(--accent); color: #fff; font-weight: 900; font-size: 18px; padding: 6px 12px; border-radius: 10px; }
-        .logo-text { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
+        /* Mobil Menu Button (Gamburger) */
+        .menu-toggle { display: none; font-size: 24px; cursor: pointer; }
 
-        .nav-links { display: flex; gap: 40px; }
-        .nav-links a { font-size: 16px; font-weight: 500; color: #aaa; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; }
-
-        /* 3. HERO (TUZATILDI - MATN MARKAZDA) */
+        /* --- HERO SECTION (BOSH QISM) --- */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: clamp(60px, 8vw, 110px);
-            font-weight: 900; 
-            line-height: 1; 
-            letter-spacing: -3px;
-            margin-bottom: 30px;
-            width: 100%;
-        }
-        .hero h1 span { color: var(--accent); }
-
-        /* MATNNI MARKAZLASH UCHUN MAXSUS FIX */
-        .hero p {
-            font-size: 24px;
-            color: var(--text-sub);
-            max-width: 700px;
-            width: 100%;
-            margin: 0 auto 50px auto; /* Tepa-Past: 0/50px, Yonlar: AUTO (Markaz) */
-            line-height: 1.5;
-            font-weight: 500;
-            opacity: 0.9;
-            text-align: center;
-        }
-
-        .btn-large {
-            background: #fff; color: #000;
-            font-size: 18px; font-weight: 700;
-            padding: 22px 60px; border-radius: 100px;
-            transition: transform 0.2s; display: inline-block;
-        }
-        .btn-large:hover { transform: scale(1.05); }
-
-        /* 4. MARKET (XIZMATLAR) */
-        .market-section {
-            padding: 120px 0;
-            background: #050505;
-            min-height: 100vh;
+            text-align: center; padding: 80px 20px;
+            background: radial-gradient(circle at center, #111 0%, #000 70%);
         }
         
-        .section-title { font-size: 40px; font-weight: 800; margin-bottom: 50px; }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 24px;
+        .hero h1 {
+            font-size: 48px; font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+            background: linear-gradient(to bottom right, #fff, #999);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+        .hero span { color: var(--accent); -webkit-text-fill-color: var(--accent); }
+        
+        .hero p { color: var(--gray); font-size: 16px; margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
+        .cta-btn {
+            background: var(--accent); color: #fff;
+            padding: 16px 32px; border-radius: 50px;
+            font-weight: 700; display: inline-block;
+            box-shadow: 0 10px 30px rgba(34, 158, 217, 0.3);
+        }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(34, 158, 217, 0.5); }
+
+        /* --- FEATURES (AFZALLIKLAR) --- */
+        .features { padding: 60px 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        
         .card {
-            background: var(--card-bg);
-            border-radius: var(--radius);
-            padding: 40px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 300px; transition: 0.3s;
-            position: relative; overflow: hidden; border: 1px solid #222;
+            background: var(--surface); padding: 30px; border-radius: 20px;
+            border: 1px solid #222; transition: 0.3s;
         }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        
+        .card-icon { font-size: 30px; margin-bottom: 15px; }
+        .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+        .card p { font-size: 14px; color: var(--gray); line-height: 1.5; }
 
-        .card:hover { background: #1a1a1a; transform: translateY(-5px); border-color: #333; }
-
-        .card-icon { font-size: 48px; margin-bottom: 24px; }
-        .card h3 { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
-        .card p { color: #888; font-size: 16px; line-height: 1.5; }
-
-        .card-arrow {
-            position: absolute; bottom: 30px; right: 30px;
-            background: #222; width: 50px; height: 50px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 20px; transition: 0.3s;
+        /* --- STATS (RAQAMLAR) --- */
+        .stats {
+            display: flex; justify-content: space-around; padding: 40px 5%;
+            border-top: 1px solid #222; border-bottom: 1px solid #222;
+            background: #050505;
         }
-        .card:hover .card-arrow { background: var(--accent); color: #fff; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 32px; font-weight: 900; color: #fff; display: block; }
+        .stat-label { font-size: 13px; color: var(--accent); font-weight: 600; text-transform: uppercase; }
 
-        /* 5. BIZ HAQIMIZDA */
-        .about-section {
-            padding: 100px 0;
-            background: #000;
-            border-top: 1px solid #222;
-            text-align: center;
+        /* --- FOOTER --- */
+        footer { padding: 40px 5%; text-align: center; color: var(--gray); font-size: 14px; }
+
+        /* --- MOBIL MENU DIZAYNI (DRAWER) --- */
+        .mobile-menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 200;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 30px;
+            opacity: 0; visibility: hidden; transition: 0.3s;
+            backdrop-filter: blur(10px);
         }
-        .about-content { max-width: 800px; margin: 0 auto; }
-        .about-content h2 { font-size: 40px; font-weight: 800; margin-bottom: 20px; }
-        .about-content p { font-size: 18px; color: #888; line-height: 1.6; }
+        .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+        
+        .mobile-link { font-size: 24px; font-weight: 700; color: #fff; }
+        .close-menu { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; color: #fff; }
 
-        footer { padding: 50px 0; border-top: 1px solid #222; text-align: center; color: #555; font-size: 14px; background: #000; }
-
+        /* --- RESPONSIVE (TELEFON UCHUN) --- */
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero h1 { font-size: 50px; letter-spacing: -1px; }
-            .hero p { font-size: 18px; }
-            .container { padding: 0 24px; }
-            .card { min-height: 240px; padding: 30px; }
+            .nav-links { display: none; } /* Desktop menyuni yashirish */
+            .menu-toggle { display: block; color: #fff; } /* Gamburgerni ko'rsatish */
+            
+            .hero h1 { font-size: 36px; }
+            .features { grid-template-columns: 1fr; }
+            .stats { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero container">
-        <header>
-            <div class="header-inner">
-                <div class="logo">
-                    <span class="logo-box">KH</span>
-                    <span class="logo-text">SHOP</span>
-                </div>
-                <nav class="nav-links">
-                    <a href="#market">Xizmatlar</a>
-                    <a href="#about">Biz haqimizda</a>
-                    <a href="https://t.me/minora">Yordam</a>
-                </nav>
-            </div>
-        </header>
+    <nav>
+        <div class="logo">KH <span>SHOP</span></div>
+        
+        <div class="nav-links">
+            <a href="shop.html">Xizmatlar</a>
+            <a href="#">Biz haqimizda</a>
+            <a href="#">Aloqa</a>
+        </div>
 
-        <div>
-            <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
-            <p>Virtual raqamlar, premium username va faol auditoriya.<br>Hammasi bitta ishonchli platformada.</p>
-            
-            <a href="shop.html" class="btn-large">DO‘KONGA O‘TISH</a>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    </nav>
+
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMenu()">✕</div>
+        <a href="shop.html" class="mobile-link">Do'konga kirish</a>
+        <a href="#" class="mobile-link">Biz haqimizda</a>
+        <a href="#" class="mobile-link">Qo'llab-quvvatlash</a>
+    </div>
+
+    <section class="hero">
+        <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
+        <p>Virtual raqamlar, Stars va jonli obunachilar. Eng arzon narxlar va 100% kafolat.</p>
+        <a href="shop.html" class="cta-btn">Xizmatlarni tanlash →</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <span class="stat-num">5k+</span>
+            <span class="stat-label">Mamnun Mijozlar</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Texnik Yordam</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Ishonchli</span>
         </div>
     </section>
 
-    <section id="market" class="market-section">
-        <div class="container">
-            <h2 class="section-title">Xizmatlar Vitrinasi</h2>
-            
-            <div class="bento-grid">
-                <div class="card">
-                    <div><div class="card-icon">📱</div><h3>Virtual Raqamlar</h3><p>Telegram hisob ochish uchun xavfsiz raqamlar (+888, +44, +1).</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-                <div class="card">
-                    <div><div class="card-icon">👥</div><h3>Faol Obunachilar</h3><p>Kanalingiz uchun real o‘zbek auditoriyasi.</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-                <div class="card">
-                    <div><div class="card-icon">⭐️</div><h3>Telegram Stars</h3><p>Bot va ilovalar uchun yulduzchalarni hamyonbop narxda xarid qiling.</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-                <div class="card">
-                    <div><div class="card-icon">🎁</div><h3>Premium & Gift</h3><p>Telegram Premium obunasi va sovg‘alar.</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-                <div class="card">
-                    <div><div class="card-icon">🔤</div><h3>Noyob Username</h3><p>Brendingiz uchun eksklyuziv nomlar savdosi.</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-                <div class="card">
-                    <div><div class="card-icon">🔁</div><h3>Auditoriya Ko'chirish</h3><p>Guruhdan guruhga maqsadli a'zolarni o'tkazish.</p></div>
-                    <div class="card-arrow">↗</div>
-                </div>
-            </div>
+    <section class="features">
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3>Tezkor Xizmat</h3>
+            <p>Barcha buyurtmalar avtomatik tarzda 5 daqiqa ichida bajariladi. Kutib qolish yo'q.</p>
         </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container about-content">
-            <h2>Biz Haqimizda</h2>
-            <p>KH SHOP — 6 yillik tajribaga ega bo'lgan ishonchli raqamli xizmatlar platformasi. Bizning maqsadimiz Telegram biznesingizni yangi bosqichga olib chiqish uchun eng xavfsiz va sifatli vositalarni taqdim etishdir.</p>
+        <div class="card">
+            <div class="card-icon">🛡</div>
+            <h3>Xavfsiz To'lov</h3>
+            <p>To'lovlar himoyalangan va shaxsiy ma'lumotlaringiz sir saqlanadi.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">💎</div>
+            <h3>Premium Sifat</h3>
+            <p>Faqat sifatli raqamlar va obunachilar. Hech qanday "spam" xizmatlar yo'q.</p>
         </div>
     </section>
 
     <footer>
-        © 2026 KH SHOP. Superapp Design.
+        © 2024 KH SHOP. Barcha huquqlar himoyalangan.
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+    </script>
 
 </body>
 </html>
