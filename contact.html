@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qo'llab-quvvatlash | KH SHOP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --surface: #111111;
+            --accent: #229ED9;
+            --text: #FFFFFF;
+            --gray: #888888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* NAVBAR */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 8%; z-index: 1000;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo { font-size: 24px; font-weight: 900; }
+        .logo span { color: var(--accent); }
+        .back-link { font-size: 14px; font-weight: 600; color: #bbb; display: flex; align-items: center; gap: 8px; }
+        .back-link:hover { color: #fff; }
+
+        /* ASOSIY QISM */
+        .contact-hero {
+            flex: 1;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 140px 20px 60px 20px; text-align: center;
+        }
+
+        .hero-title {
+            font-size: 56px; font-weight: 900; margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #999);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            color: var(--gray); font-size: 18px; margin-bottom: 60px; max-width: 600px;
+        }
+
+        /* CONTACT GRID */
+        .contact-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; max-width: 1100px; width: 100%;
+        }
+
+        .contact-card {
+            background: var(--surface); padding: 40px; border-radius: 24px;
+            border: 1px solid #222; text-align: center;
+            transition: 0.3s; display: flex; flex-direction: column; align-items: center;
+        }
+        .contact-card:hover {
+            transform: translateY(-10px); border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(34, 158, 217, 0.15);
+        }
+
+        .icon-box {
+            width: 70px; height: 70px; background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin-bottom: 20px; border: 1px solid #333;
+        }
+        .contact-card:hover .icon-box { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+        .card-title { font-size: 20px; font-weight: 700; margin-bottom: 5px; color: #fff; }
+        .card-info { color: var(--gray); font-size: 14px; margin-bottom: 25px; }
+
+        .contact-btn {
+            background: #222; color: #fff; padding: 12px 25px; border-radius: 30px;
+            font-size: 14px; font-weight: 600; border: 1px solid #333; width: 100%;
+        }
+        .contact-card:hover .contact-btn { background: #fff; color: #000; }
+
+        /* FOOTER */
+        footer { padding: 30px; text-align: center; color: #444; font-size: 13px; margin-top: auto; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 36px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">KH <span>SHOP</span></a>
+        <a href="index.html" class="back-link">← Bosh sahifa</a>
+    </nav>
+
+    <div class="contact-hero">
+        <h1 class="hero-title">Qo'llab-quvvatlash</h1>
+        <p class="hero-subtitle">
+            Savollaringiz bormi? Biz har doim aloqadamiz. <br>
+            O'zingizga qulay usulni tanlang.
+        </p>
+
+        <div class="contact-grid">
+            
+            <a href="https://t.me/turknomerlar?text=Salom!%20Menga%20yordamingiz%20kerak%3F" target="_blank" class="contact-card">
+                <div class="icon-box">✈️</div>
+                <h3 class="card-title">Telegram</h3>
+                <p class="card-info">Tezkor javob olish uchun</p>
+                <div class="contact-btn">@turknomerlar ga yozish</div>
+            </a>
+
+            <a href="tel:+998940445444" class="contact-card">
+                <div class="icon-box">📞</div>
+                <h3 class="card-title">Qo'ng'iroq</h3>
+                <p class="card-info">Favqulodda holatlar uchun</p>
+                <div class="contact-btn">+998 94 044 54 44</div>
+            </a>
+
+            <a href="mailto:ismoilmicrosoft@gmail.com" class="contact-card">
+                <div class="icon-box">📩</div>
+                <h3 class="card-title">Email</h3>
+                <p class="card-info">Rasmiy takliflar uchun</p>
+                <div class="contact-btn">Xat yuborish</div>
+            </a>
+
+        </div>
+    </div>
+
+    <footer>
+        © 2024 KH SHOP. Support Center.
+    </footer>
+
+</body>
+</html>
