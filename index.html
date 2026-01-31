@@ -3,209 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Premium Telegram xizmatlari</title>
-    <meta name="description" content="KH SHOP — Telegram bo‘yicha 6 yillik tajribaga ega premium xizmatlar. Virtual raqamlar, username, giftlar va real auditoriya.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>KH SHOP | Premium Telegram Xizmatlari</title>
+    <meta name="description" content="KH SHOP — Telegram bo‘yicha 6 yillik tajribaga ega premium xizmatlar.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* SIZ YUBORGAN CSS STIL */
-        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif; }
+        /* 1. TOZA RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
+        /* 2. PREMIUM DARK FON */
         body {
-            background: #020617;
-            color: #F8FAFC;
+            background-color: #020617; /* To'q tun rangi */
+            color: #F8FAFC; /* Oq matn */
             line-height: 1.6;
             overflow-x: hidden;
         }
         
-        a { text-decoration:none; color:inherit; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* GLOW BACKGROUND (NUR EFFEKTI) */
-        .bg-blur {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: #229ED9;
-            filter: blur(160px);
-            opacity: 0.25;
-            top: -100px; left: -100px;
+        /* 3. ORQA FON NURI (GLOW) */
+        .glow-bg {
+            position: fixed;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(34,158,217,0.15) 0%, rgba(2,6,23,0) 70%);
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        /* HEADER */
+        /* 4. HEADER (MENU) */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
-            backdrop-filter: blur(12px);
-            background: rgba(2,6,23,0.7);
-            padding: 16px 40px;
+            padding: 20px 5%;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
+            background: rgba(2, 6, 23, 0.8); /* Shaffof qora */
+            backdrop-filter: blur(15px); /* Xira oyna effekti */
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
         }
-        
-        header nav a { margin-left: 24px; color: #CBD5E1; font-size: 14px; font-weight: 500; transition: 0.3s; }
-        header nav a:hover { color: #fff; }
 
-        .btn {
+        .logo { font-weight: 800; font-size: 24px; letter-spacing: -1px; background: linear-gradient(to right, #fff, #94A3B8); -webkit-background-clip: text; color: transparent; }
+        
+        .nav-links a { color: #94A3B8; margin-left: 30px; font-weight: 500; font-size: 14px; }
+        .nav-links a:hover { color: #fff; }
+
+        .btn-tg {
+            background: linear-gradient(135deg, #22C55E, #229ED9);
             padding: 10px 24px;
             border-radius: 12px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #22C55E, #229ED9);
-            box-shadow: 0 0 25px rgba(34,197,94,0.2);
-            display: inline-block;
-            transition: 0.3s;
+            color: #fff !important;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(34,197,94,0.2);
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(34,197,94,0.4); }
+        .btn-tg:hover { box-shadow: 0 6px 25px rgba(34,197,94,0.4); transform: translateY(-2px); }
 
-        /* LAYOUT */
-        section { padding: 120px 40px; }
-        .container { max-width: 1200px; margin: auto; }
+        /* 5. ASOSIY KONTEYNER */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-        /* HERO */
+        /* 6. HERO SECTION */
         .hero {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 60px; align-items: center;
-            min-height: 80vh;
+            padding-top: 160px; padding-bottom: 100px;
+            text-align: center;
         }
-        
+
         .hero h1 {
-            font-size: 56px;
+            font-size: clamp(40px, 5vw, 64px);
             line-height: 1.1;
             font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #F8FAFC, #94A3B8);
+            margin-bottom: 24px;
+            background: linear-gradient(to bottom right, #FFFFFF, #94A3B8);
             -webkit-background-clip: text;
             color: transparent;
         }
-        
-        .hero p { margin: 24px 0 32px 0; color: #94A3B8; font-size: 18px; max-width: 90%; }
 
-        /* GLASS CARD (OYNASIMON BLOKLAR) */
-        .glass {
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.08);
-            transition: 0.4s;
+        .hero p {
+            color: #94A3B8;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
         }
-        
-        .hero .glass p { margin: 12px 0; color: #E2E8F0; font-size: 16px; display: flex; align-items: center; gap: 10px; }
 
-        /* SERVICES GRID */
-        .grid {
+        /* 7. GLASS CARDS (XIZMATLAR) */
+        .grid-services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            margin-top: 40px;
-        }
-        
-        .service {
-            display: flex; flex-direction: column; justify-content: center;
-            min-height: 140px;
-            font-size: 18px; font-weight: 600;
-            text-align: center;
-            cursor: default;
-        }
-        
-        .service:hover {
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.05);
-            border-color: rgba(34,197,94,0.3);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            margin-top: 60px;
         }
 
-        /* CTA SECTION */
-        .cta {
-            text-align: center;
-            background: linear-gradient(135deg, rgba(34,158,217,0.1), rgba(34,197,94,0.1));
-            border-radius: 32px;
-            margin: 40px auto;
-            border: 1px solid rgba(255,255,255,0.1);
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 30px;
+            border-radius: 24px;
+            transition: 0.3s;
         }
-        .cta h2 { font-size: 40px; margin-bottom: 25px; }
 
-        /* FOOTER */
+        .card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(34, 158, 217, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card h3 { font-size: 20px; margin-bottom: 10px; color: #fff; }
+        .card p { color: #94A3B8; font-size: 14px; }
+        .icon { font-size: 32px; margin-bottom: 16px; display: block; }
+
+        /* 8. FOOTER */
         footer {
-            text-align: center;
-            padding: 40px;
-            color: #64748B;
+            text-align: center; padding: 40px;
             border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 14px;
+            color: #475569; font-size: 14px;
+            margin-top: 80px;
         }
 
-        /* MOBILE ADAPTATION */
-        @media(max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-            .hero h1 { font-size: 42px; }
-            .hero p { margin: 20px auto; }
-            section { padding: 80px 20px; }
-            header { padding: 16px 20px; }
-            .nav-links { display: none; } /* Mobil menyu keyinchalik qo'shiladi */
+        /* MOBIL UCHUN */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Mobil menyuni keyinroq qo'shamiz */
+            .hero { padding-top: 120px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-blur"></div>
+    <div class="glow-bg"></div>
 
     <header>
-        <div style="font-weight: 800; font-size: 20px; letter-spacing: -0.5px;">KH SHOP</div>
+        <div class="logo">KH SHOP</div>
         <nav class="nav-links">
-            <a href="#services">Xizmatlar</a>
-            <a href="#about">Men haqimda</a>
-            <a class="btn" href="https://t.me/minora" style="margin-left: 20px;">Telegram</a>
+            <a href="#xizmatlar">Xizmatlar</a>
+            <a href="#haqimda">Men haqimda</a>
+            <a href="https://t.me/minora" class="btn-tg">Telegram</a>
         </nav>
     </header>
 
-    <section class="container hero">
-        <div>
-            <h1>Telegram bo‘yicha <br> premium xizmatlar</h1>
-            <p>6 yillik tajriba, xavfsiz tizimlar va real natija. <br> KH SHOP — raqamli dunyodagi ishonchli hamkor.</p>
-            <a class="btn" href="https://t.me/minora">Bog‘lanish</a>
-        </div>
+    <div class="container">
+        <section class="hero">
+            <h1>Telegram biznesingizni <br> yangi bosqichga olib chiqing</h1>
+            <p>6 yillik tajriba, 100% xavfsizlik va premium xizmatlar. <br> Virtual raqamlar, username va faol auditoriya.</p>
+            <a href="https://t.me/minora" class="btn-tg" style="padding: 16px 40px; font-size: 18px;">Bog‘lanish</a>
+        </section>
 
-        <div class="glass">
-            <p>✅ 6+ yil tajriba</p>
-            <p>💎 Premium xizmatlar</p>
-            <p>🔒 Xavfsiz ishlash</p>
-            <p>🚀 Tezkor natija</p>
-        </div>
-    </section>
-
-    <section id="services" class="container">
-        <h2 style="font-size: 32px; margin-bottom: 10px;">Xizmatlar</h2>
-        <p style="color: #94A3B8;">Biz taklif etadigan asosiy yo‘nalishlar</p>
-        
-        <div class="grid">
-            <div class="glass service">📱 Virtual Raqamlar</div>
-            <div class="glass service">👥 Faol Obunachilar</div>
-            <div class="glass service">🔁 Auditoriya Ko'chirish</div>
-            <div class="glass service">🎁 Telegram Giftlar</div>
-            <div class="glass service">🔤 Premium Username</div>
-            <div class="glass service">⭐️ Telegram Stars</div>
-        </div>
-    </section>
-
-    <section id="about" class="container">
-        <div class="glass" style="text-align: center; max-width: 800px; margin: auto;">
-            <h2 style="font-size: 32px; margin-bottom: 20px;">Men haqimda</h2>
-            <p style="color: #CBD5E1; font-size: 18px;">
-                Men Telegram platformasida 6 yildan ortiq tajribaga ega mutaxassisman.
-                KH SHOP orqali sizga eng sifatli va xavfsiz raqamli yechimlarni taqdim etaman.
-            </p>
-        </div>
-    </section>
-
-    <section class="container">
-        <div class="cta glass">
-            <h2>Premium xizmat kerakmi?</h2>
-            <p style="margin-bottom: 30px; color: #CBD5E1;">Hoziroq bog‘laning va biznesingizni yangi bosqichga olib chiqing</p>
-            <a class="btn" href="https://t.me/minora">👉 @minora ga yozish</a>
-        </div>
-    </section>
+        <section id="xizmatlar">
+            <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">Xizmatlar</h2>
+            <div class="grid-services">
+                <div class="card">
+                    <span class="icon">📱</span>
+                    <h3>Virtual Raqamlar</h3>
+                    <p>Telegram hisob ochish uchun xavfsiz va ishonchli xorijiy raqamlar.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">👥</span>
+                    <h3>Faol Obunachilar</h3>
+                    <p>Kanalingiz uchun real va faol o'zbek auditoriyasini yig'ib beramiz.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🎁</span>
+                    <h3>Telegram Giftlar</h3>
+                    <p>Premium obuna va sovg'alar hamyonbop narxlarda.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🔤</span>
+                    <h3>Noyob Usernamelar</h3>
+                    <p>Brendingiz uchun chiroyli va esda qolarli nomlar savdosi.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">⭐️</span>
+                    <h3>Telegram Stars</h3>
+                    <p>Bot va ilovalar uchun yulduzchalarni tezkor xarid qilish.</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🔁</span>
+                    <h3>Auditoriya Ko'chirish</h3>
+                    <p>Guruhdan guruhga maqsadli auditoriyani sifatli o'tkazish.</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <footer>
-        © 2026 KH SHOP — Barcha huquqlar himoyalangan.
+        © 2026 KH SHOP. Barcha huquqlar himoyalangan.
     </footer>
 
 </body>
