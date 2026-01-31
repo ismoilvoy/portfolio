@@ -3,214 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Premium Telegram Xizmatlari</title>
-    <meta name="description" content="KH SHOP — Telegram bo‘yicha 6 yillik tajribaga ega premium xizmatlar.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>KH SHOP | Superapp Style</title>
+    <meta name="description" content="Telegram xizmatlari supermarketi">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. TOZA RESET */
+        /* 1. HUMANS.UZ STILIDAGI RESET */
+        :root {
+            --bg-color: #000000;      /* Qop-qora fon */
+            --card-bg: #111111;       /* Bloklar foni */
+            --accent: #229ED9;        /* Telegram Blue */
+            --text-main: #FFFFFF;
+            --text-muted: #888888;
+            --radius: 32px;           /* Katta yumaloq burchaklar (Humans stili) */
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         
-        /* 2. PREMIUM DARK FON */
         body {
-            background-color: #020617;
-            color: #F8FAFC;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             overflow-x: hidden;
         }
-        
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* 3. ORQA FON NURI (GLOW) */
-        .glow-bg {
-            position: fixed;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(34,158,217,0.15) 0%, rgba(2,6,23,0) 70%);
-            top: -100px; left: 50%;
-            transform: translateX(-50%);
-            z-index: -1;
-            pointer-events: none;
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* 2. KONTEYNER (Kengroq va erkin) */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        /* 4. HEADER */
+        /* 3. HEADER (Minimalistik) */
         header {
             position: fixed; top: 0; left: 0; width: 100%;
-            padding: 20px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 24px 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             z-index: 1000;
         }
 
-        /* LOGO STILI (NUQTASIZ) */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
+        .header-inner {
+            display: flex; justify-content: space-between; align-items: center;
         }
 
+        /* LOGO (Siz tasdiqlagan versiya) */
+        .logo { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .logo-box {
-            background: linear-gradient(135deg, #22C55E, #229ED9);
-            color: #fff;
-            font-weight: 900;
-            font-size: 20px;
-            padding: 8px 14px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+            background: var(--accent);
+            color: #fff; font-weight: 900; font-size: 18px;
+            padding: 6px 12px; border-radius: 10px;
         }
+        .logo-text { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; }
 
-        .logo-text {
-            font-weight: 800;
-            font-size: 24px;
-            color: #F8FAFC;
-            letter-spacing: -1px;
-            /* Nuqta kodi olib tashlandi */
+        /* MENU (O'ng tarafda, oddiy va toza) */
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a {
+            font-size: 15px; font-weight: 600; color: var(--text-muted); transition: 0.3s;
         }
-        
-        .nav-links a { color: #94A3B8; margin-left: 30px; font-weight: 500; font-size: 14px; }
         .nav-links a:hover { color: #fff; }
 
-        .btn-tg {
-            background: linear-gradient(135deg, #22C55E, #229ED9);
-            padding: 10px 24px;
-            border-radius: 12px;
-            color: #fff !important;
-            font-weight: 600;
-            box-shadow: 0 4px 20px rgba(34,197,94,0.2);
-        }
-        .btn-tg:hover { box-shadow: 0 6px 25px rgba(34,197,94,0.4); transform: translateY(-2px); }
-
-        /* 5. KONTEYNER */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-
-        /* 6. HERO */
+        /* 4. HERO (Katta Sarlavha) */
         .hero {
-            padding-top: 160px; padding-bottom: 100px;
-            text-align: center;
+            padding-top: 180px; padding-bottom: 80px;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(40px, 5vw, 64px);
-            line-height: 1.1;
-            font-weight: 800;
-            margin-bottom: 24px;
-            background: linear-gradient(to bottom right, #FFFFFF, #94A3B8);
-            -webkit-background-clip: text;
-            color: transparent;
+            font-size: clamp(48px, 6vw, 80px); /* Juda katta shrift */
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
         }
+        
+        .hero h1 span { color: var(--accent); }
 
         .hero p {
-            color: #94A3B8;
-            font-size: 18px;
-            max-width: 600px;
-            margin: 0 auto 40px auto;
+            font-size: 20px; color: var(--text-muted);
+            max-width: 600px; margin-bottom: 50px;
+            line-height: 1.5;
         }
 
-        /* 7. CARDS */
-        .grid-services {
+        /* KATTA TUGMA (Humans stili) */
+        .btn-large {
+            background: #fff;
+            color: #000;
+            font-size: 18px; font-weight: 700;
+            padding: 20px 50px;
+            border-radius: 100px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+        .btn-large:hover { transform: scale(1.05); }
+
+        /* 5. MARKET GRID (Bento Box uslubi) */
+        .market-section { padding: 50px 0 100px 0; }
+        
+        .section-title {
+            font-size: 32px; font-weight: 800; margin-bottom: 40px;
+        }
+
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 60px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Kengroq kartalar */
+            gap: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 24px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 280px;
             transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #222;
         }
 
         .card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(34, 158, 217, 0.3);
+            background: #1a1a1a;
             transform: translateY(-5px);
+            border-color: #333;
         }
 
-        .card h3 { font-size: 20px; margin-bottom: 10px; color: #fff; }
-        .card p { color: #94A3B8; font-size: 14px; }
-        .icon { font-size: 32px; margin-bottom: 16px; display: block; }
+        .card-icon { font-size: 40px; margin-bottom: 20px; }
+        .card h3 { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 16px; line-height: 1.5; }
 
-        /* 8. FOOTER */
+        .card-arrow {
+            position: absolute; bottom: 30px; right: 30px;
+            background: #222; width: 50px; height: 50px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; transition: 0.3s;
+        }
+        .card:hover .card-arrow { background: var(--accent); color: #fff; }
+
+        /* FOOTER */
         footer {
-            text-align: center; padding: 40px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: #475569; font-size: 14px;
-            margin-top: 80px;
+            padding: 50px 0; border-top: 1px solid #222;
+            text-align: center; color: #555; font-size: 14px;
         }
 
+        /* MOBIL UCHUN */
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero { padding-top: 120px; }
+            .hero h1 { font-size: 42px; }
+            .card { min-height: 220px; padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glow-bg"></div>
-
     <header>
-        <div class="logo">
-            <span class="logo-box">KH</span>
-            <span class="logo-text">SHOP</span>
+        <div class="container header-inner">
+            <div class="logo">
+                <span class="logo-box">KH</span>
+                <span class="logo-text">SHOP</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#market">Xizmatlar</a>
+                <a href="#about">Biz haqimizda</a>
+                <a href="https://t.me/minora">Yordam</a>
+            </nav>
         </div>
-        
-        <nav class="nav-links">
-            <a href="#xizmatlar">Xizmatlar</a>
-            <a href="#haqimda">Men haqimda</a>
-            <a href="https://t.me/minora" class="btn-tg">Telegram</a>
-        </nav>
     </header>
 
-    <div class="container">
-        <section class="hero">
-            <h1>Telegram biznesingizni <br> yangi bosqichga olib chiqing</h1>
-            <p>6 yillik tajriba, 100% xavfsizlik va premium xizmatlar. <br> Virtual raqamlar, username va faol auditoriya.</p>
-            <a href="https://t.me/minora" class="btn-tg" style="padding: 16px 40px; font-size: 18px;">Bog‘lanish</a>
-        </section>
+    <section class="hero container">
+        <h1>Telegramda <br> <span>Cheklovsiz</span> O'sing.</h1>
+        <p>Virtual raqamlar, premium username va faol auditoriya. Hammasi bitta ishonchli platformada.</p>
+        
+        <a href="#market" class="btn-large">DO‘KONGA O‘TISH</a>
+    </section>
 
-        <section id="xizmatlar">
-            <h2 style="font-size: 32px; margin-bottom: 20px; text-align: center;">Xizmatlar</h2>
-            <div class="grid-services">
-                <div class="card">
-                    <span class="icon">📱</span>
+    <section id="market" class="market-section container">
+        <h2 class="section-title">Xizmatlar Vitrinasi</h2>
+        
+        <div class="bento-grid">
+            <div class="card">
+                <div>
+                    <div class="card-icon">📱</div>
                     <h3>Virtual Raqamlar</h3>
-                    <p>Telegram hisob ochish uchun xavfsiz va ishonchli xorijiy raqamlar.</p>
+                    <p>Telegram hisob ochish uchun xavfsiz raqamlar (+888, +44, +1).</p>
                 </div>
-                <div class="card">
-                    <span class="icon">👥</span>
-                    <h3>Faol Obunachilar</h3>
-                    <p>Kanalingiz uchun real va faol o'zbek auditoriyasini yig'ib beramiz.</p>
-                </div>
-                <div class="card">
-                    <span class="icon">🎁</span>
-                    <h3>Telegram Giftlar</h3>
-                    <p>Premium obuna va sovg'alar hamyonbop narxlarda.</p>
-                </div>
-                <div class="card">
-                    <span class="icon">🔤</span>
-                    <h3>Noyob Usernamelar</h3>
-                    <p>Brendingiz uchun chiroyli va esda qolarli nomlar savdosi.</p>
-                </div>
-                <div class="card">
-                    <span class="icon">⭐️</span>
-                    <h3>Telegram Stars</h3>
-                    <p>Bot va ilovalar uchun yulduzchalarni tezkor xarid qilish.</p>
-                </div>
-                <div class="card">
-                    <span class="icon">🔁</span>
-                    <h3>Auditoriya Ko'chirish</h3>
-                    <p>Guruhdan guruhga maqsadli auditoriyani sifatli o'tkazish.</p>
-                </div>
+                <div class="card-arrow">↗</div>
             </div>
-        </section>
-    </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-icon">👥</div>
+                    <h3>Faol Obunachilar</h3>
+                    <p>Kanalingiz uchun real o‘zbek auditoriyasi.</p>
+                </div>
+                <div class="card-arrow">↗</div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-icon">⭐️</div>
+                    <h3>Telegram Stars</h3>
+                    <p>Bot va ilovalar uchun yulduzchalarni hamyonbop narxda xarid qiling.</p>
+                </div>
+                <div class="card-arrow">↗</div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-icon">🎁</div>
+                    <h3>Premium & Gift</h3>
+                    <p>Telegram Premium obunasi va sovg‘alar.</p>
+                </div>
+                <div class="card-arrow">↗</div>
+            </div>
+             
+             <div class="card">
+                <div>
+                    <div class="card-icon">🔤</div>
+                    <h3>Noyob Username</h3>
+                    <p>Brendingiz uchun eksklyuziv nomlar savdosi.</p>
+                </div>
+                <div class="card-arrow">↗</div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-icon">🔁</div>
+                    <h3>Auditoriya Ko'chirish</h3>
+                    <p>Guruhdan guruhga maqsadli a'zolarni o'tkazish.</p>
+                </div>
+                <div class="card-arrow">↗</div>
+            </div>
+        </div>
+    </section>
 
     <footer>
-        © 2026 KH SHOP. Barcha huquqlar himoyalangan.
+        © 2026 KH SHOP. Superapp Design.
     </footer>
 
 </body>
