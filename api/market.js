@@ -1,49 +1,77 @@
-export default async function handler(request, response) {
-    const API_KEY = 'AFNWCHPOYBUCWXYAAAAPXV57JKI2J37AWVGFOVBKE6SJOCO6ZUWA5SJHCX6D4JMHVGAWV3Q'; 
-    
-    // Telegram Usernames kolleksiyasi
-    const collectionAddress = "EQCA14o1-VWhS2efqoh_9M1b_A9DtKTuoqfmkn83AbJzwnPi"; 
+// Narxlar (O'zgaruvchan)
+const prices = {
+    star: 250,
+    memberAralash: 15, // 1 ta odam uchun
+    memberToza: 45     // 1 ta odam uchun
+};
 
-    try {
-        const nftReq = await fetch(`https://tonapi.io/v2/nfts/collections/${collectionAddress}/items?limit=12&offset=0`, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${API_KEY}` }
-        });
+const categories = [
+    { id: 'tg_market', name: 'Telegram Market', icon: 'fab fa-telegram', color: '#0088cc' },
+    { id: 'ai_market', name: 'AI Market', icon: 'fas fa-robot', color: '#bd00ff' },
+    { id: 'web_market', name: 'Website Xizmatlari', icon: 'fas fa-code', color: '#00f2ff' }
+];
 
-        if (!nftReq.ok) throw new Error("API ulanishda xato");
+function openMarket() {
+    tab('market');
+    renderCategories();
+}
 
-        const nftData = await nftReq.json();
-        const itemsList = nftData.nft_items || [];
+function renderCategories() {
+    const container = document.getElementById('market-content');
+    document.getElementById('market-title').innerText = "Kategoriyalar";
+    container.innerHTML = categories.map(cat => `
+        <div class="card" onclick="openCategory('${cat.id}')" style="cursor:pointer; border-bottom: 3px solid ${cat.color}; transition: 0.3s;">
+            <i class="${cat.icon}" style="font-size: 45px; color: ${cat.color}; margin-bottom: 15px;"></i>
+            <h3>${cat.name}</h3>
+            <p style="font-size:12px; color:gray; margin-top:10px;">Xizmatlar ro'yxatini ko'rish</p>
+        </div>
+    `).join('');
+}
 
-        const realItems = itemsList.map(nft => {
-            const name = nft.metadata.name || "Username";
-            const cleanName = name.replace('@', ''); // Fragment uchun @ belgisini olib tashlaymiz
+function openCategory(id) {
+    const container = document.getElementById('market-content');
+    const title = document.getElementById('market-title');
+    title.innerHTML = `<button onclick="renderCategories()" class="btn" style="width:auto; padding:5px 15px; margin-right:15px;">⬅️</button> ${id.replace('_', ' ').toUpperCase()}`;
 
-            // 📸 SIFATLI RASM STRATEGIYASI:
-            // Birinchi navbatda Fragment serveridan HD rasm olishga harakat qilamiz
-            let highResImage = `https://nft.fragment.com/username/${cleanName}.webp`;
-            
-            // Agar Fragment rasmi bo'lmasa, GetGems dan eng sifatli previewni olamiz
-            if (!nft.metadata.name) {
-                highResImage = nft.previews?.find(p => p.resolution === '500x500')?.url || nft.previews?.[nft.previews.length - 1]?.url;
-            }
+    if(id === 'tg_market') {
+        container.innerHTML = `
+            <div class="card" style="grid-column: 1 / -1; border: 1px solid #ffcc00; background: rgba(255, 204, 0, 0.05);">
+                <h3><i class="fas fa-star" style="color:#ffcc00"></i> Yulduzcha (Stars) Kalkulyatori</h3>
+                <input type="number" id="starsQty" placeholder="Miqdorni kiriting..." oninput="calc('stars')" 
+                       style="width:100%; padding:12px; margin-top:15px; background:#1a1a2e; border:1px solid #333; color:white; border-radius:8px;">
+                <div id="starsRes" style="margin-top:10px; font-size:22px; color:#ffcc00; font-weight:bold;">0 so'm</div>
+            </div>
 
-            let priceLabel = "Sotuvda yo'q"; 
-            if (nft.sale) {
-                priceLabel = `${(parseInt(nft.sale.price.value) / 1000000000).toFixed(1)} TON`;
-            }
+            <div class="card"><h3>3 Oy Premium</h3><button class="btn">Tanlash</button></div>
+            <div class="card"><h3>6 Oy Premium</h3><button class="btn">Tanlash</button></div>
+            <div class="card"><h3>12 Oy Premium</h3><button class="btn">Tanlash</button></div>
 
-            return {
-                name: name,
-                image: highResImage,
-                price: priceLabel,
-                link: `https://fragment.com/username/${cleanName}`
-            };
-        });
+            <div class="card" style="grid-column: 1 / -1;">
+                <h3><i class="fas fa-users"></i> Odam qo'shish (Aralash/Toza)</h3>
+                <input type="number" id="memQty" placeholder="Soni..." oninput="calc('members')" style="width:100%; padding:10px; margin:10px 0; background:#1a1a2e; border:1px solid #333; color:white;">
+                <div id="memRes" style="font-size:18px; color:#00f2ff;">Jami: 0 so'm</div>
+            </div>
+        `;
+    } else if(id === 'ai_market') {
+        container.innerHTML = `
+            <div class="card"><h3>ChatGPT Plus</h3><button class="btn">Obuna bo'lish</button></div>
+            <div class="card"><h3>Midjourney</h3><button class="btn">Obuna bo'lish</button></div>
+        `;
+    } else {
+        container.innerHTML = `
+            <div class="card"><h3>Portfolio yaratish</h3><button class="btn">Buyurtma berish</button></div>
+            <div class="card"><h3>Telegram WebApp</h3><button class="btn">Buyurtma berish</button></div>
+        `;
+    }
+}
 
-        return response.status(200).json({ items: realItems });
-
-    } catch (error) {
-        return response.status(500).json({ error: true, details: error.message });
+function calc(type) {
+    if(type === 'stars') {
+        const q = document.getElementById('starsQty').value;
+        document.getElementById('starsRes').innerText = (q * prices.star).toLocaleString() + " so'm";
+    }
+    if(type === 'members') {
+        const q = document.getElementById('memQty').value;
+        document.getElementById('memRes').innerText = "Jami: " + (q * prices.memberToza).toLocaleString() + " so'm";
     }
 }
