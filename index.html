@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KH SHOP | Professional Portfolio</title>
+    <title>KH SHOP | Professional</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* 1. Global Sozlamalar */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
@@ -20,170 +19,126 @@
             position: relative;
         }
 
-        /* Namunadagi oq diagonal qism */
+        /* Oq diagonal fon - aniq 32% balandlikda */
         body::after {
             content: "";
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 28%;
+            height: 32%;
             background: white;
             clip-path: polygon(0 100%, 100% 100%, 100% 0);
             z-index: 1;
         }
 
-        /* 2. Header (Navbar) */
+        /* Header - Elementlar orasidagi masofa kengaytirildi */
         header {
             position: absolute;
             top: 0;
             width: 100%;
-            padding: 25px 8%;
+            padding: 45px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
         }
+        .header-logo { display: flex; align-items: center; gap: 12px; }
+        .header-logo img { width: 40px; }
+        .header-logo span { font-family: 'Montserrat'; font-weight: 900; font-size: 22px; line-height: 0.9; }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .header-brand img { width: 45px; }
-        .header-brand .brand-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            line-height: 0.9;
-            color: #000;
-        }
+        .nav { display: flex; gap: 40px; align-items: center; }
+        .nav a { text-decoration: none; color: #333; font-size: 14px; font-weight: 500; transition: 0.3s; }
+        .nav a:hover { color: #000; }
+        .hobil-btn { background: #3b71ca; color: white !important; padding: 10px 30px; border-radius: 8px; font-weight: 600 !important; }
 
-        .nav-links { display: flex; gap: 35px; align-items: center; }
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            font-size: 15px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: #000; font-weight: 700; }
-        .btn-hobil {
-            background: #3b71ca;
-            color: white !important;
-            padding: 10px 25px;
-            border-radius: 6px;
-            font-weight: 600 !important;
-        }
-
-        /* 3. Hero Bo'limi */
+        /* Hero Bo'limi - Simmetriya */
         .hero {
             display: flex;
             width: 100%;
-            max-width: 1350px;
-            padding: 0 8%;
+            max-width: 1300px;
+            padding: 0 10%;
             align-items: center;
             justify-content: space-between;
             z-index: 10;
         }
 
         .content { flex: 1.2; }
-
-        /* Sarlavha ustidagi o'sha "yarashmagan" belgini brend ko'rinishiga keltiramiz */
-        .main-brand-mark {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 35px;
-        }
-        .main-brand-mark img { width: 50px; }
-        .main-brand-mark .mark-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            color: #000;
-            line-height: 0.9;
-        }
+        .content-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 40px; }
 
         .content h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(40px, 6vw, 72px);
+            font-size: clamp(30px, 5vw, 68px); 
             color: #000;
-            line-height: 1;
+            line-height: 1.05;
             text-transform: uppercase;
             letter-spacing: -2px;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
-        .btn-cta {
+        .btn-main {
             background: #fff;
             color: #3b71ca;
-            padding: 15px 45px;
+            padding: 16px 45px;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 800;
-            font-size: 16px;
-            text-transform: uppercase;
+            font-size: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: inline-block;
-            transition: 0.3s ease;
+            transition: 0.3s;
         }
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
 
-        /* 4. Rasm (Piksel masofalari aniq) */
+        /* Rasm - Masshtab va masofa to'g'rilandi */
         .image-box {
             flex: 1;
             display: flex;
             justify-content: flex-end;
         }
         .image-box img {
-            width: 110%;
-            max-width: 650px;
-            /* Shaffof rasm uchun filtrlar */
-            filter: drop-shadow(20px 30px 50px rgba(0,0,0,0.15));
-            transform: translate(10px, 30px); /* Namunadagi joylashuv */
+            width: 95%; /* Pala-partishlikni yo'qotish uchun biroz kichraytirildi */
+            max-width: 600px;
+            filter: drop-shadow(30px 40px 60px rgba(0,0,0,0.15));
+            transform: translateY(20px);
         }
 
-        /* Mobil qurilmalar */
         @media (max-width: 1024px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .content h1 { font-size: 45px; }
-            .image-box { justify-content: center; width: 100%; margin-top: 40px; }
-            .nav-links { display: none; }
-            .main-brand-mark { justify-content: center; }
+            .hero { flex-direction: column; text-align: center; padding-top: 130px; }
+            .image-box { justify-content: center; margin-top: 50px; }
+            .content h1 { font-size: 40px; }
+            .nav { display: none; }
+            header { padding: 30px 5%; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-brand">
+        <div class="header-logo">
             <img src="img/logo.png" alt="Logo">
-            <div class="brand-text">
-                <p style="font-size: 14px;">KH</p>
-                <p style="font-size: 22px;">SHOP 2</p>
-            </div>
+            <span>KH<br>SHOP 2</span>
         </div>
-        <nav class="nav-links">
+        <div class="nav">
             <a href="#">Httml</a>
             <a href="#">Stome</a>
             <a href="#">Coloon</a>
             <a href="#market">Market</a>
-            <a href="#" class="btn-hobil">Hobil</a>
-        </nav>
+            <a href="#" class="hobil-btn">Hobil</a>
+        </div>
     </header>
 
     <section class="hero">
         <div class="content">
-            <div class="main-brand-mark">
-                <img src="img/logo.png" alt="Brand Logo">
-                <div class="mark-text">
-                    <p style="font-size: 13px;">KH</p>
-                    <p style="font-size: 20px;">SHOP</p>
+            <div class="content-logo">
+                <img src="img/logo.png" width="48">
+                <div style="font-family:'Montserrat'; font-weight:900; line-height:0.9;">
+                    <p style="font-size:13px;">KH</p>
+                    <p style="font-size:20px;">SHOP</p>
                 </div>
             </div>
-            
             <h1>HAMMASI BITTA – <br> ILOVADA</h1>
-            
-            <a href="#market" class="btn-cta">BATAFFSIL MA'LUMOT</a>
+            <a href="#market" class="btn-main">BATAFSIL MA'LUMOT</a>
         </div>
 
         <div class="image-box">
